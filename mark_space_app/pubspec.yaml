@@ -1,0 +1,41 @@
+name: mark_space_app
+description: Mark uploading web and native app
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.3
+  provider:
+  flutter_screenutil:
+  google_fonts:
+  page_transition:
+  font_awesome_flutter:
+  flutter_launcher_icons:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  android: true
+  ios: true
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/class.png
+    - assets/images/background.jpg
+    - assets/images/apple.png
