@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/widgets/inherited.dart';
 import 'package:mark_space_app/screens/teacher/home_teacher.dart';
 
 

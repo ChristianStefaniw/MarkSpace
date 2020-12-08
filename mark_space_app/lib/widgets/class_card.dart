@@ -13,8 +13,9 @@ import 'inherited.dart';
 class ClassCard extends StatelessWidget {
   final Map theClass;
   final Color color;
+  final int index;
 
-  ClassCard({Key key, this.theClass, this.color}) : super(key: key);
+  ClassCard({Key key, this.theClass, this.color, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,12 @@ class ClassCard extends StatelessWidget {
                       classes: MyInheritedWidget.of(context).classes,
                       data: ClassData(
                         classID: this.theClass['id'],
+                        className: this.theClass['class'],
+                        classCode: this.theClass['code'],
+                        classPeriod: this.theClass['period'],
                       ),
                       child: TeachersClass(),
-                    ),
+                    )
                   ),
                 );
               },

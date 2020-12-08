@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/models/teacher/class_data.dart';
 
 import 'package:mark_space_app/screens/teacher/class/class_tabs/contents.dart';
 import 'package:mark_space_app/widgets/inherited.dart';
 import 'class_tabs/the_class.dart';
 
 class TeachersClass extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    final _data = MyInheritedWidget.of(context).data;
+
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Class ${MyInheritedWidget.of(context).data.id}"),
+          title: Text("${_data.name} - ${_data.period}"),
           backgroundColor: Color(0xff000080),
           centerTitle: true,
           bottom: TabBar(
