@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/net/teacher/get_student_profile_data.dart';
+import 'package:mark_space_app/models/teacher/get_student_profile_data.dart';
+
 
 class StudentProfile extends StatelessWidget {
 

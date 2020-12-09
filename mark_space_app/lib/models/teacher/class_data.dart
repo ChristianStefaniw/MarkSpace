@@ -1,8 +1,9 @@
 class ClassData {
-  final String classID;
-  final String classCode;
-  final String className;
-  final String classPeriod;
+  final String id;
+  final String code;
+  final String name;
+  final String period;
+  final String icon;
 
   List<Map> _data = [
     {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
@@ -26,14 +27,10 @@ class ClassData {
     {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
   ];
 
-  ClassData({this.classPeriod, this.classCode, this.className, this.classID});
+  ClassData({this.period, this.code, this.name, this.id, this.icon});
 
-  String get id => this.classID;
-  String get code => this.classCode;
-  String get name => this.className;
-  String get period => this.classPeriod;
 
-  List getData() {
+  List get studentData {
     //TODO get each person in class -> marks, name, email, etc
 
     /*

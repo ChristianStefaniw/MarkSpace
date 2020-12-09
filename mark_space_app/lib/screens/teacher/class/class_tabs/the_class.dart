@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/net/teacher/get_student_profile_data.dart';
-import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
+import 'package:mark_space_app/models/teacher/class_data.dart';
 
-import 'package:mark_space_app/widgets/inherited.dart';
+
+import 'package:mark_space_app/models/teacher/get_student_profile_data.dart';
+import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
+import 'package:mark_space_app/widgets/inherited/single_class_data_inherited.dart';
 import 'package:page_transition/page_transition.dart';
 
 class TheClass extends StatelessWidget {
+
   static const List<String> HEADINGS = ["Name", "Grade"];
 
   List<TableRow> createTable(BuildContext context) {
     Color color;
 
-    List _data = MyInheritedWidget.of(context).data.getData();
 
     List<TableRow> _rows = <TableRow>[
       new TableRow(
@@ -42,9 +44,9 @@ class TheClass extends StatelessWidget {
               .toList())
     ];
 
-    for (int i = 0; i < _data.length; i++) {
-      i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Colors.grey;
-      _rows.add(_tableRow(_data[i], color, context));
+    for (int i = 0; i < SingleClassDataInherited.of(context).classData.studentData.length; i++) {
+      i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
+      _rows.add(_tableRow(SingleClassDataInherited.of(context).classData.studentData[i], color, context));
     }
 
     return _rows;
@@ -59,10 +61,8 @@ class TheClass extends StatelessWidget {
       context,
       PageTransition(
           type: PageTransitionType.topToBottom,
-          child: MyInheritedWidget(
-            child: StudentProfile(
-              profile: _studentProfile,
-            ),
+          child: StudentProfile(
+            profile: _studentProfile,
           )),
     );
   }
@@ -89,7 +89,7 @@ class TheClass extends StatelessWidget {
             ),
             onTap: () {
               student(element['email'], element['name'],
-                  MyInheritedWidget.of(context).data.classID, context);
+                  SingleClassDataInherited.of(context).classData.id, context);
             },
           ),
         ),
