@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mark_space_app/models/teacher/class_data.dart';
 
-import 'package:mark_space_app/widgets/inherited/all_class_data_inherited.dart';
-import 'package:mark_space_app/widgets/class_card.dart';
+import 'package:mark_space_app/models/teacher/class_data.dart';
+import 'package:mark_space_app/widgets/teacher/class_card.dart';
+import 'package:mark_space_app/widgets/teacher/inherited/all_class_data_inherited.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -85,6 +85,13 @@ class Home extends StatelessWidget {
           leading: Image.asset(
             'assets/images/apple.png',
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add),
+              color: Colors.white,
+              onPressed: () => print("add class"),
+            )
+          ]
         ),
         body: AllClassDataInherited(
           classData: classData,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/models/teacher/class_data.dart';
-
 
 import 'package:mark_space_app/models/teacher/get_student_profile_data.dart';
 import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
-import 'package:mark_space_app/widgets/inherited/single_class_data_inherited.dart';
+import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
 import 'package:page_transition/page_transition.dart';
 
 class TheClass extends StatelessWidget {

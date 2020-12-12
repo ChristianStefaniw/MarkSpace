@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/models/teacher/class_data.dart';
 import 'package:mark_space_app/screens/teacher/class/class.dart';
-import 'package:mark_space_app/widgets/class_card_item.dart';
+import 'class_card_item.dart';
 
 
 class ClassCard extends StatelessWidget {
@@ -25,7 +25,7 @@ class ClassCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(15))),
         elevation: 15,
         child: Container(
-          width: 375.w,
+          width: 450.w,
           child: InkWell(
             splashColor: Colors.lightBlueAccent,
             onTap: () {
@@ -42,7 +42,7 @@ class ClassCard extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 27.w),
+                  padding: EdgeInsets.only(left: 42.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -66,16 +66,16 @@ class ClassCard extends StatelessWidget {
                   ),
                 ),
                 ClassCardItem(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 27.w, vertical: 10.h),
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 42.w, vertical: 10.h),
                   title: 'Period:',
                   contents: this.theClass.period,
                   fontSize: 50,
                   fontColor: Colors.black87,
                 ),
                 ClassCardItem(
-                  padding:
-                      EdgeInsets.only(top: 10.h, bottom: 10.h, right: 27.w),
+                  margin:
+                      EdgeInsets.only(top: 10.h, bottom: 10.h, right: 42.w),
                   title: 'Course Code:',
                   contents: this.theClass.code,
                   fontSize: 25,

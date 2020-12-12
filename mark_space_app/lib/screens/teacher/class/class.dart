@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/models/teacher/class_data.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:mark_space_app/models/teacher/class_data.dart';
 import 'package:mark_space_app/screens/teacher/class/class_tabs/contents.dart';
-import 'package:mark_space_app/widgets/inherited/single_class_data_inherited.dart';
+import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
 import 'class_tabs/the_class.dart';
 
 class TeachersClass extends StatelessWidget {
@@ -20,6 +21,19 @@ class TeachersClass extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            actions: [
+              Container(
+                margin: EdgeInsets.only(right: 7.w),
+                child: IconButton(
+                  icon: Icon(Icons.person_add),
+                  onPressed: () => print('add student'),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () => print('add unit'),
+              ),
+            ],
             title: Text("${data.name} - ${data.period}"),
             backgroundColor: Color(0xff000080),
             centerTitle: true,
