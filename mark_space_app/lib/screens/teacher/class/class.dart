@@ -25,11 +25,13 @@ class TeachersClass extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(right: 7.w),
                 child: IconButton(
+                  tooltip: "Add student",
                   icon: Icon(Icons.person_add),
                   onPressed: () => print('add student'),
                 ),
               ),
               IconButton(
+                tooltip: "Add unit",
                 icon: Icon(Icons.add),
                 onPressed: () => print('add unit'),
               ),

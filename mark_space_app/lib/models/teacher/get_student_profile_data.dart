@@ -7,11 +7,21 @@ class GetStudentProfileData {
 
   Map get data {
     Map marks = {
-      'Functions': {
-        "Exponential Functions Unit Test": '84%',
-        "Trigonometric Functions Unit Test": '68%'
-      },
-      'Exam': {"Final Exam": '76%'}
+      'Functions': [
+        {
+          'name': "Exponential Functions Unit Test",
+          'grade': '84%',
+          'weight': 20
+        },
+        {
+          'name': "Trigonometric Functions Unit Test",
+          'grade': '68%',
+          'weight': 20
+        },
+      ],
+      'Exam': [
+        {'name': "Final Exam", 'grade': '76%', 'weight': 60},
+      ],
     };
     return {
       'name': this.name,

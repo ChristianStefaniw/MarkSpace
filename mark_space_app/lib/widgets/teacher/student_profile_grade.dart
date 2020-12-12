@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class StudentProfileGrade extends StatelessWidget {
   final String grade;
   final String assessment;
+  final double weight;
 
-  StudentProfileGrade({this.grade, this.assessment});
+  StudentProfileGrade({this.grade, this.assessment, this.weight});
 
   @override
   Widget build(BuildContext context) {

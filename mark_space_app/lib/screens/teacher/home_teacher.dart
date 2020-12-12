@@ -87,6 +87,7 @@ class Home extends StatelessWidget {
           ),
           actions: [
             IconButton(
+              tooltip: "Add class",
               icon: Icon(Icons.add),
               color: Colors.white,
               onPressed: () => print("add class"),
