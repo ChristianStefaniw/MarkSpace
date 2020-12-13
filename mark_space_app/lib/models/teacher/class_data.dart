@@ -1,3 +1,5 @@
+import 'package:mark_space_app/models/teacher/student_profile_data.dart';
+
 class ClassData {
   final String id;
   final String code;
@@ -5,39 +7,27 @@ class ClassData {
   final String period;
   final String icon;
 
-  List<Map> _data = [
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Bob Joe", "mark": '54%', "email": 'bob.joe@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-    {"name": "Christian Stefaniw", "mark": '83%', "email": 'christian.stefaniw@student.tdsb.on.ca'},
-  ];
-
   ClassData({this.period, this.code, this.name, this.id, this.icon});
 
-
-  List get studentData {
-    //TODO get each person in class -> marks, name, email, etc
-
-    /*
-    forEach item in get request:
-      data.add({"person":{"mark": mark, "name": name}
-     */
-
-    return _data;
+  List<StudentProfileData> _studentData(){
+    List<StudentProfileData> _studentData = [
+      StudentProfileData(
+          name: "Bob Joe",
+          email: "bob.joe@student.tdsb.on.ca",
+          classID: this.id),
+      StudentProfileData(
+          name: "Christian Stefaniw",
+          email: "christian.stefaniw@student.tdsb.on.ca",
+          classID: this.id)
+    ];
+    return _studentData;
   }
+
+  List<String> _units = ['Exponential Functions Unit Test', 'Trigonometric Functions Unit Test', 'Final Exam'];
+
+  List<StudentProfileData> get studentData {
+    return _studentData();
+  }
+
+  List get units => this._units;
 }

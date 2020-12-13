@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
-import 'package:mark_space_app/models/teacher/get_student_profile_data.dart';
+import 'package:mark_space_app/models/teacher/student_profile_data.dart';
 import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
 import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
-import 'package:page_transition/page_transition.dart';
 
 class TheClass extends StatelessWidget {
 
@@ -52,8 +52,8 @@ class TheClass extends StatelessWidget {
 
   void student(
       String email, String name, String classID, BuildContext context) {
-    GetStudentProfileData _studentProfile =
-        GetStudentProfileData(email: email, name: name, classID: classID);
+    StudentProfileData _studentProfile =
+        StudentProfileData(email: email, name: name, classID: classID);
 
     Navigator.push(
       context,
@@ -65,11 +65,9 @@ class TheClass extends StatelessWidget {
     );
   }
 
-  TableRow _tableRow(Map element, Color color, BuildContext context) {
-    Map temp = new Map.from(element);
-    temp.remove('email');
+  TableRow _tableRow(StudentProfileData element, Color color, BuildContext context) {
     return TableRow(children: [
-      for (String key in temp.keys)
+      for (String selection in ['name', 'average'])
         Container(
           height: 80,
           child: InkWell(
@@ -81,12 +79,12 @@ class TheClass extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                element[key],
+                element.data[selection].toString(),
                 textAlign: TextAlign.center,
               )),
             ),
             onTap: () {
-              student(element['email'], element['name'],
+              student(element.email, element.name,
                   SingleClassDataInherited.of(context).classData.id, context);
             },
           ),

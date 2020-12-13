@@ -7,14 +7,12 @@ import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inher
 import 'class_tabs/the_class.dart';
 
 class TeachersClass extends StatelessWidget {
-
   final ClassData data;
 
   TeachersClass(this.data);
 
   @override
   Widget build(BuildContext context) {
-
     return SingleClassDataInherited(
       classData: data,
       child: DefaultTabController(

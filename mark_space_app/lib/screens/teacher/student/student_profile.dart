@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:mark_space_app/models/teacher/get_student_profile_data.dart';
+import 'package:mark_space_app/models/teacher/student_profile_data.dart';
 import 'package:mark_space_app/widgets/teacher/student_profile_grade.dart';
 
 class StudentProfile extends StatelessWidget {
-  final GetStudentProfileData profile;
+  final StudentProfileData profile;
 
   StudentProfile({this.profile});
 
@@ -17,9 +18,7 @@ class StudentProfile extends StatelessWidget {
           (element) {
             _grades.add(
               StudentProfileGrade(
-                grade: element['grade'],
-                assessment: element['name'],
-                weight: element['weight'],
+                info: element,
               ),
             );
           },
@@ -27,18 +26,6 @@ class StudentProfile extends StatelessWidget {
       },
     );
     return _grades;
-  }
-
-  double _average(List<StudentProfileGrade> data) {
-    List _grades = [];
-    data.forEach(
-      (element) {
-        double _singleGrade = double.parse(element.grade.replaceAll('%', ''));
-        _grades.add(_singleGrade / 100 * element.weight);
-      },
-    );
-    double _average = _grades.reduce((a, b) => a+b);
-    return _average;
   }
 
   _sendMail(String email) async{
@@ -54,9 +41,9 @@ class StudentProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map _data = this.profile.data;
-
     List<StudentProfileGrade> _grades = _studentGrades(_data['marks']);
-    double _avg = _average(_grades);
+
+    double _avg = _data['average'];
 
     return Scaffold(
       appBar: AppBar(
