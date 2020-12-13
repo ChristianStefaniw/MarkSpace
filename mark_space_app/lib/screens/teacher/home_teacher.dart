@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/models/teacher/class_data.dart';
 import 'package:mark_space_app/widgets/teacher/class_card.dart';
-import 'package:mark_space_app/widgets/teacher/inherited/all_class_data_inherited.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -94,10 +93,7 @@ class Home extends StatelessWidget {
             )
           ]
         ),
-        body: AllClassDataInherited(
-          classData: classData,
-          child: Builder(builder: (BuildContext innerContext) {
-            return Stack(
+        body: Stack(
               children: [
                 Container(
                   color: Color(0xffE8E8E8),
@@ -121,20 +117,17 @@ class Home extends StatelessWidget {
                     crossAxisCount: 2,
                     childAspectRatio: width / (height / 1.5.w),
                   ),
-                  itemCount:
-                  AllClassDataInherited.of(innerContext).classData.length,
+                  itemCount: classData.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return ClassCard(
-                      theClass:
-                      AllClassDataInherited.of(innerContext).classData[index],
+                      theClass: classData[index],
                       color: Color(0xffFF3300),
                     );
                   },
                 ),
               ],
-            );
-          }),
-        ));
+            )
+        );
   }
 }

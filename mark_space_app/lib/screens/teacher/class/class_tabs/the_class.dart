@@ -6,12 +6,10 @@ import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
 import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
 
 class TheClass extends StatelessWidget {
-
   static const List<String> HEADINGS = ["Name", "Grade"];
 
   List<TableRow> createTable(BuildContext context) {
     Color color;
-
 
     List<TableRow> _rows = <TableRow>[
       new TableRow(
@@ -42,30 +40,32 @@ class TheClass extends StatelessWidget {
               .toList())
     ];
 
-    for (int i = 0; i < SingleClassDataInherited.of(context).classData.studentData.length; i++) {
+    for (int i = 0;
+        i < SingleClassDataInherited.of(context).classData.studentData.length;
+        i++) {
       i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
-      _rows.add(_tableRow(SingleClassDataInherited.of(context).classData.studentData[i], color, context));
+      _rows.add(_tableRow(
+          SingleClassDataInherited.of(context).classData.studentData[i],
+          color,
+          context));
     }
 
     return _rows;
   }
 
-  void student(
-      String email, String name, String classID, BuildContext context) {
-    StudentProfileData _studentProfile =
-        StudentProfileData(email: email, name: name, classID: classID);
-
+  void student(StudentProfileData studentProfileData, BuildContext context) {
     Navigator.push(
       context,
       PageTransition(
           type: PageTransitionType.topToBottom,
           child: StudentProfile(
-            profile: _studentProfile,
+            profile: studentProfileData,
           )),
     );
   }
 
-  TableRow _tableRow(StudentProfileData element, Color color, BuildContext context) {
+  TableRow _tableRow(
+      StudentProfileData profile, Color color, BuildContext context) {
     return TableRow(children: [
       for (String selection in ['name', 'average'])
         Container(
@@ -75,17 +75,18 @@ class TheClass extends StatelessWidget {
               padding: EdgeInsets.all(7.0),
               decoration: BoxDecoration(
                 color: color,
-                border: Border.symmetric(horizontal: BorderSide(color: Colors.black),),
+                border: Border.symmetric(
+                  horizontal: BorderSide(color: Colors.black),
+                ),
               ),
               child: Center(
                   child: Text(
-                element.data[selection].toString(),
+                profile.data[selection].toString(),
                 textAlign: TextAlign.center,
               )),
             ),
             onTap: () {
-              student(element.email, element.name,
-                  SingleClassDataInherited.of(context).classData.id, context);
+              student(profile, context);
             },
           ),
         ),

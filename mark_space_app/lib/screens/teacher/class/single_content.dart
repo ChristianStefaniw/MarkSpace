@@ -9,9 +9,9 @@ class SingleContent extends StatelessWidget {
 
   SingleContent({this.classData, this.content});
 
-  List<Map> _getStudentsWithContent(BuildContext context) {
+  List<Map> _getStudentsWithContent() {
     List<Map> _data = [];
-    //check students to who assessment and add them to a list
+    //check students who have assessment and add them to a list
     this.classData.studentData.forEach((element) {
       element.data['marks'].forEach((key, value) {
         element.data['marks'][key].forEach((assessment) {
@@ -29,7 +29,7 @@ class SingleContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map> _students = _getStudentsWithContent(context);
+    List<Map> _students = _getStudentsWithContent();
 
     return Scaffold(
       appBar: AppBar(
