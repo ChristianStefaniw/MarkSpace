@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/models/teacher/class_data.dart';
-import 'package:mark_space_app/models/teacher/student_profile_data.dart';
 
 class SingleContent extends StatelessWidget {
   final ClassData classData;
@@ -14,14 +13,12 @@ class SingleContent extends StatelessWidget {
     List<Map> _data = [];
     //check students to who assessment and add them to a list
     this.classData.studentData.forEach((element) {
-      StudentProfileData _profile = StudentProfileData(
-          email: element.email, name: element.name, classID: this.classData.id);
-      _profile.data['marks'].forEach((key, value) {
-        _profile.data['marks'][key].forEach((assessment) {
+      element.data['marks'].forEach((key, value) {
+        element.data['marks'][key].forEach((assessment) {
           if (assessment['name'] == this.content) {
             _data.add({
               'assessment': assessment,
-              'studentName': _profile.name,
+              'studentName': element.name,
             });
           }
         });
