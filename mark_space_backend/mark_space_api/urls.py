@@ -9,6 +9,5 @@ router.register(r'student', views.StudentView, 'student')
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

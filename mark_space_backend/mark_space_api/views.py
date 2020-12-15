@@ -1,14 +1,8 @@
-from django.shortcuts import render
-from django.http.response import HttpResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .serializers import TeacherSerializer, StudentSerializer
 from .models import Teacher, Student
-
-
-def home(request):
-    return HttpResponse("ok")
 
 
 class TeacherView(viewsets.ModelViewSet):
