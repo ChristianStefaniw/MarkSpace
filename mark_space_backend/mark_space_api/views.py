@@ -23,14 +23,14 @@ class TeacherView(viewsets.ModelViewSet):
 
 class StudentView(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
-    queryset = Student.objects.none()
+    queryset = Student.objects.all()
 
     def list(self, request, *args, **kwargs):
-        queryset = Student.objects.all()
-        serializer = StudentSerializer(queryset, many=True)
+        queryset = self.get_queryset()
+        serializer = TeacherSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, *args, **kwargs):
-        email = self.request.query_params.get('email')
-        queryset = Student.objects.filter(name__contains=email)
-        return queryset
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(email=self.request.query_params.get('email'))
+        return query_set

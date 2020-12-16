@@ -13,6 +13,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 class StudentSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
+    email = serializers.EmailField()
 
     class Meta:
         model = Student
