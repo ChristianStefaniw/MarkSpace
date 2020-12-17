@@ -16,7 +16,6 @@ class TeacherView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = self.queryset
-        print(self.request.query_params)
         query_set = queryset.filter(email=self.request.query_params.get('email'))
         return query_set
 
@@ -27,7 +26,7 @@ class StudentView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = TeacherSerializer(queryset, many=True)
+        serializer = StudentSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def get_queryset(self):

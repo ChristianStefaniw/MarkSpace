@@ -1,20 +1,20 @@
 from rest_framework import serializers
-from .models import Teacher, Student
+from .models import Teacher, Student, Class
 
 
 class TeacherSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
-    email = serializers.EmailField()
-
     class Meta:
         model = Teacher
         fields = ('name', 'email')
 
 
-class StudentSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
-    email = serializers.EmailField()
+class ClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        fields = ('id', 'name')
 
+
+class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ('name', 'email')
+        fields = ('name', 'email', 'classes')
