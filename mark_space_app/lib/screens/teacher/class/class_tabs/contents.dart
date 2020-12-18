@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/models/teacher/class_data.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/screens/teacher/class/single_content.dart';
-import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
 
 class Contents extends StatelessWidget {
+
+  final ClassData classData;
+  Contents(this.classData);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +19,7 @@ class Contents extends StatelessWidget {
           color: Colors.grey[400],
         ),
         ListView.builder(
-          itemCount: SingleClassDataInherited.of(context).classData.units.length,
+          itemCount: this.classData.units.length,
           itemBuilder: (context, index) {
             return Card(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -26,7 +30,7 @@ class Contents extends StatelessWidget {
                   context,
                   PageTransition(
                     type: PageTransitionType.topToBottom,
-                    child: SingleContent(classData: SingleClassDataInherited.of(context).classData, content: SingleClassDataInherited.of(context).classData.units[index],),
+                    child: SingleContent(classData: this.classData, content: this.classData.units[index],),
                   ),
                 ),
                 child: Ink(
@@ -34,7 +38,7 @@ class Contents extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 20),
                   width: double.infinity,
                   child: Text(
-                    SingleClassDataInherited.of(context).classData.units[index],
+                    this.classData.units[index],
                     textAlign: TextAlign.center,
                   ),
                 ),

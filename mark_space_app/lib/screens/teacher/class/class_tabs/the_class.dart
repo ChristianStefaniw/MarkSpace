@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/models/teacher/class_data.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/models/teacher/student_profile_data.dart';
 import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
-import 'package:mark_space_app/widgets/teacher/inherited/single_class_data_inherited.dart';
 
 class TheClass extends StatelessWidget {
+  final ClassData classData;
+
+  TheClass(this.classData);
+
   static const List<String> HEADINGS = ["Name", "Grade"];
 
   List<TableRow> createTable(BuildContext context) {
@@ -40,14 +44,9 @@ class TheClass extends StatelessWidget {
               .toList())
     ];
 
-    for (int i = 0;
-        i < SingleClassDataInherited.of(context).classData.studentData.length;
-        i++) {
+    for (int i = 0; i < this.classData.studentData.length; i++) {
       i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
-      _rows.add(_tableRow(
-          SingleClassDataInherited.of(context).classData.studentData[i],
-          color,
-          context));
+      _rows.add(_tableRow(this.classData.studentData[i], color, context));
     }
 
     return _rows;
