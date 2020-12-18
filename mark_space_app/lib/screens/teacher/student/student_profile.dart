@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:mark_space_app/models/teacher/student_profile_data.dart';
 import 'package:mark_space_app/widgets/teacher/student_profile_grade.dart';
 
 class StudentProfile extends StatelessWidget {
-  final StudentProfileData profile;
+  final Map profile;
 
   StudentProfile({this.profile});
 
@@ -28,28 +27,25 @@ class StudentProfile extends StatelessWidget {
     return _grades;
   }
 
-  _sendMail(String email) async{
+  _sendMail(String email) async {
     final uri = "mailto:$email";
-    if (await canLaunch(uri)){
+    if (await canLaunch(uri)) {
       await launch(uri);
     } else {
       throw 'Could not launch $uri';
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-    Map _data = this.profile.data;
-    List<StudentProfileGrade> _grades = _studentGrades(_data['marks']);
-
-    double _avg = _data['average'];
+    List<StudentProfileGrade> _grades = _studentGrades(this.profile['marks']);
+    double _avg = this.profile['average'];
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xff000080),
-        title: Text("${_data['name']}\'s profile"),
+        title: Text("${this.profile['name']}\'s profile"),
       ),
       body: Stack(
         children: [
@@ -74,9 +70,9 @@ class StudentProfile extends StatelessWidget {
                 child: Text("Average: $_avg%"),
               ),
               MaterialButton(
-                onPressed: () => _sendMail(_data['email']),
+                onPressed: () => _sendMail(this.profile['email']),
                 child: Container(
-                  child: Text("Email: ${_data['email']}"),
+                  child: Text("Email: ${this.profile['email']}"),
                 ),
               )
             ],

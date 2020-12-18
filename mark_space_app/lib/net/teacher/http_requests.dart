@@ -5,7 +5,7 @@ import 'http_requests_interface.dart';
 class HTTPRequests implements Requests{
 
   var dio = new Dio();
-  String base = '192.168.1.131:8000/api/';
+  String base = 'http://127.0.0.1:8000/api';
 
   @override
   Future delete(extension) {

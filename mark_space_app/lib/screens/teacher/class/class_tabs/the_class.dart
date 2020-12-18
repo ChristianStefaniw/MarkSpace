@@ -12,7 +12,7 @@ class TheClass extends StatelessWidget {
 
   static const List<String> HEADINGS = ["Name", "Grade"];
 
-  List<TableRow> createTable(BuildContext context) {
+  Future<List<TableRow>> createTable(BuildContext context) async {
     Color color;
 
     List<TableRow> _rows = <TableRow>[
@@ -46,13 +46,14 @@ class TheClass extends StatelessWidget {
 
     for (int i = 0; i < this.classData.studentData.length; i++) {
       i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
-      _rows.add(_tableRow(this.classData.studentData[i], color, context));
+      _rows.add(await _tableRow(this.classData.studentData[i], color, context));
     }
+
 
     return _rows;
   }
 
-  void student(StudentProfileData studentProfileData, BuildContext context) {
+  void student(Map studentProfileData, BuildContext context) {
     Navigator.push(
       context,
       PageTransition(
@@ -63,8 +64,9 @@ class TheClass extends StatelessWidget {
     );
   }
 
-  TableRow _tableRow(
-      StudentProfileData profile, Color color, BuildContext context) {
+  Future<TableRow> _tableRow(
+      StudentProfileData profile, Color color, BuildContext context) async {
+    Map _data = await profile.data;
     return TableRow(children: [
       for (String selection in ['name', 'average'])
         Container(
@@ -80,12 +82,12 @@ class TheClass extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                profile.data[selection].toString(),
+                _data[selection].toString(),
                 textAlign: TextAlign.center,
               )),
             ),
             onTap: () {
-              student(profile, context);
+              student(_data, context);
             },
           ),
         ),
@@ -97,11 +99,21 @@ class TheClass extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Table(
-          border: TableBorder.all(
-              color: Colors.black26, width: 1, style: BorderStyle.none),
-          children: createTable(context),
-        ),
+        child: FutureBuilder(
+            future: createTable(context),
+            builder: (context, snapshot) {
+              return snapshot.hasData
+                  ? Table(
+                      border: TableBorder.all(
+                          color: Colors.black26,
+                          width: 1,
+                          style: BorderStyle.none),
+                      children: snapshot.data,
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            }),
       ),
     );
   }

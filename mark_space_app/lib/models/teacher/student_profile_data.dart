@@ -1,3 +1,5 @@
+import 'package:mark_space_app/net/teacher/http_requests.dart';
+
 class StudentProfileData {
   final String email;
   final String name;
@@ -5,52 +7,36 @@ class StudentProfileData {
 
   StudentProfileData({this.name, this.email, this.classID});
 
-  Map _marks = {
-    'Functions': [
-      {
-        'name': "Exponential Functions Unit Test",
-        'grade': '84%',
-        'weight': 20,
-        'subs': <String, String>{'K/U': '4/5', 'APP': '9/10', 'COM': '5/7'},
-      },
-      {
-        'name': "Trigonometric Functions Unit Test",
-        'grade': '68%',
-        'weight': 20,
-        'subs': <String, String>{'K/U': '4/5', 'APP': '9/10', 'COM': '5/7'},
-      },
-    ],
-    'Exam': [
-      {
-        'name': "Final Exam",
-        'grade': '76%',
-        'weight': 60,
-        'subs': <String, String>{'K/U': '4/5', 'APP': '9/10', 'COM': '5/7'},
-      },
-    ],
-  };
+  Future<Map> get _marks async {
+    return await HTTPRequests()
+        .read('student/?email=${this.email}')
+        .then((value) => value[0]);
+  }
 
-  double _average() {
+  double _average(Map marks) {
     List _grades = [];
-    _marks.forEach(
-      (key, value) {
-        _marks[key].forEach((element) {
-          double _singleGrade =
-              double.parse(element['grade'].replaceAll('%', ''));
-          _grades.add(_singleGrade / 100 * element['weight'].toDouble());
-        });
+    marks.forEach(
+      (unit, value) {
+        value.forEach(
+          (element) {
+            double _singleGrade =
+                double.parse(element['grade'].replaceAll('%', ''));
+            _grades.add(_singleGrade / 100 * element['weight'].toDouble());
+          },
+        );
       },
     );
     double _average = _grades.reduce((a, b) => a + b);
     return _average;
   }
 
-  Map get data{
+  Future<Map> get data async {
+    Map _marksValue = await _marks.then((value) => value['marks']);
     return {
       'name': this.name,
       'email': this.email,
-      'marks': _marks,
-      'average': _average(),
+      'marks': _marksValue,
+      'average': _average(_marksValue),
     };
   }
 }

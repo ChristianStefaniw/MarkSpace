@@ -12,18 +12,28 @@ class SingleContent extends StatelessWidget {
   List<Map> _getStudentsWithContent() {
     List<Map> _data = [];
     //check students who have assessment and add them to a list
-    this.classData.studentData.forEach((element) {
-      element.data['marks'].forEach((key, value) {
-        element.data['marks'][key].forEach((assessment) {
-          if (assessment['name'] == this.content) {
-            _data.add({
-              'assessment': assessment,
-              'studentName': element.name,
-            });
-          }
-        });
-      });
-    });
+    this.classData.studentData.forEach(
+      (element) async {
+        await element.data.then(
+          (value) => value['marks'].forEach(
+            (key, value) {
+              value.forEach(
+                (assessment) {
+                  if (assessment['name'] == this.content) {
+                    _data.add(
+                      {
+                        'assessment': assessment,
+                        'studentName': element.name,
+                      },
+                    );
+                  }
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
     return _data;
   }
 

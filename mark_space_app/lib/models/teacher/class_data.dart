@@ -12,10 +12,6 @@ class ClassData {
   List<StudentProfileData> _studentData(){
     List<StudentProfileData> _studentData = [
       StudentProfileData(
-          name: "Bob Joe",
-          email: "bob.joe@student.tdsb.on.ca",
-          classID: this.id),
-      StudentProfileData(
           name: "Christian Stefaniw",
           email: "christian.stefaniw@student.tdsb.on.ca",
           classID: this.id)

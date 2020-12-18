@@ -17,6 +17,7 @@ class ClassSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    marks = serializers.DictField()
 
     class Meta:
         model = Student

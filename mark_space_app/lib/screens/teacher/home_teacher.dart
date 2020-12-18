@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
         'code': 'MCR3U1',
         'icon':
             'https://ddo0fzhfvians.cloudfront.net/uploads/icons/png/12025030331579680337-512.png',
-        'id': '12345',
+        'id': '1234',
       },
       {
         'class': 'Biology',
