@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from .serializers import TeacherSerializer, StudentSerializer
-from .models import Teacher, Student
+from .serializers import TeacherSerializer, StudentSerializer, ClassSerializer
+from .models import Teacher, Student, Class
 
 
 class TeacherView(viewsets.ModelViewSet):
@@ -15,9 +15,8 @@ class TeacherView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def get_queryset(self):
-        queryset = self.queryset
-        query_set = queryset.filter(email=self.request.query_params.get('email'))
-        return query_set
+        queryset = self.queryset.filter(email=self.request.query_params.get('email'))
+        return queryset
 
 
 class StudentView(viewsets.ModelViewSet):
@@ -30,6 +29,19 @@ class StudentView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def get_queryset(self):
-        queryset = self.queryset
-        query_set = queryset.filter(email=self.request.query_params.get('email'))
-        return query_set
+        queryset = self.queryset.filter(email=self.request.query_params.get('email'))
+        return queryset
+
+
+class ClassView(viewsets.ModelViewSet):
+    serializer_class = ClassSerializer
+    queryset = Class.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        query_set = self.get_queryset()
+        serializer = ClassSerializer(query_set, many=True)
+        return Response(serializer.data)
+
+    def get_queryset(self):
+        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
+        return queryset

@@ -45,8 +45,7 @@ class StudentProfileData {
     return _average;
   }
 
-  Map get data {
-
+  Map get data{
     return {
       'name': this.name,
       'email': this.email,

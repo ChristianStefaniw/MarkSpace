@@ -6,7 +6,7 @@ from mark_space_api import views
 router = DefaultRouter()
 router.register(r'teacher', views.TeacherView, 'teacher')
 router.register(r'student', views.StudentView, 'student')
-
+router.register(r'class', views.ClassView, 'class')
 
 urlpatterns = [
     path('', include(router.urls)),
