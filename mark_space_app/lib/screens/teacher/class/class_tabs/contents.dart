@@ -30,7 +30,7 @@ class Contents extends StatelessWidget {
                   context,
                   PageTransition(
                     type: PageTransitionType.topToBottom,
-                    child: SingleContent(classData: this.classData, content: this.classData.units[index],),
+                    child: SingleContent(classData: this.classData, unit: this.classData.units[index],),
                   ),
                 ),
                 child: Ink(
