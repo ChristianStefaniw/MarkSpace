@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class StudentProfileGrade extends StatelessWidget {
-  final Map info;
+  final Map assessment;
 
-  StudentProfileGrade({this.info});
+  StudentProfileGrade({this.assessment});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class StudentProfileGrade extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(vertical: 28.h),
                   child: Text(
-                    this.info['name'],
+                    this.assessment['name'],
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
@@ -38,30 +39,7 @@ class StudentProfileGrade extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.grey[500],
                 onTap: () {
-                  return showDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (context) {
-                      this.info['subs']['weight'] = "${this.info['weight']}%";
-                      return SimpleDialog(
-                        title: Text(
-                          "${this.info['name']}",
-                          textAlign: TextAlign.center,
-                        ),
-                        children: this
-                            .info['subs']
-                            .entries
-                            .map<Widget>((e) => Container(
-                                  margin: EdgeInsets.symmetric(vertical: 10.h),
-                                  child: Text(
-                                    "${e.key} : ${e.value}",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ))
-                            .toList(),
-                      );
-                    },
-                  );
+                  return subMarksStudentProfile(context, assessment: this.assessment);
                 },
                 child: Ink(
                   decoration: BoxDecoration(
@@ -70,7 +48,7 @@ class StudentProfileGrade extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(vertical: 28.h),
                   child: Text(
-                    this.info['grade'],
+                    this.assessment['grade'],
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),

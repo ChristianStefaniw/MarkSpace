@@ -1,7 +1,5 @@
-abstract class Requests{
+abstract class HttpRequestsInterface{
   var dio;
-
-  String base;
 
   Future read(String extension);
 

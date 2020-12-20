@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:mark_space_app/models/teacher/class_data.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/screens/teacher/class/class_tabs/contents.dart';
 import 'class_tabs/the_class.dart';
 

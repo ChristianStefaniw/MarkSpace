@@ -13,7 +13,7 @@ class ClassesGrid extends StatelessWidget {
     return GridView.builder(
       gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2.5.h),
+        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2.45.h),
       ),
       itemCount: classData.length,
       scrollDirection: Axis.vertical,

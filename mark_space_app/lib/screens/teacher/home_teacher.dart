@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:mark_space_app/models/teacher/class_data.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 
-class Home extends StatelessWidget {
+class HomeTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(1080, 1920));

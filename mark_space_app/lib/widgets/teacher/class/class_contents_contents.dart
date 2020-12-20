@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
-import 'package:mark_space_app/models/teacher/class_data.dart';
-import 'package:mark_space_app/screens/teacher/class/single_content.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 
 class TheClassContentsContents extends StatelessWidget {
   final ClassData classData;
@@ -19,14 +19,12 @@ class TheClassContentsContents extends StatelessWidget {
           elevation: 10,
           child: InkWell(
             splashColor: Colors.white,
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushNamed(
               context,
-              PageTransition(
-                type: PageTransitionType.topToBottom,
-                child: SingleContent(
-                  classData: this.classData,
-                  unit: this.classData.units[index],
-                ),
+              SINGLE_CONTENT,
+              arguments: SingleContentArguments(
+                classData: this.classData,
+                unit: this.classData.units[index],
               ),
             ),
             child: Ink(

@@ -1,4 +1,4 @@
-import 'package:mark_space_app/models/teacher/student_profile_data.dart';
+import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 
 class ClassData {
   final String id;

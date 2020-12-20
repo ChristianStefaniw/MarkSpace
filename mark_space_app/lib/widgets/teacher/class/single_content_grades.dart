@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mark_space_app/models/teacher/class_data.dart';
+
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class SingleContentGrades extends StatelessWidget {
 
@@ -50,31 +51,7 @@ class SingleContentGrades extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: InkWell(
                   onTap: () {
-                    return showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) {
-                        _students[index]['assessment']['subs']['weight'] =
-                            "${_students[index]['assessment']['weight']}%";
-                        return SimpleDialog(
-                          title: Text(
-                            "${_students[index]['studentName']}",
-                            textAlign: TextAlign.center,
-                          ),
-                          children: _students[index]['assessment']['subs']
-                              .entries
-                              .map<Widget>((e) => Container(
-                                    margin:
-                                        EdgeInsets.symmetric(vertical: 10.h),
-                                    child: Text(
-                                      "${e.key} : ${e.value}",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ))
-                              .toList(),
-                        );
-                      },
-                    );
+                    return subMarksSingleContentDialog(context, student: _students[index]);
                   },
                   child: Row(
                     children: [

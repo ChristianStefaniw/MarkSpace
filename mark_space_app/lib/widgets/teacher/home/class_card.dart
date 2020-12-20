@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
-import 'package:mark_space_app/models/teacher/class_data.dart';
-import 'package:mark_space_app/screens/teacher/class/class.dart';
-import 'class_card_item.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import './class_card_item.dart';
 
 
 class ClassCard extends StatelessWidget {
@@ -29,12 +28,10 @@ class ClassCard extends StatelessWidget {
           child: InkWell(
             splashColor: Colors.lightBlueAccent,
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                PageTransition(
-                    type: PageTransitionType.topToBottom,
-                    child: TeachersClass(theClass),
-                    ),
+                  TEACHERS_CLASS_ROUTE,
+                arguments: theClass
               );
             },
             borderRadius: BorderRadius.all(Radius.circular(15)),

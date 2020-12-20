@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:mark_space_app/models/teacher/class_data.dart';
-import 'package:mark_space_app/other/util/create_class_table.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import 'package:mark_space_app/utils/mixins/class_table/create_class_table.dart';
+
 
 class TheClassContent extends StatelessWidget {
   final ClassData classData;

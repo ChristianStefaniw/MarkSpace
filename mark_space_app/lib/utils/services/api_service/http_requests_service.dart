@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
-import 'http_requests_interface.dart';
+import 'http_requests_services_interface.dart';
+import 'package:mark_space_app/constants/api_path.dart';
 
-class HTTPRequests implements Requests{
+class HTTPRequests implements HttpRequestsInterface{
 
   var dio = new Dio();
-  String base = 'http://127.0.0.1:8000/api';
 
   @override
   Future delete(extension) {
@@ -14,7 +14,7 @@ class HTTPRequests implements Requests{
 
   @override
   Future read(extension) async{
-    Response response = await dio.get('${this.base}/$extension');
+    Response response = await dio.get('$API_PATH/$extension');
     if (response.statusCode == 200){
       return response.data;
     } else {

@@ -1,4 +1,4 @@
-import 'package:mark_space_app/net/teacher/http_requests.dart';
+import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class StudentProfileData {
   final String email;

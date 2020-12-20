@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
-import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
-import 'package:mark_space_app/models/teacher/student_profile_data.dart';
+import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
+import 'create_class_table_interface.dart';
 
 
-class CreateClassTable {
+class CreateClassTable implements CreateClassTableInterface{
   final classData;
 
   CreateClassTable(this.classData);
@@ -46,24 +46,21 @@ class CreateClassTable {
 
     for (int i = 0; i < this.classData.studentData.length; i++) {
       i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
-      _rows.add(await _tableRow(this.classData.studentData[i], color, context));
+      _rows.add(await tableRow(this.classData.studentData[i], color, context));
     }
 
     return _rows;
   }
 
   void student(Map studentProfileData, BuildContext context) {
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      PageTransition(
-          type: PageTransitionType.topToBottom,
-          child: StudentProfile(
-            profile: studentProfileData,
-          )),
+      STUDENT_PROFILE,
+      arguments: studentProfileData
     );
   }
 
-  Future<TableRow> _tableRow(
+  Future<TableRow> tableRow(
       StudentProfileData profile, Color color, BuildContext context) async {
     Map _data = await profile.data;
     return TableRow(children: [

@@ -17,10 +17,10 @@ class StudentProfileInformation extends StatelessWidget {
     marks.forEach(
           (unit, section) {
         section.forEach(
-              (element) {
+              (assessment) {
             _grades.add(
               StudentProfileGrade(
-                info: element,
+                assessment: assessment,
               ),
             );
           },
