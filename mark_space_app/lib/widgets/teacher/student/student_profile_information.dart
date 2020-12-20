@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+
+import './average_label.dart';
+import './email_button.dart';
 import './student_profile_grade.dart';
 
 class StudentProfileInformation extends StatelessWidget {
@@ -10,9 +12,9 @@ class StudentProfileInformation extends StatelessWidget {
 
   StudentProfileInformation(this.profile);
 
-  List<StudentProfileGrade> _studentGrades(Map data) {
+  List<StudentProfileGrade> _studentGrades(Map marks) {
     List<StudentProfileGrade> _grades = [];
-    data.forEach(
+    marks.forEach(
           (unit, section) {
         section.forEach(
               (element) {
@@ -28,14 +30,7 @@ class StudentProfileInformation extends StatelessWidget {
     return _grades;
   }
 
-  _sendMail(String email) async {
-    final uri = "mailto:$email";
-    if (await canLaunch(uri)) {
-      await launch(uri);
-    } else {
-      throw 'Could not launch $uri';
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +49,8 @@ class StudentProfileInformation extends StatelessWidget {
             );
           },
         ),
-        Container(
-          child: Text("Average: ${this.profile['average']}%"),
-        ),
-        MaterialButton(
-          onPressed: () => this._sendMail(this.profile['email']),
-          child: Container(
-            child: Text("Email: ${this.profile['email']}"),
-          ),
-        )
+        AverageLabel(this.profile['average']),
+        EmailButton(this.profile['email']),
       ],
     );
   }
