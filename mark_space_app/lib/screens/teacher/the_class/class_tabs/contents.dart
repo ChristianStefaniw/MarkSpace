@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
-import 'package:mark_space_app/widgets/teacher/class/class_contents_contents.dart';
+import 'package:mark_space_app/widgets/teacher/the_class/class_contents_contents.dart';
 
 class Contents extends StatelessWidget {
 

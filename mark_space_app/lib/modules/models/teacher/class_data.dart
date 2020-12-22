@@ -6,10 +6,12 @@ class ClassData {
   final String name;
   final String period;
   final String icon;
+  final List<StudentProfileData> students;
 
-  ClassData({this.period, this.code, this.name, this.id, this.icon});
+  ClassData({this.period, this.code, this.name, this.id, this.icon, this.students});
 
   List<StudentProfileData> _studentData(){
+
     List<StudentProfileData> _studentData = [
       StudentProfileData(
           name: "Christian Stefaniw",

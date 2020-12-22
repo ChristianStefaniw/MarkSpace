@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 
 import 'package:mark_space_app/widgets/teacher/student/student_profile_information.dart';
 
 
 class StudentProfile extends StatelessWidget {
-  final Map profile;
+  final StudentProfileData profile;
 
   StudentProfile({this.profile});
 
@@ -16,7 +17,7 @@ class StudentProfile extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xff000080),
-        title: Text("${this.profile['name']}\'s profile"),
+        title: Text("${this.profile.name}\'s profile"),
       ),
       body: Stack(
         children: [

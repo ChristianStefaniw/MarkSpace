@@ -4,8 +4,7 @@ import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 import 'create_class_table_interface.dart';
 
-
-class CreateClassTable implements CreateClassTableInterface{
+class CreateClassTable implements CreateClassTableInterface {
   final classData;
 
   CreateClassTable(this.classData);
@@ -52,19 +51,15 @@ class CreateClassTable implements CreateClassTableInterface{
     return _rows;
   }
 
-  void student(Map studentProfileData, BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      STUDENT_PROFILE,
-      arguments: studentProfileData
-    );
+  void student(StudentProfileData studentProfileData, BuildContext context) {
+    Navigator.pushNamed(context, STUDENT_PROFILE,
+        arguments: studentProfileData);
   }
 
   Future<TableRow> tableRow(
       StudentProfileData profile, Color color, BuildContext context) async {
-    Map _data = await profile.data;
     return TableRow(children: [
-      for (String selection in ['name', 'average'])
+      for (int i = 0; i < 2; i++)
         Container(
           height: 80,
           child: InkWell(
@@ -78,12 +73,12 @@ class CreateClassTable implements CreateClassTableInterface{
               ),
               child: Center(
                   child: Text(
-                _data[selection].toString(),
+                i == 0 ? profile.name : '${profile.average}%',
                 textAlign: TextAlign.center,
               )),
             ),
             onTap: () {
-              student(_data, context);
+              student(profile, context);
             },
           ),
         ),

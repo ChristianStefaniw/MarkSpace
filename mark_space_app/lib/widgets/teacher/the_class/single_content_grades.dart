@@ -4,7 +4,6 @@ import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class SingleContentGrades extends StatelessWidget {
-
   final ClassData classData;
   final String unit;
 
@@ -14,23 +13,21 @@ class SingleContentGrades extends StatelessWidget {
     List<Map> _data = [];
     //check students who have assessment and add them to a list
     for (final profile in this.classData.studentData) {
-      await profile.data.then(
-            (value) => value['marks'].forEach(
-              (unit, content) {
-            content.forEach(
-                  (assessment) {
-                if (assessment['name'] == this.unit) {
-                  _data.add(
-                    {
-                      'assessment': assessment,
-                      'studentName': profile.name,
-                    },
-                  );
-                }
-              },
-            );
-          },
-        ),
+      profile.marks.forEach(
+        (unit, content) {
+          content.forEach(
+            (assessment) {
+              if (assessment['name'] == this.unit) {
+                _data.add(
+                  {
+                    'assessment': assessment,
+                    'studentName': profile.name,
+                  },
+                );
+              }
+            },
+          );
+        },
       );
     }
     return _data;
@@ -51,7 +48,8 @@ class SingleContentGrades extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: InkWell(
                   onTap: () {
-                    return subMarksSingleContentDialog(context, student: _students[index]);
+                    return subMarksSingleContentDialog(context,
+                        student: _students[index]);
                   },
                   child: Row(
                     children: [

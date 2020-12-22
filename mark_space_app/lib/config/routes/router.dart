@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
-import 'package:mark_space_app/config/routes/routes.dart';
 
-import 'package:mark_space_app/screens/teacher/class/class.dart';
-import 'package:mark_space_app/screens/teacher/class/single_content.dart';
+
+import 'package:mark_space_app/screens/teacher/the_class/class.dart';
+import 'package:mark_space_app/screens/teacher/the_class/single_content.dart';
 import 'package:mark_space_app/screens/teacher/home_teacher.dart';
 import 'package:mark_space_app/screens/teacher/student/student_profile.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
+
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {

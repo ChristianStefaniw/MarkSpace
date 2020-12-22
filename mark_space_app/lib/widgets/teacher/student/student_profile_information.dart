@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 
 
 import './average_label.dart';
@@ -7,7 +8,7 @@ import './student_profile_grade.dart';
 
 class StudentProfileInformation extends StatelessWidget {
 
-  final Map profile;
+  final StudentProfileData profile;
 
 
   StudentProfileInformation(this.profile);
@@ -35,7 +36,7 @@ class StudentProfileInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List<StudentProfileGrade> _grades = this._studentGrades(this.profile['marks']);
+    List<StudentProfileGrade> _grades = this._studentGrades(this.profile.marks);
 
     return Column(
       children: [
@@ -49,8 +50,8 @@ class StudentProfileInformation extends StatelessWidget {
             );
           },
         ),
-        AverageLabel(this.profile['average']),
-        EmailButton(this.profile['email']),
+        AverageLabel(this.profile.average),
+        EmailButton(this.profile.email),
       ],
     );
   }

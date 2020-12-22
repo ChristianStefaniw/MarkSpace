@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 
-import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 
 class HomeTeacher extends StatelessWidget {
@@ -12,67 +12,6 @@ class HomeTeacher extends StatelessWidget {
 
     String user = "Christian";
 
-    List classes = [
-      {
-        'class': 'Functions',
-        'period': 'A',
-        'code': 'MCR3U1',
-        'icon':
-        'https://ddo0fzhfvians.cloudfront.net/uploads/icons/png/12025030331579680337-512.png',
-        'id': '1234',
-      },
-      {
-        'class': 'Biology',
-        'period': 'B',
-        'code': 'SBI3U',
-        'icon': 'https://image.flaticon.com/icons/png/512/201/201555.png',
-        'id': '12345',
-      },
-      {
-        'class': 'Chemistry',
-        'period': 'C',
-        'code': 'SCH3UI',
-        'icon':
-        'https://images.vexels.com/media/users/3/153061/isolated/preview/c30ab5faafa7fdbbaadff8e2ee9df294-chemistry-flask-icon-by-vexels.png',
-        'id': '12345',
-      },
-      {
-        'class': 'Chemistry',
-        'period': 'C',
-        'code': 'SCH3UI',
-        'icon':
-        'https://images.vexels.com/media/users/3/153061/isolated/preview/c30ab5faafa7fdbbaadff8e2ee9df294-chemistry-flask-icon-by-vexels.png',
-        'id': '12345',
-      },
-      {
-        'class': 'Chemistry',
-        'period': 'C',
-        'code': 'SCH3UI',
-        'icon':
-        'https://images.vexels.com/media/users/3/153061/isolated/preview/c30ab5faafa7fdbbaadff8e2ee9df294-chemistry-flask-icon-by-vexels.png',
-        'id': '12345',
-      },
-      {
-        'class': 'Chemistry',
-        'period': 'C',
-        'code': 'SCH3UI',
-        'icon':
-        'https://images.vexels.com/media/users/3/153061/isolated/preview/c30ab5faafa7fdbbaadff8e2ee9df294-chemistry-flask-icon-by-vexels.png',
-        'id': '12345',
-      },
-    ];
-
-    List<ClassData> classData = [];
-
-    classes.forEach((element) {
-      classData.add(ClassData(
-        id: element['id'],
-        code: element['code'],
-        name: element['class'],
-        period: element['period'],
-        icon: element['icon'],
-      ));
-    });
 
     return Scaffold(
         appBar: AppBar(
@@ -116,7 +55,12 @@ class HomeTeacher extends StatelessWidget {
                     .height,
               ),
             ),
-            ClassesGrid(classData),
+            FutureBuilder<TeacherData>(
+              future: TeacherData.getClasses(email: 'first.last@tdsb.on.ca', name: user),
+              builder: (context, snapshot) {
+                return snapshot.hasData ? ClassesGrid(snapshot.data.classes) : Center(child: CircularProgressIndicator(),);
+              }
+            ),
           ],
         )
     );

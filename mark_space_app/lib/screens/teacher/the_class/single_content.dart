@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
-import 'package:mark_space_app/widgets/teacher/class/single_content_grades.dart';
+import 'package:mark_space_app/widgets/teacher/the_class/single_content_grades.dart';
 
 class SingleContent extends StatelessWidget {
   final ClassData classData;
