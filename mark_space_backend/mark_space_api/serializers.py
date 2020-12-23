@@ -6,14 +6,14 @@ class TeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ('name', 'email', 'teacher_classes')
+        fields = '__all__'
 
 
 class ClassSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Class
-        fields = ('id', 'name', 'students', 'teachers')
+        fields = '__all__'
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -21,4 +21,4 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ('name', 'email', 'marks', 'student_classes')
+        fields = '__all__'

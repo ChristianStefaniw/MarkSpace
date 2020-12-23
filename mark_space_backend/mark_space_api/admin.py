@@ -15,7 +15,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 class ClassAdmin(admin.ModelAdmin):
     filter_horizontal = ('students', 'teachers')
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'code', 'period')
 
 
 admin.site.register(Teacher, TeacherAdmin)
