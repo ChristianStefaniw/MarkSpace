@@ -32,3 +32,6 @@ class Class(models.Model):
 
     def __str__(self):
         return self.id
+
+    def __unicode__(self):
+        return self.code

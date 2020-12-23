@@ -17,7 +17,8 @@ class ClassSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    marks = serializers.DictField()
+
+    student_classes = ClassSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
