@@ -1,5 +1,4 @@
 from django.db import models
-from jsonfield import JSONField
 
 
 class Teacher(models.Model):
@@ -14,24 +13,32 @@ class Teacher(models.Model):
 class Student(models.Model):
     name = models.TextField()
     email = models.EmailField(primary_key=True)
-    marks = JSONField(blank=True)
     student_classes = models.ManyToManyField('Class', blank=True)
 
     def __str__(self):
         return self.name
 
 
+class Mark(models.Model):
+    unit = models.TextField(primary_key=True)
+    name = models.TextField()
+    grade = models.FloatField()
+    subs = models.JSONField()
+    student = models.OneToOneField('Student', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.unit
+
+
 class Class(models.Model):
-    id = models.TextField(primary_key=True)
+    class_id = models.TextField(primary_key=True)
     name = models.TextField()
     code = models.TextField()
     period = models.TextField()
     icon = models.URLField()
     students = models.ManyToManyField('Student', blank=True)
     teachers = models.ManyToManyField('Teacher', blank=True)
+    marks = models.ManyToManyField('Mark', blank=True)
 
     def __str__(self):
-        return self.id
-
-    def __unicode__(self):
-        return self.code
+        return self.class_id
