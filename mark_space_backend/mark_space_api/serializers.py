@@ -1,15 +1,22 @@
 from rest_framework import serializers
-from .models import Teacher, Student, Class
+from .models import Teacher, Student, Class, Mark, Unit
 
 
-class ClassSerializer(serializers.ModelSerializer):
+class MarkSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Class
+        model = Mark
+        fields = '__all__'
+
+
+class UnitSerializer(serializers.ModelSerializer):
+    marks = MarkSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Unit
         fields = '__all__'
 
 
 class TeacherSerializer(serializers.ModelSerializer):
-    teacher_classes = ClassSerializer(many=True, read_only=True)
 
     class Meta:
         model = Teacher
@@ -17,9 +24,17 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    student_classes = ClassSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
         fields = '__all__'
 
+
+class ClassSerializer(serializers.ModelSerializer):
+    units = UnitSerializer(many=True, read_only=True)
+    teachers = TeacherSerializer(many=True, read_only=True)
+    students = StudentSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Class
+        fields = '__all__'
