@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Student, Teacher, Class, Mark, Unit
+from .models import Student, Teacher, Class, Mark, Unit, Assessment
 
 
 class TeacherAdmin(admin.ModelAdmin):
@@ -15,11 +15,11 @@ class StudentAdmin(admin.ModelAdmin):
 
 class ClassAdmin(admin.ModelAdmin):
     filter_horizontal = ('students', 'teachers', 'units')
-    list_display = ('class_id', 'name', 'code', 'period')
+    list_display = ('id', 'name', 'code', 'period')
 
 
 class UnitAdmin(admin.ModelAdmin):
-    filter_horizontal = ['marks']
+    filter_horizontal = ['assessments']
     list_display = ('name', 'the_class')
 
 
@@ -28,3 +28,4 @@ admin.site.register(Student, StudentAdmin)
 admin.site.register(Class, ClassAdmin)
 admin.site.register(Mark)
 admin.site.register(Unit, UnitAdmin)
+admin.site.register(Assessment)

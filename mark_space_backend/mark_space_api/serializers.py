@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Teacher, Student, Class, Mark, Unit
+from .models import Teacher, Student, Class, Mark, Unit, Assessment
 
 
 class MarkSerializer(serializers.ModelSerializer):
@@ -8,8 +8,16 @@ class MarkSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AssessmentSerializer(serializers.ModelSerializer):
+    marks = MarkSerializer(read_only=True)
+
+    class Meta:
+        model = Assessment
+        fields = '__all__'
+
+
 class UnitSerializer(serializers.ModelSerializer):
-    marks = MarkSerializer(many=True, read_only=True)
+    assessments = AssessmentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Unit
@@ -17,14 +25,12 @@ class UnitSerializer(serializers.ModelSerializer):
 
 
 class TeacherSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Teacher
         fields = '__all__'
 
 
 class StudentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Student
         fields = '__all__'
