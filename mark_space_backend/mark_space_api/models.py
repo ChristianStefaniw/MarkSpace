@@ -23,7 +23,7 @@ class Mark(models.Model):
     name = models.TextField(primary_key=True)
     grade = models.FloatField()
     subs = models.JSONField()
-    student = models.OneToOneField('Student', on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -32,7 +32,7 @@ class Mark(models.Model):
 class Unit(models.Model):
     name = models.TextField(primary_key=True)
     marks = models.ManyToManyField('Mark')
-    the_class = models.OneToOneField('Class', on_delete=models.CASCADE)
+    the_class = models.ForeignKey('Class', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
