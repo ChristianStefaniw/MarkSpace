@@ -1,43 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 
-
 import './average_label.dart';
 import './email_button.dart';
 import './student_profile_grade.dart';
 
 class StudentProfileInformation extends StatelessWidget {
-
   final StudentProfileData profile;
-
 
   StudentProfileInformation(this.profile);
 
-  List<StudentProfileGrade> _studentGrades(Map marks) {
+  List<StudentProfileGrade> _studentGrades(List grades) {
     List<StudentProfileGrade> _grades = [];
-    marks.forEach(
-          (unit, section) {
-        section.forEach(
-              (assessment) {
-            _grades.add(
-              StudentProfileGrade(
-                assessment: assessment,
-              ),
-            );
-          },
-        );
-      },
-    );
+    grades.forEach((unit) {
+      unit['assessments'].forEach((assessment) {
+        _grades.add(StudentProfileGrade(assessment: assessment,));
+      });
+    });
+
     return _grades;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     List<StudentProfileGrade> _grades = this._studentGrades(this.profile.marks);
-
     return Column(
       children: [
         ListView.builder(

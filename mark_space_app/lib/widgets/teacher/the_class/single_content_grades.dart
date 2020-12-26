@@ -12,10 +12,10 @@ class SingleContentGrades extends StatelessWidget {
   Future<List<Map>> _getStudentsWithContent() async {
     List<Map> _data = [];
     //check students who have assessment and add them to a list
-    for (final profile in this.classData.studentData) {
+    for (final profile in await this.classData.studentData) {
       profile.marks.forEach(
-        (unit, content) {
-          content.forEach(
+        (unit) {
+          unit['assessments'].forEach(
             (assessment) {
               if (assessment['name'] == this.unit) {
                 _data.add(
@@ -40,6 +40,7 @@ class SingleContentGrades extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Map> _students = snapshot.data;
+          print(_students);
           return ListView.builder(
             itemCount: _students.length,
             itemBuilder: (context, index) {
@@ -68,7 +69,7 @@ class SingleContentGrades extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 20),
                           child: Text(
-                            _students[index]['assessment']['grade'],
+                            '${_students[index]['assessment']['marks']['grade']}%',
                             textAlign: TextAlign.center,
                           ),
                         ),

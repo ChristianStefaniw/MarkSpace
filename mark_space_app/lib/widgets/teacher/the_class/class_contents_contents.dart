@@ -11,34 +11,43 @@ class TheClassContentsContents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: this.classData.units.length,
-      itemBuilder: (context, index) {
-        return Card(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-          elevation: 10,
-          child: InkWell(
-            splashColor: Colors.white,
-            onTap: () => Navigator.pushNamed(
-              context,
-              SINGLE_CONTENT,
-              arguments: SingleContentArguments(
-                classData: this.classData,
-                unit: this.classData.units[index],
-              ),
-            ),
-            child: Ink(
-              color: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 20),
-              width: double.infinity,
-              child: Text(
-                this.classData.units[index],
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        );
-      },
+    return FutureBuilder<List<String>>(
+      future: this.classData.assessments,
+      builder: (context, snapshot) {
+        if (snapshot.hasData){
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              return Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                elevation: 10,
+                child: InkWell(
+                  splashColor: Colors.white,
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    SINGLE_CONTENT,
+                    arguments: SingleContentArguments(
+                      classData: this.classData,
+                      unit: snapshot.data[index],
+                    ),
+                  ),
+                  child: Ink(
+                    color: Colors.white,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    width: double.infinity,
+                    child: Text(
+                      snapshot.data[index],
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      }
     );
   }
 }

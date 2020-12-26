@@ -13,6 +13,7 @@ class Teacher(models.Model):
 class Student(models.Model):
     name = models.TextField()
     email = models.EmailField()
+    units = models.ManyToManyField('Unit', blank=True)
     student_classes = models.ManyToManyField('Class', blank=True)
 
     def __str__(self):

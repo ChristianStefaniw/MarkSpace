@@ -1,33 +1,35 @@
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
-class GetClasses{
-
+class GetClasses {
   final String email;
+
   GetClasses(this.email);
 
   Future<List> classes() async {
-    List _classIDs = await HTTPRequests()
+    List _classIDS = await HTTPRequests()
         .read('teacher/?email=${this.email}')
         .then((value) => value[0]['teacher_classes']);
 
-    List<ClassData> _classes = await this._getClassData(_classIDs);
-    return _classes;
-  }
+    List _classes = [];
 
-  Future<List<ClassData>> _getClassData(List classIDs) async {
-    List<ClassData> _classes = [];
-    for (var element in classIDs) {
+    for (final element in _classIDS) {
       _classes.add(
-        await HTTPRequests().read('class/?id=$element').then((value) {
-          return _createClassData(value[0]);
-        }),
+        await HTTPRequests().read('class/?id=$element').then(
+              (value) => value[0],
+            ),
       );
     }
-    return _classes;
+
+    List<ClassData> _classData = [];
+    _classes.forEach((e) {
+      _classData.add(_createClassData(e));
+    });
+
+    return _classData;
   }
 
-  static _createClassData(Map value) {
+  static ClassData _createClassData(Map value) {
     return ClassData(
       id: value['id'],
       code: value['code'],

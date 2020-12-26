@@ -31,6 +31,8 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    units = UnitSerializer(many=True, read_only=True)
+
     class Meta:
         model = Student
         fields = '__all__'

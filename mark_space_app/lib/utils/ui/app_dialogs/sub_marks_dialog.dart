@@ -34,13 +34,13 @@ subMarksStudentProfile(context, {Map assessment}) {
     context: context,
     barrierDismissible: true,
     builder: (context) {
-      assessment['subs']['weight'] = "${assessment['weight']}%";
+      assessment['marks']['subs']['weight'] = "${assessment['marks']['subs']['weight']}%";
       return SimpleDialog(
         title: Text(
           "${assessment['name']}",
           textAlign: TextAlign.center,
         ),
-        children: assessment['subs']
+        children: assessment['marks']['subs']
             .entries
             .map<Widget>((e) => Container(
                   margin: EdgeInsets.symmetric(vertical: 10.h),

@@ -9,7 +9,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
 
 class StudentAdmin(admin.ModelAdmin):
-    filter_horizontal = ['student_classes']
+    filter_horizontal = ('student_classes', 'units')
     list_display = ('name', 'email')
 
 

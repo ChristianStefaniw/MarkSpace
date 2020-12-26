@@ -48,7 +48,7 @@ class StudentProfileGrade extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(vertical: 28.h),
                   child: Text(
-                    this.assessment['grade'],
+                    '${this.assessment['marks']['grade']}%',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),

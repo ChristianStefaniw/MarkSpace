@@ -1,31 +1,48 @@
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
+import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class ClassData {
-  final String id;
+  final int id;
   final String code;
   final String name;
   final String period;
   final String icon;
   final List<StudentProfileData> students;
 
-  ClassData({this.period, this.code, this.name, this.id, this.icon, this.students});
+  ClassData(
+      {this.period, this.code, this.name, this.id, this.icon, this.students});
 
-  List<StudentProfileData> _studentData(){
-
+  Future<List<StudentProfileData>> get _studentData async {
     List<StudentProfileData> _studentData = [
-      StudentProfileData(
+      await StudentProfileData.data(
           name: "Christian Stefaniw",
           email: "christian.stefaniw@student.tdsb.on.ca",
-          classID: this.id)
+          classID: this.id),
     ];
     return _studentData;
   }
 
-  List<String> _units = ['Exponential Functions Unit Test', 'Trigonometric Functions Unit Test', 'Final Exam'];
-
-  List<StudentProfileData> get studentData {
-    return _studentData();
+  Future<List<String>> get assessments async {
+    List<String> _assessments =
+        await HTTPRequests().read('class/?id=${this.id}').then(
+      (value) {
+        List<String> _assessmentsNames = [];
+        value[0]['units'].forEach(
+          (unit) {
+            unit['assessments'].forEach(
+              (assessment) {
+                _assessmentsNames.add(assessment['name']);
+              },
+            );
+          },
+        );
+        return _assessmentsNames;
+      },
+    );
+    return _assessments;
   }
 
-  List get units => this._units;
+  Future<List<StudentProfileData>> get studentData async {
+    return await _studentData;
+  }
 }

@@ -56,7 +56,7 @@ class HomeTeacher extends StatelessWidget {
               ),
             ),
             FutureBuilder<TeacherData>(
-              future: TeacherData.getClasses(email: 'first.last@tdsb.on.ca', name: user),
+              future: TeacherData.getClasses(email: 'teacher.teacher@tdsb.on.ca', name: user),
               builder: (context, snapshot) {
                 return snapshot.hasData ? ClassesGrid(snapshot.data.classes) : Center(child: CircularProgressIndicator(),);
               }

@@ -31,7 +31,7 @@ class ClassCard extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                   TEACHERS_CLASS_ROUTE,
-                arguments: theClass
+                arguments: this.theClass
               );
             },
             borderRadius: BorderRadius.all(Radius.circular(15)),

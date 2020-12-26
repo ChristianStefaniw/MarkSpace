@@ -13,6 +13,7 @@ class CreateClassTable implements CreateClassTableInterface {
 
   Future<List<TableRow>> createTable(BuildContext context) async {
     Color color;
+    List<StudentProfileData> _studentData = await this.classData.studentData;
 
     List<TableRow> _rows = <TableRow>[
       new TableRow(
@@ -43,21 +44,16 @@ class CreateClassTable implements CreateClassTableInterface {
               .toList())
     ];
 
-    for (int i = 0; i < this.classData.studentData.length; i++) {
+    for (int i = 0; i < _studentData.length; i++) {
       i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
-      _rows.add(await tableRow(this.classData.studentData[i], color, context));
+      _rows.add(tableRow(_studentData[i], color, context));
     }
 
     return _rows;
   }
 
-  void student(StudentProfileData studentProfileData, BuildContext context) {
-    Navigator.pushNamed(context, STUDENT_PROFILE,
-        arguments: studentProfileData);
-  }
-
-  Future<TableRow> tableRow(
-      StudentProfileData profile, Color color, BuildContext context) async {
+  TableRow tableRow(
+      StudentProfileData profile, Color color, BuildContext context) {
     return TableRow(children: [
       for (int i = 0; i < 2; i++)
         Container(
@@ -78,7 +74,8 @@ class CreateClassTable implements CreateClassTableInterface {
               )),
             ),
             onTap: () {
-              student(profile, context);
+              Navigator.pushNamed(context, STUDENT_PROFILE,
+                  arguments: profile);
             },
           ),
         ),
