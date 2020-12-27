@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mark_space_app/config/themes/theme_data.dart';
 
 import 'class_card.dart';
 
