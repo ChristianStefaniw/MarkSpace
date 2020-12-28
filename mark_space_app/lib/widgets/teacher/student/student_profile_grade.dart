@@ -5,7 +5,7 @@ import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 class StudentProfileGrade extends StatelessWidget {
   final Map assessment;
 
-  StudentProfileGrade({this.assessment});
+  StudentProfileGrade({@required this.assessment});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class StudentProfileGrade extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.grey[500],
                 onTap: () {
-                  return subMarksStudentProfile(context, assessment: this.assessment);
+                  return subMarksStudentProfileDialog(context, assessment: this.assessment);
                 },
                 child: Ink(
                   decoration: BoxDecoration(

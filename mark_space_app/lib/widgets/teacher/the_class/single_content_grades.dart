@@ -7,7 +7,7 @@ class SingleContentGrades extends StatelessWidget {
   final ClassData classData;
   final String unit;
 
-  SingleContentGrades({this.classData, this.unit});
+  SingleContentGrades({@required this.classData, @required this.unit});
 
   Future<List<Map>> _getStudentsWithContent() async {
     List<Map> _data = [];
@@ -40,7 +40,6 @@ class SingleContentGrades extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Map> _students = snapshot.data;
-          print(_students);
           return ListView.builder(
             itemCount: _students.length,
             itemBuilder: (context, index) {

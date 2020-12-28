@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/themes/theme_data.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/widgets/teacher/the_class/class_contents_contents.dart';
 

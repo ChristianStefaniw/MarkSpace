@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mark_space_app/config/themes/theme_data.dart';
 
 import 'class_card.dart';
 
@@ -14,7 +13,7 @@ class ClassesGrid extends StatelessWidget {
     return GridView.builder(
       gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2.45.h),
+        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2.8.h),
       ),
       itemCount: classData.length,
       scrollDirection: Axis.vertical,

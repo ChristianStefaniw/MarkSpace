@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/themes/theme_data.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 
 import 'package:mark_space_app/widgets/teacher/student/student_profile_information.dart';
@@ -9,7 +9,7 @@ import 'package:mark_space_app/widgets/teacher/student/student_profile_informati
 class StudentProfile extends StatelessWidget {
   final StudentProfileData profile;
 
-  StudentProfile({this.profile});
+  StudentProfile({@required this.profile});
 
 
   @override

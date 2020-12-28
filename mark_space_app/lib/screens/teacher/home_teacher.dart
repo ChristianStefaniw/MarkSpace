@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:mark_space_app/config/themes/theme_data.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 

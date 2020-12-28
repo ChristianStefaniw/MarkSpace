@@ -39,6 +39,7 @@ class Unit(models.Model):
 
 
 class Assessment(models.Model):
+    weight = models.FloatField()
     name = models.TextField()
     marks = models.OneToOneField('Mark', null=True, blank=True, on_delete=models.CASCADE)
 

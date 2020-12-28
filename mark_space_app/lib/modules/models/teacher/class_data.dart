@@ -1,3 +1,4 @@
+import 'package:mark_space_app/constants/app_constants.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
@@ -12,6 +13,18 @@ class ClassData {
   ClassData(
       {this.period, this.code, this.name, this.id, this.icon, this.students});
 
+  /*ClassData.fromJson(Map<String, dynamic> json) :
+    id = json['id'],
+    code = json['code'],
+    name = json['name'],
+    period = json['period'],
+    icon = json['icon'],
+    students = _studentData;
+
+   */
+
+
+
   Future<List<StudentProfileData>> get _studentData async {
     List<StudentProfileData> _studentData = [
       await StudentProfileData.data(
@@ -24,7 +37,7 @@ class ClassData {
 
   Future<List<String>> get assessments async {
     List<String> _assessments =
-        await HTTPRequests().read('class/?id=${this.id}').then(
+        await HTTPRequests().read(CLASS_QUERY_ID_URL + this.id.toString()).then(
       (value) {
         List<String> _assessmentsNames = [];
         value[0]['units'].forEach(

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/screens/teacher/the_class/class_tabs/contents.dart';
-import 'package:mark_space_app/config/themes/theme_data.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'class_tabs/the_class.dart';
 
 class TeachersClass extends StatelessWidget {
