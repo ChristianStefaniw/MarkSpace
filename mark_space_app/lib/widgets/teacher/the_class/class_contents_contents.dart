@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
-
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 
 class TheClassContentsContents extends StatelessWidget {
@@ -22,7 +23,7 @@ class TheClassContentsContents extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 elevation: 10,
                 child: InkWell(
-                  splashColor: Colors.white,
+                  splashColor: SECONDARY_LIGHT,
                   onTap: () => Navigator.pushNamed(
                     context,
                     SINGLE_CONTENT,
@@ -32,7 +33,7 @@ class TheClassContentsContents extends StatelessWidget {
                     ),
                   ),
                   child: Ink(
-                    color: Colors.white,
+                    color: PRIMARY,
                     padding: EdgeInsets.symmetric(vertical: 20),
                     width: double.infinity,
                     child: Text(

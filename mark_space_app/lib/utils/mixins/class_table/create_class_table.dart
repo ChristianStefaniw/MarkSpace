@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 import 'create_class_table_interface.dart';
@@ -18,7 +19,7 @@ class CreateClassTable implements CreateClassTableInterface {
     List<TableRow> _rows = <TableRow>[
       new TableRow(
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: TABLE_HEADING_BACKGROUND,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(10),
             ),
@@ -30,13 +31,13 @@ class CreateClassTable implements CreateClassTableInterface {
                   padding: EdgeInsets.all(7.0),
                   decoration: BoxDecoration(
                     border: Border.symmetric(
-                      vertical: BorderSide(color: Colors.white),
+                      vertical: BorderSide(color: PRIMARY),
                     ),
                   ),
                   child: Center(
                     child: Text(
                       e,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: PRIMARY),
                     ),
                   ),
                 ),
@@ -45,7 +46,7 @@ class CreateClassTable implements CreateClassTableInterface {
     ];
 
     for (int i = 0; i < _studentData.length; i++) {
-      i % 2 == 0 ? color = Color(0xffDCDCDC) : color = Color(0xffBEBEBE);
+      i % 2 == 0 ? color = TABLE_EVEN : color = TABLE_ODD;
       _rows.add(tableRow(_studentData[i], color, context));
     }
 
@@ -64,7 +65,7 @@ class CreateClassTable implements CreateClassTableInterface {
               decoration: BoxDecoration(
                 color: color,
                 border: Border.symmetric(
-                  horizontal: BorderSide(color: Colors.black),
+                  horizontal: BorderSide(color: BORDER),
                 ),
               ),
               child: Center(

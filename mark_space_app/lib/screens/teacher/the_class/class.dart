@@ -36,14 +36,14 @@ class TeachersClass extends StatelessWidget {
           backgroundColor: NAVBAR,
           centerTitle: true,
           bottom: TabBar(
-            labelColor: Colors.white,
+            labelColor: PRIMARY,
             labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            unselectedLabelColor: Colors.white,
+            unselectedLabelColor: PRIMARY,
             indicator: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
-                color: Colors.lightBlueAccent,
+                color: TAB_BACKGROUND,
             ),
             tabs: [
               Tab(

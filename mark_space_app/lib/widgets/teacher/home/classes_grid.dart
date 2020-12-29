@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'class_card.dart';
 
 class ClassesGrid extends StatelessWidget {
@@ -20,7 +21,7 @@ class ClassesGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         return ClassCard(
           theClass: classData[index],
-          color: Color(0xffFF3300),
+          color: CLASS_CARD_TITLE,
         );
       },
     );

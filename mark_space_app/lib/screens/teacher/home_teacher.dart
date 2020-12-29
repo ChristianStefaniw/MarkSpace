@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
@@ -26,8 +27,8 @@ class HomeTeacher extends StatelessWidget {
               IconButton(
                 tooltip: "Add class",
                 icon: Icon(Icons.add),
-                color: NAVBAR_ACTIONS,
-                onPressed: () => print("add class"),
+                color: PRIMARY,
+                onPressed: () => Navigator.pushNamed(context, CREATE_CLASS, arguments: 1),
               )
             ]
         ),
@@ -41,7 +42,7 @@ class HomeTeacher extends StatelessWidget {
               transform: Matrix4.rotationZ(0.1),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: BACKGROUND_DECORATION,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(1000),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 
 class ClassCardItem extends StatelessWidget {
   final EdgeInsets margin;
@@ -23,7 +24,7 @@ class ClassCardItem extends StatelessWidget {
       margin: this.margin,
       width: 150,
       decoration: BoxDecoration(
-        border: Border.symmetric(vertical: BorderSide(color: Colors.grey[400])),
+        border: Border.symmetric(vertical: BorderSide(color: SECONDARY_DARK)),
       ),
       child: Center(
         child: SingleChildScrollView(

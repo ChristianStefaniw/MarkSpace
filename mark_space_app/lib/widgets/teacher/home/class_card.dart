@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart' as MyScaleTransition;
@@ -49,14 +50,15 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin{
       scale: _animation,
       child: Center(
         child: Card(
+          color: PRIMARY,
           margin: EdgeInsets.symmetric(vertical: 60.h),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15))),
-          elevation: _animation.value,
+          elevation: 10,
           child: Container(
             width: 450.w,
             child: InkWell(
-              splashColor: Colors.lightBlueAccent,
+              splashColor: CLASS_CARD_SPLASH,
               onTap: () {
                 Navigator.pushNamed(
                   context,
@@ -98,7 +100,7 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin{
                     title: 'Period:',
                     contents: this.widget.theClass.period,
                     fontSize: 50,
-                    fontColor: Colors.black87,
+                    fontColor: FONT_COLOR_PRIMARY,
                   ),
                   ClassCardItem(
                     margin:

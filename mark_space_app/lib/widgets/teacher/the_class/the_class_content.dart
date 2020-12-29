@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/utils/mixins/class_table/create_class_table.dart';
@@ -17,7 +18,7 @@ class TheClassContent extends StatelessWidget {
           return snapshot.hasData
               ? Table(
             border: TableBorder.all(
-                color: Colors.black26,
+                color: BORDER,
                 width: 1,
                 style: BorderStyle.none),
             children: snapshot.data,

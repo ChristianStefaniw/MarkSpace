@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
@@ -47,6 +48,7 @@ class SingleContentGrades extends StatelessWidget {
                 elevation: 10,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: InkWell(
+                  splashColor: SECONDARY_LIGHT,
                   onTap: () {
                     return subMarksSingleContentDialog(context,
                         student: _students[index]);
