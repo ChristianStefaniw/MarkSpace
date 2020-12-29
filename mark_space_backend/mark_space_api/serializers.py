@@ -39,34 +39,27 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RelatedFields:
-    @staticmethod
-    class TeacherRelatedField(serializers.RelatedField):
-        """
-        Not 100% sure if "TeacherRelatedField" is the best way to serialize teachers. Will hopefully find a better way soon.
-        """
+class ClassSerializers:
+    class ClassPostSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Class
+            fields = '__all__'
 
-        def to_representation(self, obj):
-            data = {
-                'id': obj.id,
-                'name': obj.name,
-                'email': obj.email,
-            }
-            return data
+        def create(self, validated_data):
+            new_class = Class.objects.create(name=validated_data['name'], code=validated_data['code'],
+                                             period=validated_data['period'], icon=validated_data['icon'])
+            for teacher in validated_data['teachers']:
+                new_class.teachers.add(teacher.id)
+                Teacher.objects.get(id=teacher.id).teacher_classes.add(new_class)
 
-        def to_internal_value(self, id):
-            return Teacher.objects.get(id=id)
+            new_class.save()
+            return new_class
 
+    class ClassGetSerializer(serializers.ModelSerializer):
+        teachers = TeacherSerializer(many=True, read_only=True)
+        units = UnitSerializer(many=True, read_only=True)
+        students = StudentSerializer(many=True, read_only=True)
 
-class ClassSerializer(serializers.ModelSerializer):
-    teachers = RelatedFields.TeacherRelatedField(
-        queryset=Teacher.objects.all(), many=True
-    )
-
-    # units = UnitSerializer(many=True, read_only=True)
-    # teachers = TeacherSerializer(many=True, )
-    # students = StudentSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Class
-        fields = '__all__'
+        class Meta:
+            model = Class
+            fields = '__all__'

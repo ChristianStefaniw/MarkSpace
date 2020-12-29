@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from .serializers import TeacherSerializer, StudentSerializer, ClassSerializer
+from .serializers import TeacherSerializer, StudentSerializer, ClassSerializers
 from .models import Teacher, Student, Class
 
 
@@ -34,12 +34,12 @@ class StudentView(viewsets.ModelViewSet):
 
 
 class ClassView(viewsets.ModelViewSet):
-    serializer_class = ClassSerializer
+    serializer_class = ClassSerializers.ClassPostSerializer
     queryset = Class.objects.all()
 
     def list(self, request, *args, **kwargs):
         query_set = self.get_queryset()
-        serializer = ClassSerializer(query_set, many=True)
+        serializer = ClassSerializers.ClassGetSerializer(query_set, many=True)
         return Response(serializer.data)
 
     def get_queryset(self):
