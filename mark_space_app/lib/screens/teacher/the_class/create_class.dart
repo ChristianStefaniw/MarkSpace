@@ -26,7 +26,7 @@ class CreateClass extends StatelessWidget {
               child: BootstrapContainer(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.only(bottom: 20, top: 50, right: 7, left: 7),
                     color: Colors.white.withOpacity(0.1),
                     child: TextFormField(
                       decoration: InputDecoration(
@@ -40,7 +40,7 @@ class CreateClass extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     color: PRIMARY.withOpacity(0.1),
                     child: TextFormField(
                       decoration: InputDecoration(
@@ -54,7 +54,7 @@ class CreateClass extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     color: PRIMARY.withOpacity(0.1),
                     child: TextFormField(
                       decoration: InputDecoration(
@@ -69,7 +69,7 @@ class CreateClass extends StatelessWidget {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     child: ButtonTheme(
                       height: 50,
                       minWidth: bootstrapMaxWidthNonFluid(MediaQuery.of(context).size.width),
@@ -83,7 +83,7 @@ class CreateClass extends StatelessWidget {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     child: ButtonTheme(
                       height: 50,
                       minWidth: bootstrapMaxWidthNonFluid(MediaQuery.of(context).size.width),

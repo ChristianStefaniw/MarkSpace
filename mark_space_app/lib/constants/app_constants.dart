@@ -1,4 +1,4 @@
-const String API_URL = 'http://127.0.0.1:8000/api/';
+const String API_URL = 'http://192.168.1.131:8000/api/';
 const String TEACHER_URL = API_URL + 'teacher/';
 const String EMAIL_QUERY_TEACHER_URL = TEACHER_URL + '?email=';
 const String CLASS_URL = API_URL + 'class/';
