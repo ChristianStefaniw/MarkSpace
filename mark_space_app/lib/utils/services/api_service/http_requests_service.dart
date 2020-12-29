@@ -7,13 +7,13 @@ class HTTPRequests implements HttpRequestsInterface{
   var dio = new Dio();
 
   @override
-  Future delete(extension) {
+  Future delete(url) {
     throw UnimplementedError();
   }
 
   @override
   Future read(url) async{
-    Response response = await dio.get('$url');
+    Response response = await dio.get(url);
     if (response.statusCode == 200){
       return response.data;
     } else {
@@ -22,13 +22,18 @@ class HTTPRequests implements HttpRequestsInterface{
   }
 
   @override
-  Future update(extension) {
+  Future update(url) {
     throw UnimplementedError();
   }
 
   @override
-  Future create(extension) {
-    throw UnimplementedError();
+  Future create(url, {FormData data}) async{
+    Response response = await dio.post(url, data: data);
+    if (response.statusCode == 201){
+      return response;
+    } else{
+      throw "Network error";
+    }
   }
 
 }
