@@ -1,4 +1,4 @@
-import 'package:mark_space_app/utils/mixins/student_profile/marks.dart';
+import 'package:mark_space_app/utils/services/student_profile/marks.dart';
 
 class StudentProfileData {
   final String email;

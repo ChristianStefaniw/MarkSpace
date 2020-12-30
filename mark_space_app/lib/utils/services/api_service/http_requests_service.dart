@@ -4,7 +4,11 @@ import 'http_requests_services_interface.dart';
 
 class HTTPRequests implements HttpRequestsInterface{
 
-  var dio = new Dio();
+  static final HTTPRequests _singleton = HTTPRequests._internal();
+  factory HTTPRequests() => _singleton;
+  HTTPRequests._internal();
+
+  Dio dio = new Dio();
 
   @override
   Future delete(url) {

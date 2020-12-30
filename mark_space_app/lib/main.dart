@@ -6,15 +6,18 @@ import 'package:mark_space_app/config/routes/router.dart' as Router;
 import 'package:provider/provider.dart';
 
 
-main() => runApp(ChangeNotifierProvider(create: (_) => AllClassesProvider(), child: MyApp()));
+main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: Router.Router.generateRoute,
-      home: HomeTeacher(),
+    return ChangeNotifierProvider(
+      create: (_) => new AllClassesProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: Router.Router.generateRoute,
+        home: HomeTeacher(),
+      ),
     );
   }
 }

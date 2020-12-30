@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
+
 abstract class HttpRequestsInterface{
-  var dio;
+  Dio dio;
 
   Future read(String extension);
 

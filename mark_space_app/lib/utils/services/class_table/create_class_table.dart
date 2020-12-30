@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
-
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 import 'create_class_table_interface.dart';
 

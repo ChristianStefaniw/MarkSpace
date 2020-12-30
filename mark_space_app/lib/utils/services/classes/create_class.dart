@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
-import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/constants/app_constants.dart';
-import 'api_service/http_requests_service.dart';
+import '../api_service/http_requests_service.dart';
 
 class CreateClassService {
   static Future<void> run(

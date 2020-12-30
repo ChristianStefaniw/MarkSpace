@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
-import 'package:mark_space_app/utils/services/create_class_service.dart';
+import 'package:mark_space_app/utils/services/classes/create_class.dart';
 import 'package:mark_space_app/widgets/teacher/bootstrap_container.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +39,7 @@ class CreateClass extends StatelessWidget {
                         EdgeInsets.only(bottom: 20, top: 50, right: 7, left: 7),
                     color: Colors.white.withOpacity(0.1),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _classNameController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
@@ -54,6 +55,7 @@ class CreateClass extends StatelessWidget {
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     color: PRIMARY.withOpacity(0.1),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _classCodeController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
@@ -69,6 +71,7 @@ class CreateClass extends StatelessWidget {
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                     color: PRIMARY.withOpacity(0.1),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _classPeriodController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),

@@ -16,51 +16,52 @@ class HomeTeacher extends StatelessWidget {
     String user = "Christian";
 
     return Scaffold(
-        appBar: AppBar(
-            title: Text("Welcome $user"),
-            centerTitle: true,
-            backgroundColor: NAVBAR,
-            leading: Image.asset(
-              'assets/images/apple.png',
-            ),
-            actions: [
-              IconButton(
-                tooltip: "Create Class",
-                icon: Icon(Icons.add),
-                color: PRIMARY,
-                onPressed: () =>
-                    Navigator.pushNamed(context, CREATE_CLASS, arguments: 1),
-              )
-            ]),
-        body: Stack(
-          children: [
-            Container(
-              color: BACKGROUND,
-            ),
-            Transform(
-              alignment: FractionalOffset.topRight,
-              transform: Matrix4.rotationZ(0.1),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: BACKGROUND_DECORATION,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(1000),
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.height,
-              ),
-            ),
-            Consumer<AllClassesProvider>(
-              builder:(context, model, child){
-                return Classes(
-                  email: "teacher.teacher@tdsb.on.ca",
-                  user: user,
-                );
-              }
+      appBar: AppBar(
+          title: Text("Welcome $user"),
+          centerTitle: true,
+          backgroundColor: NAVBAR,
+          leading: Image.asset(
+            'assets/images/apple.png',
+          ),
+          actions: [
+            IconButton(
+              tooltip: "Create Class",
+              icon: Icon(Icons.add),
+              color: PRIMARY,
+              onPressed: () =>
+                  Navigator.pushNamed(context, CREATE_CLASS, arguments: 1),
             )
-          ],
-        ));
+          ]),
+      body: Stack(
+        children: [
+          Container(
+            color: BACKGROUND,
+          ),
+          Transform(
+            alignment: FractionalOffset.topRight,
+            transform: Matrix4.rotationZ(0.1),
+            child: Container(
+              decoration: BoxDecoration(
+                color: BACKGROUND_DECORATION,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(1000),
+                ),
+              ),
+              width: MediaQuery.of(context).size.width / 2,
+              height: MediaQuery.of(context).size.height,
+            ),
+          ),
+          Consumer<AllClassesProvider>(
+            builder: (context, model, child) {
+              return Classes(
+                email: "teacher.teacher@tdsb.on.ca",
+                user: user,
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 

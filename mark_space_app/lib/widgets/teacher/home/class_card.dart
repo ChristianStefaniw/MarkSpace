@@ -40,8 +40,8 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin{
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
