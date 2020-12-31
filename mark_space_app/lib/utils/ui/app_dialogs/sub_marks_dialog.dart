@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:mark_space_app/utils/helpers/format_marks_dialog_data.dart';
 
 subMarksDialog(context,
     {@required Map assessment, @required title}) {
-  Map _formattedStudent = FormatMarksDialogData.format(assessment);
+  Map _formattedAssessment = _formatAssessment(assessment);
   return showDialog(
     context: context,
     barrierDismissible: true,
@@ -13,10 +12,9 @@ subMarksDialog(context,
       return SimpleDialog(
         title: Text(
           title,
-          //"${student['studentName']}",
           textAlign: TextAlign.center,
         ),
-        children: _formattedStudent.entries
+        children: _formattedAssessment.entries
             .map<Widget>((e) => Container(
                   margin: EdgeInsets.symmetric(vertical: 10.h),
                   child: Text(
@@ -29,3 +27,19 @@ subMarksDialog(context,
     },
   );
 }
+
+Map<String, dynamic> _formatAssessment(Map<String, dynamic> assessment) {
+    Map _formatted = {};
+    _formatted
+        .addAll({'grade': assessment['marks'][0]['grade']});
+
+    _formatted.addAll({'weight': assessment['weight']});
+
+    assessment['marks'][0]['subs'].forEach(
+          (sub, mark) {
+        _formatted.addAll({sub: mark});
+      },
+    );
+    return _formatted;
+  }
+
