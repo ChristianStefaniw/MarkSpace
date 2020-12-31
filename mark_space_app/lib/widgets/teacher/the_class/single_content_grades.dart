@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import 'package:mark_space_app/utils/services/classes/deserialize_classes.dart';
 import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class SingleContentGrades extends StatelessWidget {
@@ -13,7 +14,7 @@ class SingleContentGrades extends StatelessWidget {
   Future<List<Map>> _getStudentsWithContent() async {
     List<Map> _data = [];
     //check students who have assessment and add them to a list
-    for (final profile in await this.classData.studentData) {
+    for (final profile in await DeserializeClasses.fetchStudentData(classData.id)) {
       profile.marks.forEach(
         (unit) {
           unit['assessments'].forEach(

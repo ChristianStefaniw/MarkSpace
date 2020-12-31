@@ -4,6 +4,7 @@ import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
+import 'package:mark_space_app/utils/services/classes/deserialize_classes.dart';
 import 'create_class_table_interface.dart';
 
 class CreateClassTable implements CreateClassTableInterface {
@@ -15,7 +16,7 @@ class CreateClassTable implements CreateClassTableInterface {
 
   Future<List<TableRow>> createTable(BuildContext context) async {
     Color color;
-    List<StudentProfileData> _studentData = await this.classData.studentData;
+    List<StudentProfileData> _studentData = await DeserializeClasses.fetchStudentData(classData.id);
 
     List<TableRow> _rows = <TableRow>[
       new TableRow(

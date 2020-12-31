@@ -1,6 +1,4 @@
-import 'package:mark_space_app/constants/app_constants.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
-import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class ClassData {
   final String id;
@@ -13,7 +11,7 @@ class ClassData {
   ClassData(
       {this.period, this.code, this.name, this.id, this.icon, this.students});
 
-  factory ClassData.fromJson(Map<String, dynamic> json){
+  factory ClassData.fromJson(Map<String, dynamic> json) {
     return ClassData(
       id: json['id'],
       code: json['code'],
@@ -21,41 +19,5 @@ class ClassData {
       period: json['period'],
       icon: json['icon'],
     );
-  }
-
-
-  Future<List<StudentProfileData>> get _studentData async {
-    List<StudentProfileData> _studentData = [
-      await StudentProfileData.data(
-          name: "Christian Stefaniw",
-          email: "christian.stefaniw@student.tdsb.on.ca",
-          classID: this.id,
-          studentId: 'af6709c5-b817-4b92-b132-bb2d1a587bf9'),
-    ];
-    return _studentData;
-  }
-
-  Future<List<String>> get assessments async {
-    List<String> _assessments =
-        await HTTPRequests().get(CLASS_QUERY_ID_URL + this.id.toString()).then(
-      (value) {
-        List<String> _assessmentsNames = [];
-        value[0]['units'].forEach(
-          (unit) {
-            unit['assessments'].forEach(
-              (assessment) {
-                _assessmentsNames.add(assessment['name']);
-              },
-            );
-          },
-        );
-        return _assessmentsNames;
-      },
-    );
-    return _assessments;
-  }
-
-  Future<List<StudentProfileData>> get studentData async {
-    return await _studentData;
   }
 }

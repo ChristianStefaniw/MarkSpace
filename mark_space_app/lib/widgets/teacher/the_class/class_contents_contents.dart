@@ -4,6 +4,7 @@ import 'package:mark_space_app/config/routes/arguments/single_content_arguments.
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import 'package:mark_space_app/utils/services/classes/get_assessments.dart';
 
 class TheClassContentsContents extends StatelessWidget {
   final ClassData classData;
@@ -13,7 +14,7 @@ class TheClassContentsContents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<String>>(
-      future: this.classData.assessments,
+      future: GetAssessments.assessments(this.classData.id),
       builder: (_, snapshot) {
         if (snapshot.hasData){
           return ListView.builder(
