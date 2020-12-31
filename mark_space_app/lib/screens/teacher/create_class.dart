@@ -7,7 +7,7 @@ import 'package:mark_space_app/widgets/teacher/bootstrap_container.dart';
 import 'package:provider/provider.dart';
 
 class CreateClass extends StatelessWidget {
-  final int teacherId;
+  final String teacherId;
 
   CreateClass({this.teacherId});
 
@@ -95,7 +95,7 @@ class CreateClass extends StatelessWidget {
                         label: Text('Submit'),
                         onPressed: () async{
                           await CreateClassService.run(
-                            id: this.teacherId,
+                            teacherId: this.teacherId,
                             name: _classNameController.text,
                             code: _classCodeController.text,
                             period: _classPeriodController.text,

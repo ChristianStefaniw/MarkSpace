@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
+import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
 import 'create_class_table_interface.dart';
 
 class CreateClassTable implements CreateClassTableInterface {
-  final classData;
+  final ClassData classData;
 
   CreateClassTable(this.classData);
 

@@ -16,7 +16,7 @@ class HTTPRequests implements HttpRequestsInterface{
   }
 
   @override
-  Future read(url) async{
+  Future get(url) async{
     Response response = await dio.get(url);
     if (response.statusCode == 200){
       return response.data;
@@ -26,12 +26,12 @@ class HTTPRequests implements HttpRequestsInterface{
   }
 
   @override
-  Future update(url) {
+  Future patch(url) {
     throw UnimplementedError();
   }
 
   @override
-  Future create(url, {FormData data}) async{
+  Future post(url, {FormData data}) async{
     Response response = await dio.post(url, data: data);
     if (response.statusCode == 201){
       return response;

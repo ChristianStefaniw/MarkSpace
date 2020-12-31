@@ -9,14 +9,14 @@ class GetClasses {
 
   Future<List> classes() async {
     List _classIDS = await HTTPRequests()
-        .read(EMAIL_QUERY_TEACHER_URL + this.email)
+        .get(EMAIL_QUERY_TEACHER_URL + this.email)
         .then((value) => value[0]['teacher_classes']);
 
     List _classes = [];
 
     for (final element in _classIDS) {
       _classes.add(
-        await HTTPRequests().read(CLASS_QUERY_ID_URL + element.toString()).then(
+        await HTTPRequests().get(CLASS_QUERY_ID_URL + element.toString()).then(
               (value) => value[0],
             ),
       );

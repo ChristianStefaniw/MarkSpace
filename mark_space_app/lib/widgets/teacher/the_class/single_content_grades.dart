@@ -38,7 +38,7 @@ class SingleContentGrades extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map>>(
       future: this._getStudentsWithContent(),
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (snapshot.hasData) {
           List<Map> _students = snapshot.data;
           return ListView.builder(
@@ -70,7 +70,7 @@ class SingleContentGrades extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 20),
                           child: Text(
-                            '${_students[index]['assessment']['marks']['grade']}%',
+                            '${_students[index]['assessment']['marks'][0]['grade']}%',
                             textAlign: TextAlign.center,
                           ),
                         ),

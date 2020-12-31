@@ -14,7 +14,7 @@ class TheClassContentsContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<List<String>>(
       future: this.classData.assessments,
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (snapshot.hasData){
           return ListView.builder(
             itemCount: snapshot.data.length,

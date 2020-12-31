@@ -3,7 +3,7 @@ import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart'
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class ClassData {
-  final int id;
+  final String id;
   final String code;
   final String name;
   final String period;
@@ -23,21 +23,20 @@ class ClassData {
 
    */
 
-
-
   Future<List<StudentProfileData>> get _studentData async {
     List<StudentProfileData> _studentData = [
       await StudentProfileData.data(
           name: "Christian Stefaniw",
           email: "christian.stefaniw@student.tdsb.on.ca",
-          classID: this.id),
+          classID: this.id,
+          studentId: 'af6709c5-b817-4b92-b132-bb2d1a587bf9'),
     ];
     return _studentData;
   }
 
   Future<List<String>> get assessments async {
     List<String> _assessments =
-        await HTTPRequests().read(CLASS_QUERY_ID_URL + this.id.toString()).then(
+        await HTTPRequests().get(CLASS_QUERY_ID_URL + this.id.toString()).then(
       (value) {
         List<String> _assessmentsNames = [];
         value[0]['units'].forEach(

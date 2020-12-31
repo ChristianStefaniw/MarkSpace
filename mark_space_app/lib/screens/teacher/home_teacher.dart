@@ -29,7 +29,7 @@ class HomeTeacher extends StatelessWidget {
               icon: Icon(Icons.add),
               color: PRIMARY,
               onPressed: () =>
-                  Navigator.pushNamed(context, CREATE_CLASS, arguments: 1),
+                  Navigator.pushNamed(context, CREATE_CLASS, arguments: TeacherData().id),
             )
           ]),
       body: Stack(
@@ -76,7 +76,7 @@ class Classes extends StatelessWidget {
     return FutureBuilder<TeacherData>(
       future: TeacherData.getClasses(
           email: 'teacher.teacher@tdsb.on.ca', name: user),
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (snapshot.hasData) {
           return ClassesGrid(snapshot.data.classes);
         } else {

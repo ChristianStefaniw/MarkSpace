@@ -6,11 +6,11 @@ subMarksSingleContentDialog(context, {@required Map student}) {
     Map _formattedStudent = {};
 
     _formattedStudent
-        .addAll({'grade': student['assessment']['marks']['grade']});
+        .addAll({'grade': student['assessment']['marks'][0]['grade']});
 
     _formattedStudent.addAll({'weight': student['assessment']['weight']});
 
-    student['assessment']['marks']['subs'].forEach(
+    student['assessment']['marks'][0]['subs'].forEach(
       (sub, mark) {
         _formattedStudent.addAll({sub: mark});
       },
@@ -45,9 +45,9 @@ subMarksSingleContentDialog(context, {@required Map student}) {
 subMarksStudentProfileDialog(context, {@required Map assessment}) {
   Map _formatAssessmentData() {
     Map _formatted = {};
-    _formatted.addAll({'grade': assessment['marks']['grade']});
+    _formatted.addAll({'grade': assessment['marks'][0]['grade']});
     _formatted.addAll({'weight': assessment['weight']});
-    assessment['marks']['subs'].forEach((sub, mark) {
+    assessment['marks'][0]['subs'].forEach((sub, mark) {
       _formatted.addAll({sub: mark});
     });
 
