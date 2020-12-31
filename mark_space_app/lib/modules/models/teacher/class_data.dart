@@ -13,15 +13,16 @@ class ClassData {
   ClassData(
       {this.period, this.code, this.name, this.id, this.icon, this.students});
 
-  /*ClassData.fromJson(Map<String, dynamic> json) :
-    id = json['id'],
-    code = json['code'],
-    name = json['name'],
-    period = json['period'],
-    icon = json['icon'],
-    students = _studentData;
+  factory ClassData.fromJson(Map<String, dynamic> json){
+    return ClassData(
+      id: json['id'],
+      code: json['code'],
+      name: json['name'],
+      period: json['period'],
+      icon: json['icon'],
+    );
+  }
 
-   */
 
   Future<List<StudentProfileData>> get _studentData async {
     List<StudentProfileData> _studentData = [

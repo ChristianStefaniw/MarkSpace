@@ -31,12 +31,6 @@ class GetClasses {
   }
 
   static ClassData _createClassDataFromJson(Map<String, dynamic> json) {
-    return ClassData(
-      id: json['id'],
-      code: json['code'],
-      name: json['name'],
-      period: json['period'],
-      icon: json['icon'],
-    );
+    return ClassData.fromJson(json);
   }
 }

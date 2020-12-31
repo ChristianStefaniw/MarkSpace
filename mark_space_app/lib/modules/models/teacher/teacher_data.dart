@@ -9,6 +9,7 @@ class TeacherData {
 
   TeacherData({this.email, this.name, this.classes, this.id='65ddded4-0a05-4d72-a7e0-452ea01025db'});
 
+
   static Future<TeacherData> getClasses({String email, String name}) async{
     List<ClassData> _classes = await GetClasses(email).classes();
     return new TeacherData(email: email, name: name, classes: _classes);
