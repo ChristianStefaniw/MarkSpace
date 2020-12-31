@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
+import 'package:mark_space_app/utils/services/classes/get_classes.dart';
 import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -73,12 +74,12 @@ class Classes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<TeacherData>(
-      future: TeacherData.getClasses(
-          email: 'teacher.teacher@tdsb.on.ca', name: user),
+    return FutureBuilder<List>(
+      future: GetClasses(this.email).classes(),
       builder: (_, snapshot) {
         if (snapshot.hasData) {
-          return ClassesGrid(snapshot.data.classes);
+          TeacherData _teacher = TeacherData(email: this.email, name: this.user, classes: snapshot.data);
+          return ClassesGrid(_teacher.classes);
         } else {
           return Center(child: CircularProgressIndicator());
         }
