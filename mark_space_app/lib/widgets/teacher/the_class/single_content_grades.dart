@@ -52,7 +52,7 @@ class SingleContentGrades extends StatelessWidget {
                   splashColor: SECONDARY_LIGHT,
                   onTap: () {
                     return subMarksSingleContentDialog(context,
-                        student: _students[index]);
+                        assessment: _students[index]['assessment'], title: _students[index]['studentName']);
                   },
                   child: Row(
                     children: [
