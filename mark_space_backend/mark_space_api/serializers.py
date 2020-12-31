@@ -9,20 +9,44 @@ class MarkSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AssessmentSerializer(serializers.ModelSerializer):
-    marks = MarkSerializer(read_only=True)
+class AssessmentSerializers:
+    class AssessmentGetSerializer(serializers.ModelSerializer):
+        marks = MarkSerializer(read_only=True, many=True)
 
-    class Meta:
-        model = Assessment
-        fields = '__all__'
+        class Meta:
+            model = Assessment
+            fields = '__all__'
+
+    class AssessmentPostSerializer(serializers.ModelSerializer):
+        marks = MarkSerializer(read_only=True)
+
+        class Meta:
+            model = Assessment
+            fields = '__all__'
 
 
-class UnitSerializer(serializers.ModelSerializer):
-    assessments = AssessmentSerializer(many=True, read_only=True)
+class UnitSerializers:
+    class UnitGetSerializer(serializers.ModelSerializer):
+        assessments = AssessmentSerializers.AssessmentGetSerializer(many=True, read_only=True)
 
-    class Meta:
-        model = Unit
-        fields = '__all__'
+        class Meta:
+            model = Unit
+            fields = '__all__'
+
+    class UnitPostSerializer(serializers.ModelSerializer):
+        assessments = AssessmentSerializers.AssessmentGetSerializer(many=True, read_only=True)
+
+        class Meta:
+            model = Unit
+            fields = '__all__'
+
+        def update(self, instance, validated_data):
+            new_unit = Unit.objects.create(name=validated_data['name'], the_class=validated_data['the_class'])
+            for assessment in validated_data['assessment']:
+                new_unit.assessments.add(assessment.id)
+
+            new_unit.save()
+            return new_unit
 
 
 class TeacherSerializer(serializers.ModelSerializer):
@@ -32,7 +56,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    units = UnitSerializer(many=True, read_only=True)
+    units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
@@ -40,7 +64,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class ClassSerializers:
-    class ClassPostSerializer(serializers.ModelSerializer):
+    class ClassPostUpdateSerializer(serializers.ModelSerializer):
         class Meta:
             model = Class
             fields = '__all__'
@@ -55,9 +79,25 @@ class ClassSerializers:
             new_class.save()
             return new_class
 
+        def update(self, instance, validated_data):
+            if 'teachers' is validated_data:
+                for teacher in validated_data['teachers']:
+                    instance.teachers.add(teacher.id)
+                    Teacher.objects.get(id=teacher.id).teacher_classes.add(instance)
+            if 'students' in validated_data:
+                for student in validated_data['students']:
+                    instance.students.add(student.id)
+                    Student.objects.get(id=student.id).student_classes.add(instance)
+            if 'units' in validated_data:
+                for unit in validated_data['units']:
+                    instance.units.add(unit.id)
+
+            instance.save()
+            return instance
+
     class ClassGetSerializer(serializers.ModelSerializer):
         teachers = TeacherSerializer(many=True, read_only=True)
-        units = UnitSerializer(many=True, read_only=True)
+        units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
         students = StudentSerializer(many=True, read_only=True)
 
         class Meta:

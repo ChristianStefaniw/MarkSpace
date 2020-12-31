@@ -14,10 +14,6 @@ class TeacherView(viewsets.ModelViewSet):
         serializer = TeacherSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def get_queryset(self):
-        queryset = self.queryset.filter(email=self.request.query_params.get('email'))
-        return queryset
-
 
 class StudentView(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
@@ -28,20 +24,20 @@ class StudentView(viewsets.ModelViewSet):
         serializer = StudentSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def get_queryset(self):
-        queryset = self.queryset.filter(email=self.request.query_params.get('email'))
-        return queryset
-
 
 class ClassView(viewsets.ModelViewSet):
-    serializer_class = ClassSerializers.ClassPostSerializer
+    serializer_class = ClassSerializers.ClassPostUpdateSerializer
     queryset = Class.objects.all()
 
     def list(self, request, *args, **kwargs):
-        query_set = self.get_queryset()
-        serializer = ClassSerializers.ClassGetSerializer(query_set, many=True)
+        queryset = self.get_queryset()
+        serializer = ClassSerializers.ClassGetSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def get_queryset(self):
-        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
-        return queryset
+    def update(self, request, *args, **kwargs):
+        obj = self.get_object()
+        serializer = ClassSerializers.ClassPostUpdateSerializer(obj, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
