@@ -51,7 +51,7 @@ class SingleContentGrades extends StatelessWidget {
                 child: InkWell(
                   splashColor: SECONDARY_LIGHT,
                   onTap: () {
-                    return subMarksSingleContentDialog(context,
+                    return subMarksDialog(context,
                         assessment: _students[index]['assessment'], title: _students[index]['studentName']);
                   },
                   child: Row(

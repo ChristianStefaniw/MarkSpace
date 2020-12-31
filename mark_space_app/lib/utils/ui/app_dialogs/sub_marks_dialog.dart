@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/utils/helpers/format_marks_dialog_data.dart';
 
-subMarksSingleContentDialog(context,
+subMarksDialog(context,
     {@required Map assessment, @required title}) {
   Map _formattedStudent = FormatMarksDialogData.format(assessment);
   return showDialog(
