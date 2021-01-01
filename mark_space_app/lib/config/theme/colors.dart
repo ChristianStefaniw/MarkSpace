@@ -16,3 +16,4 @@ const Color TABLE_EVEN = Color(0xffDCDCDC);
 const Color CLASS_CARD_TITLE = Color(0xff707070);
 const Color PRIMARY_BUTTON = Colors.blue;
 const Color ERROR = Colors.red;
+const List<MaterialColor> STUDENT_CARD_COLORS = [Colors.blue, Colors.green, Colors.orange, Colors.red, Colors.grey, Colors.amber, Colors.indigo];

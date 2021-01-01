@@ -47,17 +47,16 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
     return ScaleTransition(
       scale: _animation,
       child: Center(
-        child: InkWell(
-          onTap: () {
-            Navigator.pushNamed(
-                context,
-                TEACHERS_CLASS_ROUTE,
-                arguments: this.widget.theClass
-            );
-          },
-          child: Card(
+        child: Card(
+          child: MaterialButton(
+            onPressed: () {
+              Navigator.pushNamed(context, TEACHERS_CLASS_ROUTE,
+                  arguments: this.widget.theClass);
+            },
             child: CarouselSlider(
-              options: CarouselOptions(height: MediaQuery.of(context).size.height/3, enlargeCenterPage: true),
+              options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height / 3,
+                  enlargeCenterPage: true),
               items: [
                 _classCardScreenItems.first(),
                 _classCardScreenItems.second(),

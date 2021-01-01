@@ -12,7 +12,7 @@ class ClassCardItem extends StatelessWidget {
 
   ClassCardItem(
       {Key key,
-        this.color,
+      this.color,
       this.margin,
       this.title,
       this.contents,
@@ -32,9 +32,7 @@ class ClassCardItem extends StatelessWidget {
             Text(
               this.title,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 60.h
-              ),
+              style: TextStyle(fontSize: 60.h),
             ),
             Text(
               this.contents,
@@ -42,6 +40,7 @@ class ClassCardItem extends StatelessWidget {
                 color: this.fontColor,
                 fontSize: this.fontSize,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

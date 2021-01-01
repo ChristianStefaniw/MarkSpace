@@ -20,6 +20,7 @@ class ClassCardScreenItems {
             backgroundImage: NetworkImage(this.theClass.icon)),
         Text(
           this.theClass.name,
+          textAlign: TextAlign.center,
           style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
               fontSize: 50.h,
@@ -35,7 +36,7 @@ class ClassCardScreenItems {
       title: 'Period:',
       contents: theClass.period,
       fontSize: 60.h,
-      fontColor: FONT_COLOR_PRIMARY,
+      fontColor: CLASS_CARD_TITLE,
     );
     return _widget;
   }
