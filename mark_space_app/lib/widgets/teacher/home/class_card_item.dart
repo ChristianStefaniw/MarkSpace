@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mark_space_app/config/theme/colors.dart';
 
 class ClassCardItem extends StatelessWidget {
   final EdgeInsets margin;
@@ -8,9 +8,11 @@ class ClassCardItem extends StatelessWidget {
   final String contents;
   final double fontSize;
   final Color fontColor;
+  final Color color;
 
   ClassCardItem(
       {Key key,
+        this.color,
       this.margin,
       this.title,
       this.contents,
@@ -22,28 +24,26 @@ class ClassCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: this.margin,
-      width: 150,
-      decoration: BoxDecoration(
-        border: Border.symmetric(vertical: BorderSide(color: SECONDARY_DARK)),
-      ),
+      color: this.color,
       child: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                this.title,
-                textAlign: TextAlign.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              this.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 60.h
               ),
-              Text(
-                this.contents,
-                style: GoogleFonts.montserrat(
-                  color: this.fontColor,
-                  fontSize: this.fontSize,
-                ),
+            ),
+            Text(
+              this.contents,
+              style: GoogleFonts.montserrat(
+                color: this.fontColor,
+                fontSize: this.fontSize,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

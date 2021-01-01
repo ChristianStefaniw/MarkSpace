@@ -29,21 +29,21 @@ class CreateClassTable implements CreateClassTableInterface {
           children: HEADINGS
               .map(
                 (e) => Container(
-                  height: 50,
-                  padding: EdgeInsets.all(7.0),
-                  decoration: BoxDecoration(
-                    border: Border.symmetric(
-                      vertical: BorderSide(color: PRIMARY),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      e,
-                      style: TextStyle(color: PRIMARY),
-                    ),
-                  ),
+              height: 50,
+              padding: EdgeInsets.all(7.0),
+              decoration: BoxDecoration(
+                border: Border.symmetric(
+                  vertical: BorderSide(color: PRIMARY),
                 ),
-              )
+              ),
+              child: Center(
+                child: Text(
+                  e,
+                  style: TextStyle(color: PRIMARY),
+                ),
+              ),
+            ),
+          )
               .toList())
     ];
 
@@ -72,9 +72,9 @@ class CreateClassTable implements CreateClassTableInterface {
               ),
               child: Center(
                   child: Text(
-                i == 0 ? profile.name : '${profile.average}%',
-                textAlign: TextAlign.center,
-              )),
+                    i == 0 ? profile.name : '${profile.average}%',
+                    textAlign: TextAlign.center,
+                  )),
             ),
             onTap: () {
               Navigator.pushNamed(context, STUDENT_PROFILE,

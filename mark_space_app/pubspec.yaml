@@ -23,6 +23,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   url_launcher: ^5.7.10
   dio: ^3.0.10
+  carousel_slider: ^2.3.1
 
 dev_dependencies:
   flutter_test:

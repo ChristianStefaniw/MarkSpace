@@ -14,6 +14,7 @@ class HomeTeacher extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(1080, 1920));
 
+
     String user = "Christian";
 
     return Scaffold(
@@ -37,20 +38,6 @@ class HomeTeacher extends StatelessWidget {
         children: [
           Container(
             color: BACKGROUND,
-          ),
-          Transform(
-            alignment: FractionalOffset.topRight,
-            transform: Matrix4.rotationZ(0.1),
-            child: Container(
-              decoration: BoxDecoration(
-                color: BACKGROUND_DECORATION,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(1000),
-                ),
-              ),
-              width: MediaQuery.of(context).size.width / 2,
-              height: MediaQuery.of(context).size.height,
-            ),
           ),
           Consumer<AllClassesProvider>(
             builder: (context, model, child) {
