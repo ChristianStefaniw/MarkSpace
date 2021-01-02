@@ -8,6 +8,26 @@ class Announcements extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       color: BACKGROUND,
+      child: Column(
+        children: [
+          Card(
+            margin: const EdgeInsets.all(15.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height / 3,
+              width: double.infinity,
+              child: Center(
+                  child: Text(
+                "ANNOUNCEMENTS",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: CLASS_CARD_TITLE),
+              )),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

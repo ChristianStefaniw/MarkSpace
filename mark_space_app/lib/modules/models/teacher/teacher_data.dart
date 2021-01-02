@@ -1,5 +1,6 @@
-import 'package:mark_space_app/modules/models/teacher/class_data.dart';
-import 'package:mark_space_app/modules/models/teacher/preview_class.dart';
+
+import 'package:mark_space_app/modules/models/classes/class_data.dart';
+import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 
 class TeacherData {
   final String email;

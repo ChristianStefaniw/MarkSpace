@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
-import 'package:mark_space_app/modules/models/teacher/preview_class.dart';
+import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import '../class_card_item.dart';
 
 class ClassCardScreenItems {

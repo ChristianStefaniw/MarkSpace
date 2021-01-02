@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-import 'package:mark_space_app/modules/models/teacher/class_data.dart';
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/announcements.dart';
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/contents.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
+import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'nav_views/students.dart';
 
 class TeachersClass extends StatefulWidget {
@@ -72,7 +72,7 @@ class _TeachersClassState extends State<TeachersClass> {
         items: <Widget>[
           Icon(Icons.person, size: 30),
           Icon(Icons.assessment, size: 30),
-          Icon(Icons.announcement, size: 30),
+          Icon(Icons.message_outlined, size: 30),
         ],
         color: Colors.white,
         buttonBackgroundColor: Colors.white,

@@ -5,7 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
-import 'package:mark_space_app/utils/services/classes/get_classes.dart';
+import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +58,7 @@ class Classes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future: GetClasses.previewClasses(this.email),
+      future: DeserializeClassesUnitsStudents.previewClasses(this.email),
       builder: (_, previewClassCards) {
         if (previewClassCards.hasData) {
           TeacherData _teacher = TeacherData(

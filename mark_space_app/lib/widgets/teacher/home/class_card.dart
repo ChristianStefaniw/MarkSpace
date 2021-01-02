@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'package:mark_space_app/modules/models/teacher/preview_class.dart';
-import 'package:mark_space_app/utils/services/classes/get_classes.dart';
+import 'package:mark_space_app/modules/models/classes/preview_class.dart';
+import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
     as MyScaleTransition;
 import 'package:mark_space_app/widgets/teacher/home/carousel/carousel_items.dart';
@@ -54,7 +54,7 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
               context.showLoaderOverlay();
               Navigator.pushNamed(context, TEACHERS_CLASS_ROUTE,
                   arguments:
-                      await GetClasses.selectClass(this.widget.previewClassData.id));
+                      await DeserializeClassesUnitsStudents.selectClass(this.widget.previewClassData.id));
               context.hideLoaderOverlay();
             },
             child: CarouselSlider(

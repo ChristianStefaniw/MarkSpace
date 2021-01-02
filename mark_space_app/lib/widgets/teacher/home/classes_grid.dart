@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mark_space_app/modules/models/teacher/preview_class.dart';
-import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 
+import 'package:mark_space_app/modules/models/classes/preview_class.dart';
+import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 import 'class_card.dart';
 
 class ClassesGrid extends StatelessWidget {

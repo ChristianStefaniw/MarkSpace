@@ -2,13 +2,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:mark_space_app/modules/models/teacher/class_data.dart';
-import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart';
+import 'package:mark_space_app/modules/models/classes/class_data.dart';
+import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
-import 'package:mark_space_app/utils/services/classes/deserialize_classes.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
-
 
 class CreateStudentCards {
   final ClassData classData;
@@ -16,20 +14,17 @@ class CreateStudentCards {
 
   CreateStudentCards(this.context, {this.classData});
 
-  Future<List<Widget>> generateCards() async {
+  List<Widget> generateCards() {
     Random random = new Random();
-    List<StudentProfileData> _studentData =
-        await DeserializeClasses.fetchStudentData(classData.id);
+    Color avatarBackground;
 
-    List<Widget> _studentCards = [];
-
-    _studentData.forEach(
+    List<Widget> _studentCards = this.classData.students.map(
       (student) {
-        Color avatarBackground =
+        avatarBackground =
             STUDENT_CARD_COLORS[random.nextInt(STUDENT_CARD_COLORS.length - 1)];
-        _studentCards.add(createCard(student, avatarBackground));
+        return createCard(student, avatarBackground);
       },
-    );
+    ).toList();
 
     return _studentCards;
   }
@@ -44,8 +39,7 @@ class CreateStudentCards {
       child: MaterialButton(
         onPressed: () => Navigator.pushNamed(this.context, STUDENT_PROFILE,
             arguments: student),
-        child:
-        Center(
+        child: Center(
           child: ScrollConfiguration(
             behavior: NoScrollGlow(),
             child: ListView(
