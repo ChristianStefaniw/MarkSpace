@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
-import './average_label.dart';
-import './email_button.dart';
-import './student_profile_grade.dart';
+import 'average_label.dart';
+import 'email_button.dart';
+import 'student_profile_grade.dart';
 
 class StudentProfileInformation extends StatelessWidget {
   final StudentProfileData profile;

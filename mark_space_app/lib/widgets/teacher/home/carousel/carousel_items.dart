@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
-import '../class_card_item.dart';
+import '../class_card/class_card_item.dart';
 
 class ClassCardScreenItems {
   final PreviewClass theClass;

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import 'package:mark_space_app/constants/app_constants.dart';
-import '../api_service/http_requests_service.dart';
+import 'package:mark_space_app/constants/api_constants.dart';
+import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class CreateClassService {
   static Future<void> run({

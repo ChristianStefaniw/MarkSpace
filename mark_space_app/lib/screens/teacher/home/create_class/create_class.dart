@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
+import 'package:mark_space_app/screens/teacher/home/create_class/widgets/bootstrap_container.dart';
 import 'package:mark_space_app/utils/services/classes/create_class.dart';
-import 'package:mark_space_app/widgets/teacher/bootstrap_container.dart';
-import 'package:provider/provider.dart';
 
 class CreateClass extends StatelessWidget {
   final String teacherId;

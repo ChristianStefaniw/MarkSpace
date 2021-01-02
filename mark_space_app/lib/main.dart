@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
 
-import 'package:mark_space_app/screens/teacher/home_teacher.dart';
 import 'package:mark_space_app/config/routes/router.dart' as Router;
+import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:provider/provider.dart';
 
 main() => runApp(MyApp());

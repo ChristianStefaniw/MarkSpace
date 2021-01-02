@@ -1,4 +1,4 @@
-import 'package:mark_space_app/constants/app_constants.dart';
+import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';

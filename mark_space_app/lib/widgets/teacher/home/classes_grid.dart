@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
-import 'class_card.dart';
+import 'class_card/class_card.dart';
 
 class ClassesGrid extends StatelessWidget {
   final List<PreviewClass> allPreviewClassData;
