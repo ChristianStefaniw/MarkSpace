@@ -32,7 +32,7 @@ class ClassCardItem extends StatelessWidget {
             Text(
               this.title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 60.h),
+              style: TextStyle(fontSize: 50.h),
             ),
             Text(
               this.contents,

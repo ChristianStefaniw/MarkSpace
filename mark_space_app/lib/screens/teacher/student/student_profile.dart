@@ -5,12 +5,10 @@ import 'package:mark_space_app/modules/models/teacher/student_profile_data.dart'
 
 import 'package:mark_space_app/widgets/teacher/student/student_profile_information.dart';
 
-
 class StudentProfile extends StatelessWidget {
   final StudentProfileData profile;
 
   StudentProfile({@required this.profile});
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +18,11 @@ class StudentProfile extends StatelessWidget {
         backgroundColor: NAVBAR,
         title: Text("${this.profile.name}\'s profile"),
       ),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: BACKGROUND,
-          ),
-          StudentProfileInformation(this.profile),
-        ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: BACKGROUND,
+        child: StudentProfileInformation(this.profile),
       ),
     );
   }

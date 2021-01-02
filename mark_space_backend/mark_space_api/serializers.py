@@ -50,13 +50,19 @@ class UnitSerializers:
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+    class NamePeriodCodeClassSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Class
+            fields = ('id', 'name', 'period', 'code', 'icon')
+
+    teacher_classes = NamePeriodCodeClassSerializer(many=True, read_only=True)
+
     class Meta:
         model = Teacher
         fields = '__all__'
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
@@ -98,8 +104,12 @@ class ClassSerializers:
     class ClassGetSerializer(serializers.ModelSerializer):
         teachers = TeacherSerializer(many=True, read_only=True)
         units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
-        students = StudentSerializer(many=True, read_only=True)
+        students = serializers.SerializerMethodField()
 
         class Meta:
             model = Class
             fields = '__all__'
+
+        def get_students(self, instance):
+            students = instance.students.all().order_by('name')
+            return StudentSerializer(students, many=True, read_only=True).data

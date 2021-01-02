@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 
 import 'package:mark_space_app/modules/models/teacher/class_data.dart';
@@ -84,7 +85,9 @@ class SingleContentGrades extends StatelessWidget {
           );
         }
         return Center(
-          child: CircularProgressIndicator(),
+          child: SpinKitCubeGrid(
+            color: Colors.red,
+          ),
         );
       },
     );

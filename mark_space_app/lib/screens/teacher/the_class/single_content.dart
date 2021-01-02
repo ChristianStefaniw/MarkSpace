@@ -10,7 +10,6 @@ class SingleContent extends StatelessWidget {
 
   SingleContent({@required this.classData, @required this.unit});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,15 +18,14 @@ class SingleContent extends StatelessWidget {
         backgroundColor: NAVBAR,
         title: Text("${this.unit}"),
       ),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: BACKGROUND,
-          ),
-          SingleContentGrades(classData: this.classData, unit: this.unit,)
-        ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: BACKGROUND,
+        child: SingleContentGrades(
+          classData: this.classData,
+          unit: this.unit,
+        ),
       ),
     );
   }

@@ -1,17 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/routes/routes.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
-import 'package:mark_space_app/modules/models/teacher/class_data.dart';
+import 'package:mark_space_app/modules/models/teacher/preview_class.dart';
+import 'package:mark_space_app/utils/services/classes/get_classes.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
     as MyScaleTransition;
 import 'package:mark_space_app/widgets/teacher/home/carousel/carousel_items.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
 class ClassCard extends StatefulWidget {
-  final ClassData theClass;
+  final PreviewClass previewClassData;
 
-  ClassCard({Key key, @required this.theClass}) : super(key: key);
+  ClassCard({Key key, @required this.previewClassData}) : super(key: key);
 
   @override
   _ClassCardState createState() => _ClassCardState();
@@ -43,15 +44,18 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ClassCardScreenItems _classCardScreenItems =
-        new ClassCardScreenItems(this.widget.theClass);
+        new ClassCardScreenItems(this.widget.previewClassData);
     return ScaleTransition(
       scale: _animation,
       child: Center(
         child: Card(
           child: MaterialButton(
-            onPressed: () {
+            onPressed: () async {
+              context.showLoaderOverlay();
               Navigator.pushNamed(context, TEACHERS_CLASS_ROUTE,
-                  arguments: this.widget.theClass);
+                  arguments:
+                      await GetClasses.selectClass(this.widget.previewClassData.id));
+              context.hideLoaderOverlay();
             },
             child: CarouselSlider(
               options: CarouselOptions(
