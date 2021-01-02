@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
 
 import 'package:mark_space_app/config/routes/router.dart' as Router;
-import 'package:mark_space_app/screens/authentication/login_screen.dart';
+import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
+import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:provider/provider.dart';
 
 main() => runApp(MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Router.Router.generateRoute,
-        home: LoginScreen(),
+        home: LoginScreenEmail(),
       ),
     );
   }

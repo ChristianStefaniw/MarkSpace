@@ -6,18 +6,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           new Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
-              Image.asset('assets/images/collaboration.png', width: 650.h,),
+              Image.asset(
+                'assets/images/collaboration.png',
+                width: 650.h,
+              ),
               WavyHeader(),
             ],
           ),
-          Expanded(
-            child: Container(
-            ),
+          Flexible(
+            fit: FlexFit.loose,
+            child: Container(),
           ),
           Stack(
             alignment: Alignment.bottomLeft,
@@ -28,7 +34,7 @@ class Background extends StatelessWidget {
             ],
           )
         ],
-
+      ),
     );
   }
 }
@@ -127,7 +133,7 @@ class TopWaveClipper extends CustomClipper<Path> {
         secondEndPoint.dx, secondEndPoint.dy);
 
     var thirdControlPoint =
-    Offset(size.width - (size.width / 9), size.height / 6);
+        Offset(size.width - (size.width / 9), size.height / 6);
     var thirdEndPoint = Offset(size.width, 0.0);
     path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
         thirdEndPoint.dx, thirdEndPoint.dy);

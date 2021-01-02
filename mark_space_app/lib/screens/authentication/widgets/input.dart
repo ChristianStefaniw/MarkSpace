@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
 
 ///CODE CREDITS TO https://github.com/SubirZ
 
 class Input extends StatelessWidget {
   final double topRight;
   final double bottomRight;
+  final TextEditingController controller;
+  final String hintText;
+  final bool obscureText;
 
-  Input(this.topRight, this.bottomRight);
+  Input(this.topRight, this.bottomRight, {this.controller, this.hintText, @required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +23,16 @@ class Input extends StatelessWidget {
           color: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(bottomRight),
-                  topRight: Radius.circular(topRight))),
+                  bottomRight: Radius.circular(this.bottomRight),
+                  topRight: Radius.circular(this.topRight))),
           child: Padding(
             padding: EdgeInsets.only(left: 40, right: 20, top: 10, bottom: 10),
             child: TextField(
+              onSubmitted: (_) => Navigator.pushNamed(context, TEACHER_HOME),
+              obscureText: this.obscureText,
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "JohnDoe@example.com",
+                  hintText: this.hintText,
                   hintStyle: TextStyle(color: Color(0xFFE1E1E1), fontSize: 14)),
             ),
           ),

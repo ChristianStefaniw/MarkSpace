@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 class HomeTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: Size(1080, 1920));
     String user = "Christian";
 
     return LoaderOverlay(

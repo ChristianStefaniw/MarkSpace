@@ -1,6 +1,6 @@
 class UnitData{
   final String name;
-  final List assessments;
+  final List<dynamic> assessments;
   final double weight;
 
   UnitData({this.name, this.assessments, this.weight});

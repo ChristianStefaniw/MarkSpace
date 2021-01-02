@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
-import 'package:mark_space_app/modules/models/marks/unit_data.dart';
+import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
 import 'widgets/single_content_grades.dart';
 
 class SingleContent extends StatelessWidget {
   final ClassData classData;
-  final UnitData unit;
+  final AssessmentData assessment;
 
-  SingleContent({@required this.classData, @required this.unit});
+  SingleContent({@required this.classData, @required this.assessment});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class SingleContent extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: NAVBAR,
-        title: Text("${this.unit}"),
+        title: Text("${this.assessment.name}"),
       ),
       backgroundColor: BACKGROUND,
       body: SingleContentGrades(
         classData: this.classData,
-        unit: this.unit,
+        assessment: this.assessment,
       ),
     );
   }

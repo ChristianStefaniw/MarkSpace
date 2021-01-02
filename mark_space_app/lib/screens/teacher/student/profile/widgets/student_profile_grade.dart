@@ -40,7 +40,6 @@ class StudentProfileGrade extends StatelessWidget {
               child: InkWell(
                 splashColor: SECONDARY_DARK,
                 onTap: () {
-                  return subMarksDialog(context, assessment: this.assessment, title: this.assessment['name']);
                 },
                 child: Ink(
                   decoration: BoxDecoration(

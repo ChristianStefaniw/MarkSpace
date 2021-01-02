@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
+import 'package:mark_space_app/screens/authentication/login/login_screen_password.dart';
 
 import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/student_profile.dart';
@@ -31,12 +33,22 @@ class Router {
         return _transition(
           SingleContent(
             classData: args.classData,
-            unit: args.unit,
+            assessment: args.assessment,
           ),
         );
       case CREATE_CLASS:
         return _transition(
           CreateClass(teacherId: settings.arguments),
+        );
+
+      case LOGIN_EMAIL:
+        return _transition(
+          LoginScreenEmail(),
+        );
+
+      case LOGIN_PASSWORD:
+        return _transition(
+          LoginScreenPassword(),
         );
 
       default:

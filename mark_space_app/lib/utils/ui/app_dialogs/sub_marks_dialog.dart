@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
 
 subMarksDialog(context,
-    {@required Map assessment, @required title}) {
-  Map _formattedAssessment = _formatAssessment(assessment);
+    {@required AssessmentData assessment, @required title}) {
+  Map _formattedAssessment = _formatAssessment({});
   return showDialog(
     context: context,
     barrierDismissible: true,

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/authentication/widgets/input.dart';
+import 'package:mark_space_app/screens/authentication/widgets/rounded_rect_button.dart';
 
-class Login extends StatelessWidget {
+class LoginEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +28,12 @@ class Login extends StatelessWidget {
                 Stack(
                   alignment: Alignment.bottomRight,
                   children: <Widget>[
-                    Input(30.0, 0.0),
+                    Input(
+                      30.0,
+                      0.0,
+                      hintText: "john.doe@student.tdsb.on.ca",
+                      obscureText: false,
+                    ),
                     Padding(
                         padding: EdgeInsets.only(right: 50),
                         child: Row(
@@ -42,8 +48,9 @@ class Login extends StatelessWidget {
                                     color: Color(0xFFA0A0A0), fontSize: 12),
                               ),
                             )),
-                            MaterialButton(
-                              onPressed: () => Navigator.pushNamed(context, TEACHER_HOME),
+                            GestureDetector(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, LOGIN_PASSWORD),
                               child: Container(
                                 padding: EdgeInsets.all(10),
                                 decoration: ShapeDecoration(
@@ -69,55 +76,16 @@ class Login extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: 50),
             ),
-            roundedRectButton("Let's get Started", signInGradients, false),
-            roundedRectButton("Create an Account", signUpGradients, false),
+            RoundedRectButton(
+              title: "Create an Account",
+              gradient: signUpGradients,
+              isEndIconVisible: false,
+            ),
           ],
         )
       ],
     );
   }
-}
-
-Widget roundedRectButton(
-    String title, List<Color> gradient, bool isEndIconVisible) {
-  return Builder(builder: (BuildContext mContext) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Stack(
-        alignment: Alignment(1.0, 0.0),
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            width: MediaQuery.of(mContext).size.width / 1.7,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-              gradient: LinearGradient(
-                  colors: gradient,
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight),
-            ),
-            child: Text(title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500)),
-            padding: EdgeInsets.only(top: 16, bottom: 16),
-          ),
-          Visibility(
-            visible: isEndIconVisible,
-            child: Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: ImageIcon(
-                  AssetImage("assets/icons/ic_forward.png"),
-                  size: 30,
-                  color: Colors.white,
-                )),
-          ),
-        ],
-      ),
-    );
-  });
 }
 
 const List<Color> signInGradients = [

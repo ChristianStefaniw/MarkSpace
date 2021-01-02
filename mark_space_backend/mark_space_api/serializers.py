@@ -4,6 +4,14 @@ from .models import Teacher, Student, Class, Mark, Unit, Assessment
 
 
 class MarkSerializer(serializers.ModelSerializer):
+
+    class StudentNameAndIDSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Student
+            fields = ('name', 'id')
+
+    student = StudentNameAndIDSerializer()
+
     class Meta:
         model = Mark
         fields = '__all__'
@@ -102,7 +110,18 @@ class ClassSerializers:
             return instance
 
     class ClassGetSerializer(serializers.ModelSerializer):
-        teachers = TeacherSerializer(many=True, read_only=True)
+
+        class TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
+            class Meta:
+                model = Teacher
+                fields = ('name', 'email', 'id')
+
+        class StudentNameIDAndEmailSerializer(serializers.ModelSerializer):
+            class Meta:
+                model = Student
+                fields = ('name', 'email', 'id')
+
+        teachers = TeacherNameIDAndEmailSerializer(many=True, read_only=True)
         units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
         students = serializers.SerializerMethodField()
 
@@ -112,4 +131,4 @@ class ClassSerializers:
 
         def get_students(self, instance):
             students = instance.students.all().order_by('name')
-            return StudentSerializer(students, many=True, read_only=True).data
+            return self.StudentNameIDAndEmailSerializer(students, many=True, read_only=True).data
