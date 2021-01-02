@@ -4,7 +4,7 @@ import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 
-import '../../../widgets/teacher/the_class/single_content_grades.dart';
+import 'widgets/single_content_grades.dart';
 
 class SingleContent extends StatelessWidget {
   final ClassData classData;

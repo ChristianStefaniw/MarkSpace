@@ -5,9 +5,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
+import 'package:mark_space_app/screens/teacher/home/widgets/classes_grid.dart';
 import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
-import 'package:mark_space_app/widgets/teacher/home/classes_grid.dart';
 import 'package:provider/provider.dart';
 
 class HomeTeacher extends StatelessWidget {

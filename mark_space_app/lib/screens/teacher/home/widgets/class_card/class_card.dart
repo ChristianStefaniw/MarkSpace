@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
+import 'package:mark_space_app/screens/teacher/home/widgets/carousel/carousel_items.dart';
 import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
     as MyScaleTransition;
 import 'package:mark_space_app/config/routes/routes.dart';
-import 'package:mark_space_app/widgets/teacher/home/carousel/carousel_items.dart';
 
 
 class ClassCard extends StatefulWidget {
