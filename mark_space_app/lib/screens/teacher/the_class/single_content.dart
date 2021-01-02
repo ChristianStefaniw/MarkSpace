@@ -20,14 +20,10 @@ class SingleContent extends StatelessWidget {
         backgroundColor: NAVBAR,
         title: Text("${this.unit}"),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: BACKGROUND,
-        child: SingleContentGrades(
-          classData: this.classData,
-          unit: this.unit,
-        ),
+      backgroundColor: BACKGROUND,
+      body: SingleContentGrades(
+        classData: this.classData,
+        unit: this.unit,
       ),
     );
   }

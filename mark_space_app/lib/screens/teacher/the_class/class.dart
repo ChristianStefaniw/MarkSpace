@@ -86,12 +86,8 @@ class _TeachersClassState extends State<TeachersClass> {
         },
         letIndexChange: (index) => true,
       ),
-      body: Container(
-        color: BACKGROUND,
-        width: double.infinity,
-        height: double.infinity,
-        child: _page,
-      ),
+      backgroundColor: BACKGROUND,
+      body: _page,
     );
   }
 }

@@ -18,12 +18,8 @@ class StudentProfile extends StatelessWidget {
         backgroundColor: NAVBAR,
         title: Text("${this.profile.name}\'s profile"),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: BACKGROUND,
-        child: StudentProfileInformation(this.profile),
-      ),
+      backgroundColor: BACKGROUND,
+      body: StudentProfileInformation(this.profile),
     );
   }
 }

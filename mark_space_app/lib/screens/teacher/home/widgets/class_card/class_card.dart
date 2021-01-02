@@ -53,7 +53,7 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
           child: MaterialButton(
             onPressed: () async {
               context.showLoaderOverlay();
-              Navigator.pushNamed(context, TEACHERS_CLASS_ROUTE,
+              Navigator.pushNamed(context, TEACHERS_CLASS,
                   arguments:
                       await DeserializeClassesUnitsStudents.selectClass(this.widget.previewClassData.id));
               context.hideLoaderOverlay();

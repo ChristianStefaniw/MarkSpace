@@ -12,12 +12,12 @@ import 'package:mark_space_app/screens/teacher/home/create_class/create_class.da
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case HOME_ROUTE:
+      case TEACHER_HOME:
         return _transition(
           HomeTeacher(),
         );
 
-      case TEACHERS_CLASS_ROUTE:
+      case TEACHERS_CLASS:
         return _transition(
           TeachersClass(settings.arguments),
         );

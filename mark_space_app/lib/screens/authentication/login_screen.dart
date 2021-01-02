@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
-class Login extends StatelessWidget {
+import 'package:mark_space_app/screens/authentication/widgets/background.dart';
+import 'package:mark_space_app/screens/authentication/widgets/login.dart';
+
+
+///CODE CREDITS TO https://github.com/SubirZ
+
+
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: Size(1080, 1920));
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          Background(),
+          Login(),
+        ],
       ),
     );
   }
