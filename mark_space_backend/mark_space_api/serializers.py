@@ -70,11 +70,32 @@ class TeacherSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class StudentSerializer(serializers.ModelSerializer):
+class StudentSerializers:
 
-    class Meta:
-        model = Student
-        fields = '__all__'
+    class StudentPostSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Student
+            fields = '__all__'
+
+        def create(self, validated_data):
+            new_student = Student.objects.create(name=validated_data['name'], email=validated_data['email'])
+            for __class in validated_data['student_classes']:
+                new_student.student_classes.add(__class.id)
+                Class.objects.get(id=__class.id).students.add(new_student)
+            new_student.save()
+            return new_student
+
+        def update(self, instance, validated_data):
+            for __class in validated_data['student_classes']:
+                instance.student_classes.add(__class.id)
+                Class.objects.get(id=__class.id).students.add(instance)
+            instance.save()
+            return instance
+
+    class StudentGetSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Student
+            fields = '__all__'
 
 
 class ClassSerializers:

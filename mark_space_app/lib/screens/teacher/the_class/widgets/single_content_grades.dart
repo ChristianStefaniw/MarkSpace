@@ -6,10 +6,9 @@ import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class SingleContentGrades extends StatelessWidget {
-  final ClassData classData;
   final AssessmentData assessment;
 
-  SingleContentGrades({@required this.classData, @required this.assessment});
+  SingleContentGrades({@required this.assessment});
 
   @override
   Widget build(BuildContext context) {

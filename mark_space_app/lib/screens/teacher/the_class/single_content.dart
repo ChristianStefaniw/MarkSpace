@@ -7,10 +7,9 @@ import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'widgets/single_content_grades.dart';
 
 class SingleContent extends StatelessWidget {
-  final ClassData classData;
   final AssessmentData assessment;
 
-  SingleContent({@required this.classData, @required this.assessment});
+  SingleContent({@required this.assessment});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,6 @@ class SingleContent extends StatelessWidget {
       ),
       backgroundColor: BACKGROUND,
       body: SingleContentGrades(
-        classData: this.classData,
         assessment: this.assessment,
       ),
     );

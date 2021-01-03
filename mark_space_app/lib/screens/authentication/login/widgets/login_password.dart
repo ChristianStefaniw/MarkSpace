@@ -29,23 +29,7 @@ class LoginPassword extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   children: <Widget>[
                     Input(30.0, 0.0, hintText: "password", obscureText: true,),
-                    Padding(
-                        padding: EdgeInsets.only(right: 50),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 40),
-                                child: Text(
-                                  'Enter your password to continue...',
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      color: Color(0xFFA0A0A0), fontSize: 12),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ))
+
                   ],
                 ),
               ],

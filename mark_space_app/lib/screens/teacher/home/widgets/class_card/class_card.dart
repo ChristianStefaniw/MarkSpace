@@ -1,14 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mark_space_app/modules/models/classes/class_data.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/screens/teacher/home/widgets/carousel/carousel_items.dart';
 import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
     as MyScaleTransition;
 import 'package:mark_space_app/config/routes/routes.dart';
-
+import 'package:provider/provider.dart';
 
 class ClassCard extends StatefulWidget {
   final PreviewClass previewClassData;
@@ -53,9 +55,10 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
           child: MaterialButton(
             onPressed: () async {
               context.showLoaderOverlay();
-              Navigator.pushNamed(context, TEACHERS_CLASS,
-                  arguments:
-                      await DeserializeClassesUnitsStudents.selectClass(this.widget.previewClassData.id));
+              Provider.of<ClassDataProvider>(context, listen: false).classData =
+                  await DeserializeClassesUnitsStudents.selectClass(
+                      this.widget.previewClassData.id);
+              Navigator.pushNamed(context, TEACHERS_CLASS);
               context.hideLoaderOverlay();
             },
             child: CarouselSlider(

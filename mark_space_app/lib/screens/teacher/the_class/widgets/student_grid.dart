@@ -10,23 +10,20 @@ class StudentGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ScrollConfiguration(
-        behavior: NoScrollGlow(),
-        child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: MediaQuery.of(context).size.width /
-                (MediaQuery.of(context).size.height / 3.4.h),
-          ),
-          itemCount: this.studentCards.length,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, cardIndex) {
-            return studentCards[cardIndex];
-          },
+    return ScrollConfiguration(
+      behavior: NoScrollGlow(),
+      child: GridView.builder(
+        shrinkWrap: true,
+        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          childAspectRatio: MediaQuery.of(context).size.width /
+              (MediaQuery.of(context).size.height / 3.4.h),
         ),
+        itemCount: this.studentCards.length,
+        scrollDirection: Axis.vertical,
+        itemBuilder: (context, cardIndex) {
+          return studentCards[cardIndex];
+        },
       ),
     );
   }

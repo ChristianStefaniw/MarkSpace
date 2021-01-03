@@ -5,3 +5,4 @@ const String TEACHERS_CLASS = '/teachers_class';
 const String STUDENT_PROFILE =  '/student_profile';
 const String SINGLE_CONTENT = '/single_content';
 const String CREATE_CLASS = '/create_class';
+const String ADD_STUDENT = '/add_student';

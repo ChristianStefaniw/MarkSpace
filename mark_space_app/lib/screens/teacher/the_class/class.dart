@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:mark_space_app/config/routes/arguments/add_student_arguments.dart';
+import 'package:mark_space_app/config/routes/routes.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/announcements.dart';
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/contents.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
+import 'package:provider/provider.dart';
 import 'nav_views/students.dart';
 
 class TeachersClass extends StatefulWidget {
-  final ClassData data;
-
-  TeachersClass(this.data);
-
   @override
   _TeachersClassState createState() => _TeachersClassState();
 }
@@ -21,47 +21,61 @@ class _TeachersClassState extends State<TeachersClass> {
   final GlobalKey _bottomNavigationKey = GlobalKey();
   Widget _page;
 
-  Widget _whichScreen(int index) {
-    switch (index) {
-      case 0:
-        return TheClass(this.widget.data);
+  Widget _whichScreen(Pages page) {
+    switch (page) {
+      case Pages.students:
+        return TheClass();
         break;
-      case 1:
-        return Contents(this.widget.data);
+      case Pages.content:
+        return Contents();
         break;
-      case 2:
+      case Pages.announcements:
         return Announcements();
       default:
-        return TheClass(this.widget.data);
+        return TheClass();
     }
   }
 
   @override
   void initState() {
-    _page = _whichScreen(0);
+    _page = _whichScreen(Pages.students);
     super.initState();
+  }
+
+  void _somethingChanged(Pages page) {
+    setState(() {
+      _page = _whichScreen(page);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    ClassData _classData =
+        Provider.of<ClassDataProvider>(context, listen: false).classData;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
           Container(
             margin: EdgeInsets.only(right: 7.w),
             child: IconButton(
-              tooltip: "Add student",
+              tooltip: "Add Student",
               icon: Icon(Icons.person_add),
-              onPressed: () => print('add student'),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                ADD_STUDENT,
+                arguments: AddStudentArguments(
+                    () => _somethingChanged(Pages.students), _classData.id),
+              ),
             ),
           ),
           IconButton(
-            tooltip: "Add unit",
+            tooltip: "Add Unit",
             icon: Icon(Icons.add),
             onPressed: () => print('add unit'),
           ),
         ],
-        title: Text("${widget.data.name} - ${widget.data.period}"),
+        title: Text("${_classData.name} - ${_classData.period}"),
         backgroundColor: NAVBAR,
         centerTitle: true,
       ),
@@ -80,8 +94,12 @@ class _TeachersClassState extends State<TeachersClass> {
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 600),
         onTap: (index) {
+          Pages _newPage;
+          index == 0 ? _newPage = Pages.students : null;
+          index == 1 ? _newPage = Pages.content : null;
+          index == 2 ? _newPage = Pages.announcements : null;
           setState(() {
-            _page = _whichScreen(index);
+            _page = _whichScreen(_newPage);
           });
         },
         letIndexChange: (index) => true,
@@ -91,3 +109,5 @@ class _TeachersClassState extends State<TeachersClass> {
     );
   }
 }
+
+enum Pages { students, content, announcements }

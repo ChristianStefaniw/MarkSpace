@@ -39,15 +39,7 @@ class LoginEmail extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                                child: Padding(
-                              padding: EdgeInsets.only(top: 40),
-                              child: Text(
-                                'Enter your email to continue...',
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    color: Color(0xFFA0A0A0), fontSize: 12),
-                              ),
-                            )),
+                                child: Container()),
                             GestureDetector(
                               onTap: () =>
                                   Navigator.pushNamed(context, LOGIN_PASSWORD),

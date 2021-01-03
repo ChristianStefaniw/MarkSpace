@@ -48,7 +48,7 @@ class CreateStudentCards {
               children: [
                 CircleAvatar(
                   backgroundColor: avatarBackground,
-                  child: Text(student.name[0].toUpperCase()),
+                  child: Text(student.name[0].toUpperCase(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(
                   height: 32.h,

@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
+import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
+import 'package:mark_space_app/utils/services/student/add_student/add_student_service.dart';
 import 'package:mark_space_app/widgets/bootstrap_container.dart';
-import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
-import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
-import 'package:mark_space_app/utils/services/classes/create_class_service.dart';
+import 'package:provider/provider.dart';
 
-class CreateClass extends StatelessWidget {
-  final String teacherId;
+class AddStudent extends StatelessWidget {
+  final String classId;
+  final Function update;
 
-  CreateClass({this.teacherId});
+  AddStudent({this.classId, this.update});
 
   final GlobalKey _formKey = GlobalKey<FormState>();
-  final TextEditingController _classNameController =
+  final TextEditingController _studentNameController =
       new TextEditingController();
-  final TextEditingController _classCodeController =
+  final TextEditingController _studentEmailController =
       new TextEditingController();
-  final TextEditingController _classPeriodController =
-      new TextEditingController();
+
+  Future<void> _studentAdded(BuildContext context) async{
+    await AddStudentService.run(
+      name: _studentNameController.text,
+      email: _studentEmailController.text,
+      classId: this.classId,
+    );
+    Provider.of<ClassDataProvider>(context, listen: false)
+        .classData =
+        await DeserializeClassesUnitsStudents.selectClass(
+        this.classId);
+    update();
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +50,14 @@ class CreateClass extends StatelessWidget {
                       EdgeInsets.only(bottom: 20, top: 50, right: 7, left: 7),
                   color: Colors.white.withOpacity(0.1),
                   child: TextFormField(
+                    onFieldSubmitted: (_){
+                      _studentAdded(context);
+                    },
                     style: TextStyle(color: Colors.white),
-                    controller: _classNameController,
+                    controller: _studentNameController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 10),
-                      labelText: "Class Name",
+                      labelText: "Student's Name",
                       labelStyle: TextStyle(
                         color: SECONDARY.withOpacity(0.8),
                       ),
@@ -52,30 +69,17 @@ class CreateClass extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                   color: PRIMARY.withOpacity(0.1),
                   child: TextFormField(
+                    onFieldSubmitted: (_){
+                      _studentAdded(context);
+                    },
                     style: TextStyle(color: Colors.white),
-                    controller: _classCodeController,
+                    controller: _studentEmailController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 10),
                       labelStyle: TextStyle(
                         color: SECONDARY.withOpacity(0.8),
                       ),
-                      labelText: "Class Code",
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
-                  color: PRIMARY.withOpacity(0.1),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    controller: _classPeriodController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 10),
-                      labelStyle: TextStyle(
-                        color: SECONDARY.withOpacity(0.8),
-                      ),
-                      labelText: "Period",
+                      labelText: "Student's Email",
                       border: InputBorder.none,
                     ),
                   ),
@@ -91,14 +95,7 @@ class CreateClass extends StatelessWidget {
                       icon: Icon(Icons.check),
                       label: Text('Submit'),
                       onPressed: () async {
-                        await CreateClassService.run(
-                          teacherId: this.teacherId,
-                          name: _classNameController.text,
-                          code: _classCodeController.text,
-                          period: _classPeriodController.text,
-                        );
-                        Provider.of<AllClassesProvider>(context, listen: false)
-                            .classesChanged();
+                        _studentAdded(context);
                       },
                       color: PRIMARY_BUTTON,
                     ),

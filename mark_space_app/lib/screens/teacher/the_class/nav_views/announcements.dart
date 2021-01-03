@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
+import 'package:mark_space_app/widgets/bootstrap_container.dart';
 
 class Announcements extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return BootstrapContainer(
       children: [
         Card(
           margin: const EdgeInsets.all(15.0),
