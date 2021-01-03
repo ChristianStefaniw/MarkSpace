@@ -19,7 +19,7 @@ class AddStudent extends StatelessWidget {
   final TextEditingController _studentEmailController =
       new TextEditingController();
 
-  Future<void> _studentAdded(BuildContext context) async{
+  void _studentAdded(BuildContext context) async{
     await AddStudentService.run(
       name: _studentNameController.text,
       email: _studentEmailController.text,

@@ -19,6 +19,17 @@ class CreateClass extends StatelessWidget {
   final TextEditingController _classPeriodController =
       new TextEditingController();
 
+  void _classCreated(BuildContext context) async{
+    await CreateClassService.run(
+      teacherId: this.teacherId,
+      name: _classNameController.text,
+      code: _classCodeController.text,
+      period: _classPeriodController.text,
+    );
+    Provider.of<AllClassesProvider>(context, listen: false)
+        .classesChanged();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +63,9 @@ class CreateClass extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                   color: PRIMARY.withOpacity(0.1),
                   child: TextFormField(
+                    onFieldSubmitted: (_){
+                      _classCreated(context);
+                    },
                     style: TextStyle(color: Colors.white),
                     controller: _classCodeController,
                     decoration: InputDecoration(
@@ -68,6 +82,9 @@ class CreateClass extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
                   color: PRIMARY.withOpacity(0.1),
                   child: TextFormField(
+                    onFieldSubmitted: (_){
+                      _classCreated(context);
+                    },
                     style: TextStyle(color: Colors.white),
                     controller: _classPeriodController,
                     decoration: InputDecoration(
@@ -91,14 +108,7 @@ class CreateClass extends StatelessWidget {
                       icon: Icon(Icons.check),
                       label: Text('Submit'),
                       onPressed: () async {
-                        await CreateClassService.run(
-                          teacherId: this.teacherId,
-                          name: _classNameController.text,
-                          code: _classCodeController.text,
-                          period: _classPeriodController.text,
-                        );
-                        Provider.of<AllClassesProvider>(context, listen: false)
-                            .classesChanged();
+                        _classCreated(context);
                       },
                       color: PRIMARY_BUTTON,
                     ),
