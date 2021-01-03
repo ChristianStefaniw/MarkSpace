@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:mark_space_app/modules/models/marks/mark_data.dart';
 
 class SingleContentCard extends StatelessWidget {
@@ -9,11 +10,12 @@ class SingleContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       child: MaterialButton(
         onPressed: () => print(''),
         child: Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height / 7,
+          height: MediaQuery.of(context).size.height/7,
           child: Row(
             children: [
               Expanded(

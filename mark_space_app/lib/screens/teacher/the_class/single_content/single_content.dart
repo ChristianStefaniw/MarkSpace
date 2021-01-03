@@ -52,7 +52,7 @@ class SingleContent extends StatelessWidget {
                     "Weight: ${this.assessment.weight}%",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 40.h,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500),
                   ),
                   padding: EdgeInsets.only(top: 16, bottom: 16),

@@ -21,7 +21,7 @@ class Background extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 'assets/images/collaboration.png',
-                width: 650.h,
+                width: 350.h,
               ),
               WavyHeader(),
             ],

@@ -17,7 +17,7 @@ class StudentGrid extends StatelessWidget {
         gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height / 3.4.h),
+              (MediaQuery.of(context).size.height/1.4),
         ),
         itemCount: this.studentCards.length,
         scrollDirection: Axis.vertical,

@@ -16,14 +16,14 @@ class ClassCardScreenItems {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CircleAvatar(
-          radius: 140.h,
+          radius: 60.h,
             backgroundImage: NetworkImage(this.theClass.icon)),
         Text(
           this.theClass.name,
           textAlign: TextAlign.center,
           style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
-              fontSize: 50.h,
+              fontSize: 27.h,
               color: CLASS_CARD_TITLE),
         ),
       ],
@@ -35,7 +35,7 @@ class ClassCardScreenItems {
     final Widget _widget = ClassCardItem(
       title: 'Period:',
       contents: theClass.period,
-      fontSize: 60.h,
+      fontSize: 35.h,
       fontColor: CLASS_CARD_TITLE,
     );
     return _widget;
@@ -45,7 +45,7 @@ class ClassCardScreenItems {
     final Widget _widget = ClassCardItem(
       title: 'Course Code:',
       contents: this.theClass.code,
-      fontSize: 60.h,
+      fontSize: 35.h,
       fontColor: CLASS_CARD_TITLE,
     );
     return _widget;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
-
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/widgets/bootstrap_container.dart';
 import 'package:mark_space_app/widgets/custom_dropdown.dart';
-import 'package:provider/provider.dart';
 
 class Contents extends StatelessWidget {
   @override

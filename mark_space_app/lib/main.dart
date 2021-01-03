@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/routes/router.dart' as Router;
@@ -20,7 +21,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Router.Router.generateRoute,
-        home: HomeTeacher(),
+        home: Builder(
+          builder: (context) {
+            ScreenUtil.init(context, designSize: Size(1920, 969));
+            return LoginScreenEmail();
+          }
+        ),
       ),
     );
   }

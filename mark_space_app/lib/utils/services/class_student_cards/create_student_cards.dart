@@ -14,6 +14,7 @@ class CreateStudentCards {
 
   CreateStudentCards(this.context, {this.classData});
 
+
   List<Widget> generateCards() {
     Random random = new Random();
     Color avatarBackground;
@@ -48,14 +49,18 @@ class CreateStudentCards {
               children: [
                 CircleAvatar(
                   backgroundColor: avatarBackground,
-                  child: Text(student.name[0].toUpperCase(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: Text(student.name[0].toUpperCase(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17.h)),
+                  radius: 30.h,
                 ),
                 SizedBox(
-                  height: 32.h,
+                  height: 15.h,
                 ),
                 Text(
                   "$_name",
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.h
+                  ),
                 ),
               ],
             ),

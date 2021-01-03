@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 class HomeTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(1080, 1920));
     String user = "Christian";
 
     return LoaderOverlay(

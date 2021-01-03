@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
@@ -19,7 +18,7 @@ class ClassesGrid extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2.8.h),
+            childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height/1.2),
           ),
           itemCount: allPreviewClassData.length,
           scrollDirection: Axis.vertical,
