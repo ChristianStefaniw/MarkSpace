@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/routes/routes.dart';
+import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/screens/authentication/widgets/input.dart';
 import 'package:mark_space_app/screens/authentication/widgets/rounded_rect_button.dart';
 
@@ -80,13 +81,3 @@ class LoginEmail extends StatelessWidget {
     );
   }
 }
-
-const List<Color> signInGradients = [
-  Color(0xFF0EDED2),
-  Color(0xFF03A0FE),
-];
-
-const List<Color> signUpGradients = [
-  Color(0xFFFF9945),
-  Color(0xFFFc6076),
-];

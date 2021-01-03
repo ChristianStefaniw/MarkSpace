@@ -1,9 +1,8 @@
-import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
 class SingleContentArguments{
-  final ClassData classData;
   final AssessmentData assessment;
+  final String unitName;
 
-  SingleContentArguments({this.classData, this.assessment});
+  SingleContentArguments({this.assessment, this.unitName});
 }

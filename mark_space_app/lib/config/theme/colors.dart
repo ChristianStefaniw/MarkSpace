@@ -10,4 +10,35 @@ const Color BORDER = Colors.black;
 const Color CLASS_CARD_TITLE = Color(0xff707070);
 const Color PRIMARY_BUTTON = Colors.blue;
 const Color ERROR = Colors.red;
-const List<MaterialColor> STUDENT_CARD_COLORS = [Colors.blue, Colors.green, Colors.orange, Colors.red, Colors.grey, Colors.blueGrey, Colors.brown, Colors.pink, Colors.lime];
+const List<MaterialColor> STUDENT_CARD_COLORS = [
+  Colors.blue,
+  Colors.green,
+  Colors.orange,
+  Colors.red,
+  Colors.grey,
+  Colors.blueGrey,
+  Colors.brown,
+  Colors.pink,
+  Colors.lime
+];
+const List<Color> aquaGradients = [
+  Color(0xFF5AEAF1),
+  Color(0xFF8EF7DA),
+];
+const List<Color> orangeGradients = [
+  Color(0xFFFF9844),
+  Color(0xFFFE8853),
+  Color(0xFFFD7267),
+];
+const List<Color> assessmentInfo = [
+  Color(0xFF0EDED2),
+  Color(0xFF03A0FE),
+];
+const List<Color> signInGradients = [
+  Color(0xFF0EDED2),
+  Color(0xFF03A0FE),
+];
+const List<Color> signUpGradients = [
+  Color(0xFFFF9945),
+  Color(0xFFFc6076),
+];
