@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color PRIMARY = Colors.white;
 const Color SECONDARY = Colors.grey;
-final Color SECONDARY_DARK = Colors.grey[500];
-final Color SECONDARY_LIGHT = Colors.grey[200];
+const Color SECONDARY_DARK = Color(0xFFBDBDBD);
+const Color SECONDARY_LIGHT = Color(0xFFEEEEEE);
 const Color NAVBAR = Colors.indigo;
 const Color BACKGROUND = Color(0xffE8E8E8);
 const Color BORDER = Colors.black;

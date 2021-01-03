@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mark_space_app/modules/models/classes/class_data.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';

@@ -9,7 +9,6 @@ import 'package:mark_space_app/screens/teacher/the_class/add_student/add_student
 import 'package:mark_space_app/screens/teacher/the_class/class.dart';
 import 'package:mark_space_app/screens/teacher/the_class/single_content.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
 

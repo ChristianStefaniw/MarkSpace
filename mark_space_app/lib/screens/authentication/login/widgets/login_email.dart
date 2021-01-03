@@ -33,6 +33,7 @@ class LoginEmail extends StatelessWidget {
                       0.0,
                       hintText: "john.doe@student.tdsb.on.ca",
                       obscureText: false,
+                      route: LOGIN_PASSWORD,
                     ),
                     Padding(
                         padding: EdgeInsets.only(right: 50),

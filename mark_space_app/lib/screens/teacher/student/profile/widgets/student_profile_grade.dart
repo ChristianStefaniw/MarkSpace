@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
-import 'package:mark_space_app/utils/ui/app_dialogs/sub_marks_dialog.dart';
 
 class StudentProfileGrade extends StatelessWidget {
   final Map assessment;

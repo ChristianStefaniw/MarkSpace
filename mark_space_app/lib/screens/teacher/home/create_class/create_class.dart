@@ -19,7 +19,7 @@ class CreateClass extends StatelessWidget {
   final TextEditingController _classPeriodController =
       new TextEditingController();
 
-  void _classCreated(BuildContext context) async{
+  Future<void> _classCreated(BuildContext context) async{
     await CreateClassService.run(
       teacherId: this.teacherId,
       name: _classNameController.text,

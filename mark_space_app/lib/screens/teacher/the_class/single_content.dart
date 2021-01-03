@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
-import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
 import 'widgets/single_content_grades.dart';

@@ -28,7 +28,7 @@ class LoginPassword extends StatelessWidget {
                 Stack(
                   alignment: Alignment.bottomRight,
                   children: <Widget>[
-                    Input(30.0, 0.0, hintText: "password", obscureText: true,),
+                    Input(30.0, 0.0, hintText: "password", obscureText: true, route: TEACHER_HOME,),
 
                   ],
                 ),

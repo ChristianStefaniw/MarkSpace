@@ -1,4 +1,3 @@
-import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 
 class AssessmentData{
 

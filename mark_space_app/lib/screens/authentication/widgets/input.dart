@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/routes/routes.dart';
 
 ///CODE CREDITS TO https://github.com/SubirZ
 
@@ -9,8 +8,9 @@ class Input extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final String route;
 
-  Input(this.topRight, this.bottomRight, {this.controller, this.hintText, @required this.obscureText});
+  Input(this.topRight, this.bottomRight, {this.controller, this.hintText, @required this.obscureText, @required this.route});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class Input extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 40, right: 20, top: 10, bottom: 10),
             child: TextField(
-              onSubmitted: (_) => Navigator.pushNamed(context, TEACHER_HOME),
+              onSubmitted: (_) => Navigator.pushNamed(context, route),
               obscureText: this.obscureText,
               decoration: InputDecoration(
                   border: InputBorder.none,

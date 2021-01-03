@@ -4,7 +4,7 @@ import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 class CreateClassService {
-  static void run({
+  static Future<void> run({
     String teacherId,
     String name,
     String period,
