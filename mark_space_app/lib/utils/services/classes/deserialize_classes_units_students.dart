@@ -12,6 +12,7 @@ class DeserializeClassesUnitsStudents {
         .get(CLASS_QUERY_ID_URL + classId)
         .then((value) => value[0]);
 
+
     List<StudentProfileData> _students = deserializeStudents(_class['students']);
 
     List<UnitData> _units = deserializeUnits(_class['units']);
@@ -31,6 +32,7 @@ class DeserializeClassesUnitsStudents {
   }
 
   static List<StudentProfileData> deserializeStudents(List<dynamic> students) {
+
     return students
         .map<StudentProfileData>(
             (student) => StudentProfileData.fromJson(student))
@@ -40,4 +42,5 @@ class DeserializeClassesUnitsStudents {
   static List<UnitData> deserializeUnits(List<dynamic> units) {
     return units.map<UnitData>((unit) => UnitData.fromJson(unit)).toList();
   }
+
 }

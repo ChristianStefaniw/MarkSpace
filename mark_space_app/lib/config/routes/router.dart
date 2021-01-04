@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/config/routes/arguments/add_student_arguments.dart';
@@ -63,13 +65,20 @@ class Router {
           LoginScreenPassword(),
         );
 
+      case MARK_INFORMATION:
+        final MarkInformationArguments _args = settings.arguments;
+        return _transition(
+          MarkInformation(_args.assessmentData, _args.unitName),
+        );
+
       default:
         return MaterialPageRoute(
-            builder: (_) => Scaffold(
-                  body: Center(
-                    child: Text('No route defined for ${settings.name}'),
-                  ),
-                ));
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
+        );
     }
   }
 

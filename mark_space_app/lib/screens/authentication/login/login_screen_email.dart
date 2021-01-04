@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 
 import 'package:mark_space_app/screens/authentication/login/widgets/login_email.dart';
 import 'package:mark_space_app/screens/authentication/widgets/background.dart';

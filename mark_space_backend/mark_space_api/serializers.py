@@ -5,12 +5,12 @@ from .models import Teacher, Student, Class, Mark, Unit, Assessment
 
 class MarkSerializer(serializers.ModelSerializer):
 
-    class StudentNameAndIDSerializer(serializers.ModelSerializer):
+    class __StudentNameAndIDSerializer(serializers.ModelSerializer):
         class Meta:
             model = Student
             fields = ('name', 'id')
 
-    student = StudentNameAndIDSerializer()
+    student = __StudentNameAndIDSerializer()
 
     class Meta:
         model = Mark
@@ -58,12 +58,12 @@ class UnitSerializers:
 
 
 class TeacherSerializer(serializers.ModelSerializer):
-    class NamePeriodCodeClassSerializer(serializers.ModelSerializer):
+    class __NamePeriodCodeClassSerializer(serializers.ModelSerializer):
         class Meta:
             model = Class
             fields = ('id', 'name', 'period', 'code', 'icon')
 
-    teacher_classes = NamePeriodCodeClassSerializer(many=True, read_only=True)
+    teacher_classes = __NamePeriodCodeClassSerializer(many=True, read_only=True)
 
     class Meta:
         model = Teacher
@@ -93,6 +93,16 @@ class StudentSerializers:
             return instance
 
     class StudentGetSerializer(serializers.ModelSerializer):
+
+        class __Units(serializers.ModelSerializer):
+            units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
+
+            class Meta:
+                model = Class
+                fields = ('id', 'units')
+
+        student_classes = __Units(read_only=True, many=True)
+
         class Meta:
             model = Student
             fields = '__all__'
@@ -132,17 +142,17 @@ class ClassSerializers:
 
     class ClassGetSerializer(serializers.ModelSerializer):
 
-        class TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
+        class __TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
             class Meta:
                 model = Teacher
                 fields = ('name', 'email', 'id')
 
-        class StudentNameIDAndEmailSerializer(serializers.ModelSerializer):
+        class __StudentNameIDAndEmailSerializer(serializers.ModelSerializer):
             class Meta:
                 model = Student
                 fields = ('name', 'email', 'id')
 
-        teachers = TeacherNameIDAndEmailSerializer(many=True, read_only=True)
+        teachers = __TeacherNameIDAndEmailSerializer(many=True, read_only=True)
         units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
         students = serializers.SerializerMethodField()
 
@@ -152,4 +162,4 @@ class ClassSerializers:
 
         def get_students(self, instance):
             students = instance.students.all().order_by('name')
-            return self.StudentNameIDAndEmailSerializer(students, many=True, read_only=True).data
+            return self.__StudentNameIDAndEmailSerializer(students, many=True, read_only=True).data

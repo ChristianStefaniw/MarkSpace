@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
-import 'package:mark_space_app/modules/models/marks/mark_data.dart';
-import 'package:mark_space_app/screens/teacher/the_class/single_content/widgets/single_content_card.dart';
+import 'package:mark_space_app/screens/teacher/the_class/widgets/single_content_card.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
 import 'package:mark_space_app/widgets/bootstrap_container.dart';
 
@@ -16,7 +14,6 @@ class SingleContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MarkData _markData;
     return Scaffold(
       appBar: AppBar(
         title: Text("${this.unitName} - ${this.assessment.name}"),
@@ -66,8 +63,7 @@ class SingleContent extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: this.assessment.marks.length,
                   itemBuilder: (_, index) {
-                    _markData = MarkData.fromJson(this.assessment.marks[index]);
-                    return SingleContentCard(_markData);
+                    return SingleContentCard(this.assessment.marks[index]);
                   },
                 ),
               ],

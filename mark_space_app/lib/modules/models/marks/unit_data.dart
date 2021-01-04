@@ -1,11 +1,18 @@
-class UnitData{
+import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
+
+class UnitData {
   final String name;
-  final List<dynamic> assessments;
-  final double weight;
+  final List<AssessmentData> assessments;
 
-  UnitData({this.name, this.assessments, this.weight});
+  UnitData({this.name, this.assessments});
 
-  factory UnitData.fromJson(Map<String, dynamic> json){
-    return UnitData(name: json['name'], assessments: json['assessments'], weight: json['weight']);
+  factory UnitData.fromJson(Map<String, dynamic> json) {
+    return UnitData(
+        name: json['name'],
+        assessments: json['assessments']
+            .map<AssessmentData>(
+                (assessment) => AssessmentData.fromJson(assessment))
+            .toList(),
+    );
   }
 }

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         home: Builder(
           builder: (context) {
             ScreenUtil.init(context, designSize: Size(1920, 969));
-            return LoginScreenEmail();
+            return HomeTeacher();
           }
         ),
       ),

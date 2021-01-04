@@ -35,17 +35,15 @@ class Contents extends StatelessWidget {
                       (assessment) {
                         return DropdownMenuItem(
                           value: assessment,
-                          child: new Text(assessment['name']),
+                          child: new Text(assessment.name),
                         );
                       },
                     ).toList(),
                     onChanged: (assessment) {
-                      AssessmentData _assessment =
-                          AssessmentData.fromJson(assessment);
                       Navigator.pushNamed(
                         context,
                         SINGLE_CONTENT,
-                        arguments: SingleContentArguments(assessment: _assessment, unitName: _classData.units[unit].name),
+                        arguments: SingleContentArguments(assessment: assessment, unitName: _classData.units[unit].name),
                       );
                     },
                   ),
