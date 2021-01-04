@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mark_space_app/modules/providers/students_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/announcements.dart';
 import 'package:mark_space_app/screens/teacher/the_class/nav_views/contents.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
-import 'package:mark_space_app/config/routes/arguments/add_student_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'nav_views/students.dart';
@@ -44,12 +44,6 @@ class _TeachersClassState extends State<TeachersClass> {
     super.initState();
   }
 
-  void _somethingChanged(Pages page) {
-    setState(() {
-      _page = _whichScreen(page);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     ClassData _classData =
@@ -72,8 +66,6 @@ class _TeachersClassState extends State<TeachersClass> {
                 onPressed: () => Navigator.pushNamed(
                   context,
                   ADD_STUDENT,
-                  arguments: AddStudentArguments(
-                      () => _somethingChanged(Pages.students), _classData.id),
                 ),
               ),
             ),
@@ -110,10 +102,12 @@ class _TeachersClassState extends State<TeachersClass> {
               _page = _whichScreen(_newPage);
             });
           },
-          letIndexChange: (index) => true,
+          letIndexChange: (_) => true,
         ),
         backgroundColor: BACKGROUND,
-        body: _page,
+        body: Consumer<StudentsProvider>(builder: (_, model, child) {
+          return _page;
+        }),
       ),
     );
   }

@@ -41,7 +41,7 @@ class HomeTeacher extends StatelessWidget {
         ),
         backgroundColor: BACKGROUND,
         body: Consumer<AllClassesProvider>(
-          builder: (context, model, child) {
+          builder: (_, model, child) {
             return Classes(
               email: "teacher.teacher@tdsb.on.ca",
               user: user,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
-import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
-import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information.dart';
+import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'package:mark_space_app/config/routes/arguments/add_student_arguments.dart';
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
 import 'package:mark_space_app/screens/authentication/login/login_screen_password.dart';
 import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
@@ -14,6 +11,10 @@ import 'package:mark_space_app/screens/teacher/the_class/class.dart';
 import 'package:mark_space_app/screens/teacher/the_class/single_content/single_content.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
+import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
+import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/modules/providers/students_provider.dart';
+import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -25,7 +26,12 @@ class Router {
 
       case TEACHERS_CLASS:
         return _transition(
-          TeachersClass(),
+          MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => StudentsProvider())
+            ],
+            child: TeachersClass(),
+          ),
         );
 
       case STUDENT_PROFILE:
@@ -43,16 +49,14 @@ class Router {
         );
       case CREATE_CLASS:
         return _transition(
-          CreateClass(teacherId: settings.arguments),
+          CreateClass(
+            teacherId: settings.arguments,
+          ),
         );
 
       case ADD_STUDENT:
-        final AddStudentArguments args = settings.arguments;
         return _transition(
-          AddStudent(
-            classId: args.classId,
-            update: args.update,
-          ),
+          AddStudent(),
         );
 
       case LOGIN_EMAIL:

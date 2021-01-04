@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
-import 'package:mark_space_app/screens/teacher/the_class/widgets/single_content_card.dart';
+import 'package:mark_space_app/screens/teacher/the_class/single_content/widgets/single_content_card.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
 import 'package:mark_space_app/widgets/bootstrap_container.dart';
 

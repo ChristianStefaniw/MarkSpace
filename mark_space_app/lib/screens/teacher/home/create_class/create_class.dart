@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/widgets/bootstrap_container.dart';
 import 'package:provider/provider.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
 import 'package:mark_space_app/utils/services/classes/create_class_service.dart';
+import 'package:mark_space_app/widgets/bootstrap_container.dart';
 
 class CreateClass extends StatelessWidget {
   final String teacherId;
@@ -21,6 +22,7 @@ class CreateClass extends StatelessWidget {
 
 
   void _classCreated(BuildContext context) async{
+    context.showLoaderOverlay();
     await CreateClassService.run(
       teacherId: this.teacherId,
       name: _classNameController.text,
@@ -29,6 +31,8 @@ class CreateClass extends StatelessWidget {
     );
     Provider.of<AllClassesProvider>(context, listen: false)
         .classesChanged();
+    context.hideLoaderOverlay();
+    Navigator.pop(context);
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
+import 'package:mark_space_app/modules/providers/students_provider.dart';
 import 'package:mark_space_app/screens/teacher/home/widgets/carousel/carousel_items.dart';
 import 'package:mark_space_app/utils/services/classes/deserialize_classes_units_students.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
@@ -57,7 +58,9 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
               Provider.of<ClassDataProvider>(context, listen: false).classData =
                   await DeserializeClassesUnitsStudents.selectClass(
                       this.widget.previewClassData.id);
+
               Navigator.pushNamed(context, TEACHERS_CLASS);
+
               context.hideLoaderOverlay();
             },
             child: CarouselSlider(
