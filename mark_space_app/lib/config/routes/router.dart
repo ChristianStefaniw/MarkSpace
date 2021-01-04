@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
@@ -13,7 +12,6 @@ import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
 import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
-import 'package:mark_space_app/modules/providers/students_provider.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information.dart';
 
 class Router {
@@ -26,12 +24,7 @@ class Router {
 
       case TEACHERS_CLASS:
         return _transition(
-          MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => StudentsProvider())
-            ],
-            child: TeachersClass(),
-          ),
+          TeachersClass(),
         );
 
       case STUDENT_PROFILE:

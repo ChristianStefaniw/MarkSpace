@@ -1,12 +1,14 @@
 import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
+import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
+import 'package:mark_space_app/modules/models/marks/mark_data.dart';
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
 
-class DeserializeClassesUnitsStudents {
+class Deserialize {
   static Future<ClassData> selectClass(String classId) async {
     Map<String, dynamic> _class = await HTTPRequests()
         .get(CLASS_QUERY_ID_URL + classId)
@@ -43,4 +45,43 @@ class DeserializeClassesUnitsStudents {
     return units.map<UnitData>((unit) => UnitData.fromJson(unit)).toList();
   }
 
+  static deserializeStudentAssessments(Map<String, dynamic> response, {ClassData classData, StudentProfileData student}){
+    List<UnitData> _tempUnits = [];
+    List<AssessmentData> _tempAssessments = [];
+    response['student_classes'].forEach(
+          (_class) {
+        if (_class['id'] == classData.id) {
+          _class['units'].forEach(
+                (unit) {
+              unit['assessments'].forEach(
+                    (assessments) {
+                  assessments['marks'].forEach(
+                        (mark) {
+                      if (mark['student']['name'] == student.name) {
+                        _tempAssessments.add(AssessmentData(
+                            name: assessments['name'],
+                            weight: assessments['weight'],
+                            marks: [MarkData.fromJson(mark)]));
+                      }
+                    },
+                  );
+                  _tempAssessments.isNotEmpty
+                      ? _tempUnits.add(
+                    UnitData(
+                      assessments: List<AssessmentData>.from(
+                          _tempAssessments),
+                      name: unit['name'],
+                    ),
+                  )
+                      : null;
+                  _tempAssessments.clear();
+                },
+              );
+            },
+          );
+        }
+      },
+    );
+    return _tempUnits;
+  }
 }

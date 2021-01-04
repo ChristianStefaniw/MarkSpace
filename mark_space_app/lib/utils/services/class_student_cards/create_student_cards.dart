@@ -5,14 +5,14 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mark_space_app/constants/api_constants.dart';
 
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
-import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
-import 'package:mark_space_app/modules/models/marks/mark_data.dart';
+
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
+import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
 
 class CreateStudentCards {
   final ClassData classData;
@@ -49,43 +49,7 @@ class CreateStudentCards {
               .get("$EMAIL_QUERY_STUDENT_URL${student.email}")
               .then(
             (response) {
-              List<UnitData> _tempUnits = [];
-              List<AssessmentData> _tempAssessments = [];
-              response[0]['student_classes'].forEach(
-                (_class) {
-                  if (_class['id'] == this.classData.id) {
-                    _class['units'].forEach(
-                      (unit) {
-                        unit['assessments'].forEach(
-                          (assessments) {
-                            assessments['marks'].forEach(
-                              (mark) {
-                                if (mark['student']['name'] == student.name) {
-                                  _tempAssessments.add(AssessmentData(
-                                      name: assessments['name'],
-                                      weight: assessments['weight'],
-                                      marks: [MarkData.fromJson(mark)]));
-                                }
-                              },
-                            );
-                            _tempAssessments.isNotEmpty
-                                ? _tempUnits.add(
-                                    UnitData(
-                                      assessments: List<AssessmentData>.from(
-                                          _tempAssessments),
-                                      name: unit['name'],
-                                    ),
-                                  )
-                                : null;
-                            _tempAssessments.clear();
-                          },
-                        );
-                      },
-                    );
-                  }
-                },
-              );
-              return _tempUnits;
+              return Deserialize.deserializeStudentAssessments(response[0], classData: this.classData, student: student);
             },
           );
           student.marks = _units;
@@ -99,6 +63,7 @@ class CreateStudentCards {
             child: ListView(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
+              physics: ClampingScrollPhysics(),
               children: [
                 CircleAvatar(
                   backgroundColor: avatarBackground,
