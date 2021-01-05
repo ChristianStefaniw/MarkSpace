@@ -24,11 +24,7 @@ class SingleContentCard extends StatelessWidget {
           context,
           MARK_INFORMATION,
           arguments: MarkInformationArguments(
-            assessmentData: AssessmentData(
-              name: this.assessmentData.name,
-              marks: [this.markData],
-              weight: this.assessmentData.weight,
-            ),
+            assessmentData: this.assessmentData,
             unitName: this.unitName,
             studentName: this.markData.studentName,
           ),
