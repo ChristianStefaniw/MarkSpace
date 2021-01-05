@@ -20,7 +20,7 @@ class TeachersClass extends StatefulWidget {
 class _TeachersClassState extends State<TeachersClass> {
   final GlobalKey _bottomNavigationKey = GlobalKey();
   Widget _page;
-  final Map<String, Widget> _pageWidgets = {'TheClass': TheClass(), 'Contents': Contents(), 'Announcements': Announcements()};
+  final Map<String, Widget> _pageWidgets = {'Students': Students(), 'Contents': Contents(), 'Announcements': Announcements()};
 
   void initState(){
     _page = _switchScreen(Pages.students);
@@ -31,7 +31,7 @@ class _TeachersClassState extends State<TeachersClass> {
   Widget _switchScreen(Pages page) {
     switch (page) {
       case Pages.students:
-        return _pageWidgets['TheClass'];
+        return _pageWidgets['Students'];
         break;
       case Pages.content:
         return _pageWidgets['Contents'];
@@ -40,7 +40,7 @@ class _TeachersClassState extends State<TeachersClass> {
         return _pageWidgets['Announcements'];
         break;
       default:
-        return _pageWidgets['TheClass'];
+        return _pageWidgets['Students'];
     }
   }
 
@@ -86,7 +86,7 @@ class _TeachersClassState extends State<TeachersClass> {
         buttonBackgroundColor: Colors.white,
         backgroundColor: BACKGROUND,
         animationCurve: Curves.easeInOut,
-        animationDuration: Duration(seconds: 1),
+        animationDuration: Duration(milliseconds: 600),
         onTap: (index) {
           Pages _newPage;
           index == 0 ? _newPage = Pages.students : null;

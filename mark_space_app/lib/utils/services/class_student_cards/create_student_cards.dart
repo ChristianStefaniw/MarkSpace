@@ -11,6 +11,7 @@ import 'package:mark_space_app/modules/models/student/student_profile_data.dart'
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
+import 'package:mark_space_app/utils/helpers/rand_color.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
 
@@ -21,13 +22,11 @@ class CreateStudentCards {
   CreateStudentCards(this.context, {this.classData});
 
   List<Widget> generateCards() {
-    Random random = new Random();
     Color avatarBackground;
 
     List<Widget> _studentCards = this.classData.students.map(
       (student) {
-        avatarBackground =
-            STUDENT_CARD_COLORS[random.nextInt(STUDENT_CARD_COLORS.length - 1)];
+        avatarBackground = RandColor().color(STUDENT_CARD_COLORS);
         return createCard(student, avatarBackground);
       },
     ).toList();

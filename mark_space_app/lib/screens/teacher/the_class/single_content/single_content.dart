@@ -62,8 +62,12 @@ class SingleContent extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: this.assessment.marks.length,
-                  itemBuilder: (_, index) {
-                    return SingleContentCard(this.assessment.marks[index]);
+                  itemBuilder: (_, mark) {
+                    return SingleContentCard(
+                      this.assessment.marks[mark],
+                      assessmentData: this.assessment,
+                      unitName: this.unitName,
+                    );
                   },
                 ),
               ],

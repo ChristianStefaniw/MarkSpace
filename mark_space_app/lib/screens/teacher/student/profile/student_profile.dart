@@ -47,7 +47,14 @@ class StudentProfile extends StatelessWidget {
                         },
                       ).toList(),
                       onChanged: (AssessmentData assessment) {
-                        Navigator.pushNamed(context, MARK_INFORMATION, arguments: MarkInformationArguments(assessment, this.profile.marks[unit].name));
+                        Navigator.pushNamed(
+                          context,
+                          MARK_INFORMATION,
+                          arguments: MarkInformationArguments(
+                              assessmentData: assessment,
+                              unitName: this.profile.marks[unit].name,
+                              studentName: this.profile.name),
+                        );
                       },
                     ),
                   ),

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 
 class StudentGrid extends StatelessWidget {
-  final List studentCards;
+
+  final List<Widget> studentCards;
 
   StudentGrid(this.studentCards);
 

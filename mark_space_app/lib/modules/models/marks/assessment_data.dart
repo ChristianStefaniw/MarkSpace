@@ -16,7 +16,4 @@ class AssessmentData{
       marks: json['marks'].map<MarkData>((mark) => MarkData.fromJson(mark)).toList(),
     );
   }
-
-
-
 }

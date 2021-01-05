@@ -6,13 +6,13 @@ import 'package:mark_space_app/screens/authentication/login/login_screen_passwor
 import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/student_profile.dart';
 import 'package:mark_space_app/screens/teacher/the_class/add_student/add_student.dart';
-import 'package:mark_space_app/screens/teacher/the_class/class.dart';
 import 'package:mark_space_app/screens/teacher/the_class/single_content/single_content.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
 import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
-import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information.dart';
+import 'package:mark_space_app/screens/teacher/student/profile/mark_information.dart';
+import 'package:mark_space_app/screens/teacher/the_class/teacher_class.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -65,7 +65,7 @@ class Router {
       case MARK_INFORMATION:
         final MarkInformationArguments _args = settings.arguments;
         return _transition(
-          MarkInformation(_args.assessmentData, _args.unitName),
+          MarkInformation(assessmentData: _args.assessmentData, unitName: _args.unitName, studentName: _args.studentName),
         );
 
       default:
