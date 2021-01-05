@@ -7,7 +7,6 @@ class Teacher(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField()
     email = models.EmailField()
-    teacher_classes = models.ManyToManyField('Class', blank=True)
 
     def __str__(self):
         return self.name
@@ -17,7 +16,6 @@ class Student(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField()
     email = models.EmailField()
-    student_classes = models.ManyToManyField('Class', blank=True)
 
     def __str__(self):
         return self.name
@@ -36,7 +34,6 @@ class Mark(models.Model):
 class Unit(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField()
-    the_class = models.ForeignKey('Class', on_delete=models.CASCADE)
     assessments = models.ManyToManyField('Assessment', blank=True)
 
     def __str__(self):
@@ -59,8 +56,8 @@ class Class(models.Model):
     code = models.TextField()
     period = models.TextField()
     icon = models.URLField()
-    students = models.ManyToManyField('Student', blank=True)
-    teachers = models.ManyToManyField('Teacher', blank=True)
+    students = models.ManyToManyField('Student', blank=True, related_name='classes_student')
+    teachers = models.ManyToManyField('Teacher', blank=True, related_name='classes_teacher')
     units = models.ManyToManyField('Unit', blank=True)
 
     def __str__(self):

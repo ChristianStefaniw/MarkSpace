@@ -7,6 +7,9 @@ router = DefaultRouter()
 router.register(r'teacher', views.TeacherView, 'teacher')
 router.register(r'student', views.StudentView, 'student')
 router.register(r'class', views.ClassView, 'class')
+router.register(r'unit', views.UnitView, 'unit')
+router.register(r'assessment', views.AssessmentView, 'assessment')
+
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -64,7 +64,7 @@ class SingleContent extends StatelessWidget {
                   itemCount: this.assessment.marks.length,
                   itemBuilder: (_, mark) {
                     return SingleContentCard(
-                      this.assessment.marks[mark],
+                      markData: this.assessment.marks[mark],
                       assessmentData: this.assessment,
                       unitName: this.unitName,
                     );

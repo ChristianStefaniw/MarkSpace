@@ -13,40 +13,54 @@ class MarkInformationCard extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text("Grade: ${markData.grade}%", textAlign: TextAlign.center,),
-              ),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: markData.subGrades.keys
-                      .map(
-                        (sub) =>  RichText(
-                          text: TextSpan(
-                            style: DefaultTextStyle.of(context).style,
-                            children: <TextSpan>[
-                              TextSpan(text: '$sub:', style: TextStyle(fontWeight: FontWeight.bold)),
-                              TextSpan(text: ' ${markData.subGrades[sub]}'),
-                            ],
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Grade: ${markData.grade}%",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                VerticalDivider(
+                  color: Colors.black,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: markData.subGrades.keys
+                        .map(
+                          (sub) => RichText(
+                            text: TextSpan(
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: '$sub:',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(text: ' ${markData.subGrades[sub]}'),
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
+                        )
+                        .toList(),
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: IconButton(
-                  icon: Icon(Icons.settings),
-                  onPressed: () => print('Manage'),
+                VerticalDivider(
+                  color: Colors.black,
                 ),
-              ),
-            ],
+                Expanded(
+                  flex: 1,
+                  child: IconButton(
+                    icon: Icon(Icons.settings),
+                    onPressed: () => print('Manage'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }

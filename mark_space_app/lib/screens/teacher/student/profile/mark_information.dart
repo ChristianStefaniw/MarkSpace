@@ -40,12 +40,27 @@ class MarkInformation extends StatelessWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight),
                       ),
-                      child: Text(
-                        "Weight: ${this.assessmentData.weight}%",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
+                      child: RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Weight:',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' ${this.assessmentData.weight}%',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       padding: EdgeInsets.only(top: 16, bottom: 16),
                     ),
@@ -57,17 +72,34 @@ class MarkInformation extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         gradient: LinearGradient(
-                            colors: signUpGradients,
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight),
+                          colors: signUpGradients,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                      child: Text(
-                        "Student: ${this.studentName}",
+                      child: RichText(
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Student:',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' ${this.studentName}',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       padding: EdgeInsets.only(top: 16, bottom: 16),
                     ),

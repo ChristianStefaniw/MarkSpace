@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from .serializers import TeacherSerializer, StudentSerializers, ClassSerializers
-from .models import Teacher, Student, Class
+from .serializers import TeacherSerializer, StudentSerializers, ClassSerializers, UnitSerializers, AssessmentSerializers
+from .models import Teacher, Student, Class, Unit, Assessment
 
 
 class TeacherView(viewsets.ModelViewSet):
@@ -47,12 +47,57 @@ class ClassView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
+        print(queryset[0].teachers.all())
         serializer = ClassSerializers.ClassGetSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
         obj = self.get_object()
         serializer = ClassSerializers.ClassPostUpdateSerializer(obj, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
+
+    def get_queryset(self):
+        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
+        return queryset
+
+
+class UnitView(viewsets.ModelViewSet):
+    serializer_class = UnitSerializers.UnitPostSerializer
+    queryset = Unit.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = UnitSerializers.UnitGetSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        obj = self.get_object()
+        serializer = UnitSerializers.UnitPostSerializer(obj, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
+
+    def get_queryset(self):
+        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
+        return queryset
+
+
+class AssessmentView(viewsets.ModelViewSet):
+    serializer_class = AssessmentSerializers.AssessmentPostSerializer
+    queryset = Assessment.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = AssessmentSerializers.AssessmentGetSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        obj = self.get_object()
+        serializer = AssessmentSerializers.AssessmentPostSerializer(obj, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
 

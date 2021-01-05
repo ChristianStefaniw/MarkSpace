@@ -3,36 +3,21 @@ from django.contrib import admin
 from .models import Student, Teacher, Class, Mark, Unit, Assessment
 
 
-class TeacherAdmin(admin.ModelAdmin):
-    filter_horizontal = ['teacher_classes']
-    list_display = ['id']
-
-
-class StudentAdmin(admin.ModelAdmin):
-    filter_horizontal = ['student_classes']
-    list_display = ['id']
-
-
 class ClassAdmin(admin.ModelAdmin):
     filter_horizontal = ('students', 'teachers', 'units')
-    list_display = ['id']
 
 
 class UnitAdmin(admin.ModelAdmin):
     filter_horizontal = ['assessments']
-    list_display = ['id']
 
 
 class AssessmentAdmin(admin.ModelAdmin):
     filter_horizontal = ['marks']
-    list_display = ['id']
 
-class MarkAdmin(admin.ModelAdmin):
-    list_display = ['id']
 
-admin.site.register(Teacher, TeacherAdmin)
-admin.site.register(Student, StudentAdmin)
+admin.site.register(Teacher)
+admin.site.register(Student)
+admin.site.register(Mark)
 admin.site.register(Class, ClassAdmin)
-admin.site.register(Mark, MarkAdmin)
 admin.site.register(Unit, UnitAdmin)
 admin.site.register(Assessment, AssessmentAdmin)

@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: Router.Router.generateRoute,
           home: Builder(builder: (context) {
             ScreenUtil.init(context, designSize: Size(1920, 969));
-            return HomeTeacher();
+            return LoginScreenEmail();
           }),
         ),
       ),

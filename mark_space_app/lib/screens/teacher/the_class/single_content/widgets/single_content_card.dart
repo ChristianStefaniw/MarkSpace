@@ -13,7 +13,7 @@ class SingleContentCard extends StatelessWidget {
   final AssessmentData assessmentData;
   final String unitName;
 
-  SingleContentCard(this.markData, {this.assessmentData, this.unitName});
+  SingleContentCard({this.markData, this.assessmentData, this.unitName});
 
   @override
   Widget build(BuildContext context) {
@@ -32,35 +32,42 @@ class SingleContentCard extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(30),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Text(
-                  this.markData.studentName,
-                  textAlign: TextAlign.center,
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    this.markData.studentName,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              VerticalDivider(),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  "${this.markData.grade}%",
-                  textAlign: TextAlign.center,
+                VerticalDivider(
+                  color: Colors.black,
                 ),
-              ),
-              VerticalDivider(),
-              Expanded(
+                Expanded(
                   flex: 1,
-                  child: CircleAvatar(
-                      child: Text(
-                        this.markData.studentName[0],
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      backgroundColor: RandColor().color(STUDENT_CARD_COLORS),
-                      radius: 25.h)),
-            ],
+                  child: Text(
+                    "${this.markData.grade}%",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                VerticalDivider(
+                  color: Colors.black,
+                ),
+                Expanded(
+                    flex: 1,
+                    child: CircleAvatar(
+                        child: Text(
+                          this.markData.studentName[0],
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: RandColor().color(STUDENT_CARD_COLORS),
+                        radius: 25.h)),
+              ],
+            ),
           ),
         ),
       ),
