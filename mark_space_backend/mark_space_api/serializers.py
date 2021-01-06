@@ -50,14 +50,18 @@ class UnitSerializers:
             fields = '__all__'
 
     class UnitPostSerializer(serializers.ModelSerializer):
+
+        class_unit = serializers.UUIDField()
+
         class Meta:
             model = Unit
             fields = '__all__'
 
         def create(self, validated_data):
-            new_unit = Unit.objects.create(name=validated_data['name'], the_class=validated_data['the_class'])
-            Class.objects.get(id=new_unit.the_class.id).units.add(new_unit)
+            new_unit = Unit.objects.create(name=validated_data['name'], )
             new_unit.save()
+            Class.objects.get(id=validated_data['class_unit']).units.add(new_unit)
+
             return new_unit
 
         def update(self, instance, validated_data):
@@ -73,7 +77,7 @@ class TeacherSerializer(serializers.ModelSerializer):
             model = Class
             fields = ('id', 'name', 'period', 'code', 'icon')
 
-    classes_teacher = __NamePeriodCodeClassSerializer(many=True, read_only=True)
+    class_teacher = __NamePeriodCodeClassSerializer(many=True, read_only=True)
 
     class Meta:
         model = Teacher
@@ -82,31 +86,35 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 class StudentSerializers:
     class StudentPostSerializer(serializers.ModelSerializer):
+
+        class_student = serializers.UUIDField()
+
         class Meta:
             model = Student
             fields = '__all__'
 
         def create(self, validated_data):
             new_student = Student.objects.create(name=validated_data['name'], email=validated_data['email'])
-            for __class in validated_data['student_classes']:
-                Class.objects.get(id=__class.id).students.add(new_student)
+            Class.objects.get(id=validated_data['class_student']).students.add(new_student)
             new_student.save()
             return new_student
 
         def update(self, instance, validated_data):
-            for __class in validated_data['student_classes']:
+            for __class in validated_data['class_student']:
                 Class.objects.get(id=__class.id).students.add(instance)
             instance.save()
             return instance
 
     class StudentGetSerializer(serializers.ModelSerializer):
 
-        class __NamePeriodCodeClassSerializer(serializers.ModelSerializer):
+        class __Units(serializers.ModelSerializer):
+            units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
+
             class Meta:
                 model = Class
-                fields = ('id', 'name', 'period', 'code', 'icon')
+                fields = ('id', 'units')
 
-        classes_student = __NamePeriodCodeClassSerializer(many=True, read_only=True)
+        class_student = __Units(read_only=True, many=True)
 
         class Meta:
             model = Student
@@ -132,7 +140,6 @@ class ClassSerializers:
             if 'teachers' is validated_data:
                 for teacher in validated_data['teachers']:
                     instance.teachers.add(teacher.id)
-                    Teacher.objects.get(id=teacher.id).teacher_classes.add(instance)
             if 'students' in validated_data:
                 for student in validated_data['students']:
                     instance.students.add(student.id)
@@ -157,6 +164,7 @@ class ClassSerializers:
 
         teachers = __TeacherNameIDAndEmailSerializer(many=True, read_only=True)
         students = __StudentNameIDAndEmailSerializer(many=True, read_only=True)
+        units = UnitSerializers.UnitGetSerializer(many=True, read_only=True)
 
         class Meta:
             model = Class

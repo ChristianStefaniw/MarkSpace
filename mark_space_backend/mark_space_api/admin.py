@@ -15,9 +15,16 @@ class AssessmentAdmin(admin.ModelAdmin):
     filter_horizontal = ['marks']
 
 
-admin.site.register(Teacher)
-admin.site.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['id']
+
+class TeacherAdmin(admin.ModelAdmin):
+	list_display = ['id']
+
+
 admin.site.register(Mark)
+admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Class, ClassAdmin)
 admin.site.register(Unit, UnitAdmin)
 admin.site.register(Assessment, AssessmentAdmin)
+admin.site.register(Student, StudentAdmin)

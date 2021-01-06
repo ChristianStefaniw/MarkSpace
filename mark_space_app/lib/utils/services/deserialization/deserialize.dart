@@ -7,15 +7,14 @@ import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
-
 class Deserialize {
   static Future<ClassData> selectClass(String classId) async {
     Map<String, dynamic> _class = await HTTPRequests()
         .get(CLASS_QUERY_ID_URL + classId)
         .then((value) => value[0]);
 
-
-    List<StudentProfileData> _students = deserializeStudents(_class['students']);
+    List<StudentProfileData> _students =
+        deserializeStudents(_class['students']);
 
     List<UnitData> _units = deserializeUnits(_class['units']);
 
@@ -28,13 +27,12 @@ class Deserialize {
   static Future<List<PreviewClass>> previewClasses(String email) async {
     List<dynamic> _classes = await HTTPRequests()
         .get(EMAIL_QUERY_TEACHER_URL + email)
-        .then((value) => value[0]['teacher_classes']);
+        .then((value) => value[0]['class_teacher']);
 
     return _classes.map((_class) => PreviewClass.fromJson(_class)).toList();
   }
 
   static List<StudentProfileData> deserializeStudents(List<dynamic> students) {
-
     return students
         .map<StudentProfileData>(
             (student) => StudentProfileData.fromJson(student))
@@ -45,18 +43,19 @@ class Deserialize {
     return units.map<UnitData>((unit) => UnitData.fromJson(unit)).toList();
   }
 
-  static deserializeStudentAssessments(Map<String, dynamic> response, {ClassData classData, StudentProfileData student}){
+  static deserializeStudentAssessments(Map<String, dynamic> response,
+      {ClassData classData, StudentProfileData student}) {
     List<UnitData> _tempUnits = [];
     List<AssessmentData> _tempAssessments = [];
-    response['student_classes'].forEach(
-          (_class) {
+    response['class_student'].forEach(
+      (_class) {
         if (_class['id'] == classData.id) {
           _class['units'].forEach(
-                (unit) {
+            (unit) {
               unit['assessments'].forEach(
-                    (assessments) {
+                (assessments) {
                   assessments['marks'].forEach(
-                        (mark) {
+                    (mark) {
                       if (mark['student']['name'] == student.name) {
                         _tempAssessments.add(AssessmentData(
                             name: assessments['name'],
@@ -67,12 +66,12 @@ class Deserialize {
                   );
                   _tempAssessments.isNotEmpty
                       ? _tempUnits.add(
-                    UnitData(
-                      assessments: List<AssessmentData>.from(
-                          _tempAssessments),
-                      name: unit['name'],
-                    ),
-                  )
+                          UnitData(
+                            assessments:
+                                List<AssessmentData>.from(_tempAssessments),
+                            name: unit['name'],
+                          ),
+                        )
                       : null;
                   _tempAssessments.clear();
                 },

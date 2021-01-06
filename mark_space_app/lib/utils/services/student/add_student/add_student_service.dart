@@ -8,7 +8,7 @@ class AddStudentService {
       {
         'name': name,
         'email': email,
-        'student_classes': classId
+        'class_student': classId
       },
     );
 

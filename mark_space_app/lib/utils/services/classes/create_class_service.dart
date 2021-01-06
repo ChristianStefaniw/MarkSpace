@@ -10,6 +10,7 @@ class CreateClassService {
     String period,
     String code,
   }) async {
+    print(teacherId);
     FormData _data = FormData.fromMap(
       {
         'name': name,
@@ -19,7 +20,6 @@ class CreateClassService {
         'teachers': teacherId
       },
     );
-
     await HTTPRequests().post(CLASS_URL, data: _data);
   }
 }
