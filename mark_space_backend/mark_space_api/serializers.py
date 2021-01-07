@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Teacher, Student, Class, Mark, Unit, Assessment
+from .models import *
 
 
 class MarkSerializer(serializers.ModelSerializer):
@@ -17,6 +17,7 @@ class MarkSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializers:
+
     class AssessmentGetSerializer(serializers.ModelSerializer):
         marks = MarkSerializer(read_only=True, many=True)
 
