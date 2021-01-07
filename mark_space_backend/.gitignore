@@ -12,7 +12,7 @@
 *.pyc
 __pycache__/
 venv/
-mark_space_backend/settings.py
+core/settings.py
 local_settings.py
 db.sqlite3
 media
@@ -26,14 +26,7 @@ Scripts/
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
 ### Django ###
-*.log
-*.pot
-*.pyc
-__pycache__/
-local_settings.py
-db.sqlite3
 db.sqlite3-journal
-media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -143,7 +136,6 @@ celerybeat.pid
 .env
 .venv
 env/
-venv/
 ENV/
 env.bak/
 venv.bak/

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import *
+from .models import mark_model, teacher_model, class_model, unit_model, student_model, assessment_model
 
 
 class ClassAdmin(admin.ModelAdmin):
@@ -23,9 +23,9 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display = ['id']
 
 
-admin.site.register(Mark)
-admin.site.register(Teacher, TeacherAdmin)
-admin.site.register(Class, ClassAdmin)
-admin.site.register(Unit, UnitAdmin)
-admin.site.register(Assessment, AssessmentAdmin)
-admin.site.register(Student, StudentAdmin)
+admin.site.register(mark_model.Mark)
+admin.site.register(teacher_model.Teacher, TeacherAdmin)
+admin.site.register(class_model.Class, ClassAdmin)
+admin.site.register(unit_model.Unit, UnitAdmin)
+admin.site.register(assessment_model.Assessment, AssessmentAdmin)
+admin.site.register(student_model.Student, StudentAdmin)
