@@ -8,10 +8,9 @@ import 'package:mark_space_app/modules/models/classes/preview_class.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/screens/teacher/home/widgets/carousel/carousel_items.dart';
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
-    as MyScaleTransition;
+as MyScaleTransition;
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/modules/enums/single_class_pages.dart';
-
 
 class ClassCard extends StatefulWidget {
   final PreviewClass previewClassData;
@@ -25,15 +24,21 @@ class ClassCard extends StatefulWidget {
 class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
+  ClassCardScreenItems _classCardScreenItems;
 
   @override
   void initState() {
     super.initState();
+    _classCardScreenItems =
+    new ClassCardScreenItems(this.widget.previewClassData);
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
-    )..forward();
-    _animation = MyScaleTransition.ScaleTransition(_controller).animation;
+    )
+      ..forward();
+    _animation = MyScaleTransition
+        .ScaleTransition(_controller)
+        .animation;
     _controller.addListener(() {
       setState(() {});
     });
@@ -47,8 +52,6 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ClassCardScreenItems _classCardScreenItems =
-        new ClassCardScreenItems(this.widget.previewClassData);
     return ScaleTransition(
       scale: _animation,
       child: Center(
@@ -56,9 +59,11 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
           child: MaterialButton(
             onPressed: () async {
               context.showLoaderOverlay();
-              Provider.of<ClassDataProvider>(context, listen: false).classData =
-                  await Deserialize.selectClass(
-                      this.widget.previewClassData.id);
+              Provider
+                  .of<ClassDataProvider>(context, listen: false)
+                  .classData =
+              await Deserialize.selectClass(
+                  this.widget.previewClassData.id);
 
               Navigator.pushNamed(context, TEACHERS_CLASS);
 
@@ -66,14 +71,17 @@ class _ClassCardState extends State<ClassCard> with TickerProviderStateMixin {
             },
             child: CarouselSlider(
               options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 3,
                   enlargeCenterPage: true),
               items: [
                 _classCardScreenItems.first(),
                 _classCardScreenItems.second(),
                 _classCardScreenItems.third()
               ].map(
-                (item) {
+                    (item) {
                   return Builder(
                     builder: (_) {
                       return item;

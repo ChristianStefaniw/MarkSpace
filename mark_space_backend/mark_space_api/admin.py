@@ -15,17 +15,9 @@ class AssessmentAdmin(admin.ModelAdmin):
     filter_horizontal = ['marks']
 
 
-class StudentAdmin(admin.ModelAdmin):
-    list_display = ['id']
-
-
-class TeacherAdmin(admin.ModelAdmin):
-    list_display = ['id']
-
-
 admin.site.register(mark_model.Mark)
-admin.site.register(teacher_model.Teacher, TeacherAdmin)
+admin.site.register(teacher_model.Teacher)
 admin.site.register(class_model.Class, ClassAdmin)
 admin.site.register(unit_model.Unit, UnitAdmin)
 admin.site.register(assessment_model.Assessment, AssessmentAdmin)
-admin.site.register(student_model.Student, StudentAdmin)
+admin.site.register(student_model.Student)

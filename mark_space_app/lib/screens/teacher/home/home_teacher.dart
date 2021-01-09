@@ -57,6 +57,9 @@ class Classes extends StatelessWidget {
       future: Deserialize.previewClasses(this.email),
       builder: (_, previewClassCards) {
         if (previewClassCards.hasData) {
+          if (previewClassCards.data.isEmpty){
+            return Text("No classes");
+          }
           return ClassesGrid(previewClassCards.data);
         } else {
           return Center(

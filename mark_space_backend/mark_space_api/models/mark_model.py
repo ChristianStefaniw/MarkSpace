@@ -9,4 +9,4 @@ class Mark(models.Model):
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.student)
+        return str(self.id)

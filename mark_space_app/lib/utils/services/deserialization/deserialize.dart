@@ -29,6 +29,10 @@ class Deserialize {
         .get(EMAIL_QUERY_TEACHER_URL + email)
         .then((value) => value[0]['class_teacher']);
 
+    if (_classes.isEmpty){
+      return [];
+    }
+
     return _classes.map((_class) => PreviewClass.fromJson(_class)).toList();
   }
 

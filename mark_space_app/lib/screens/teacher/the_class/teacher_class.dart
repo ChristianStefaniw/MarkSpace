@@ -104,8 +104,17 @@ class _TeachersClassState extends State<TeachersClass> {
           ),
           SpeedDialChild(
             backgroundColor: SPEED_DIAL_COLORS[2],
-            label: "Create assessment",
+            label: "Create Assessment",
             child: Icon(Icons.person_add),
+            onTap: () => Navigator.pushNamed(
+              context,
+              CREATE_ASSESSMENT,
+            ),
+          ),
+          SpeedDialChild(
+            backgroundColor: SPEED_DIAL_COLORS[3],
+            label: "Create Assessment",
+            child: Icon(Icons.assessment),
             onTap: () => Navigator.pushNamed(
               context,
               CREATE_ASSESSMENT,

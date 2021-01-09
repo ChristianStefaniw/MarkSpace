@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mark_space_app/screens/teacher/the_class/create_assessment/for_which_unit.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
@@ -14,7 +13,9 @@ import 'package:mark_space_app/config/routes/arguments/mark_information_argument
 import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/mark_information.dart';
 import 'package:mark_space_app/screens/teacher/the_class/teacher_class.dart';
-import 'package:mark_space_app/screens/teacher/the_class/create_unit/create_unit.dart';
+import 'package:mark_space_app/screens/teacher/the_class/create_unit/create_unit_form.dart';
+import 'package:mark_space_app/screens/teacher/the_class/create_assessment/create_assessment_form.dart';
+import 'package:mark_space_app/screens/teacher/the_class/create_assessment/for_which_unit.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -78,6 +79,13 @@ class Router {
 
       case CREATE_ASSESSMENT:
         return _transition(ForWhichUnit());
+
+      case CREATE_ASSESSMENT_FORM:
+        return _transition(
+          CreateAssessmentForm(
+            unitId: settings.arguments,
+          ),
+        );
 
       default:
         return MaterialPageRoute(

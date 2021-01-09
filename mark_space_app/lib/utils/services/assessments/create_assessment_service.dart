@@ -3,22 +3,19 @@ import 'package:dio/dio.dart';
 import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
-class CreateClassService {
+class CreateAssessmentService {
   static Future<void> run({
-    String teacherId,
+    String unitId,
     String name,
-    String period,
-    String code,
+    String weight,
   }) async {
     FormData _data = FormData.fromMap(
       {
+        'unit': unitId,
         'name': name,
-        'period': period,
-        'code': code,
-        'icon': 'https://image.flaticon.com/icons/png/512/201/201555.png',
-        'teachers': teacherId
+        'weight': weight,
       },
     );
-    await HTTPRequests().post(CLASS_URL, data: _data);
+    await HTTPRequests().post(ASSESSMENTS_URL, data: _data);
   }
 }

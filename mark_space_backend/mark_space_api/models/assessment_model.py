@@ -6,7 +6,7 @@ class Assessment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     weight = models.FloatField()
     name = models.TextField()
-    marks = models.ManyToManyField('Mark', blank=True)
+    marks = models.ManyToManyField('Mark', blank=True, related_name='assessment')
 
     def __str__(self):
-        return self.name
+        return str(self.id)
