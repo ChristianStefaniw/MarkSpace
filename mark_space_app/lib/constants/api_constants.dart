@@ -5,3 +5,4 @@ const String CLASS_URL = API_URL + 'class/';
 const String CLASS_QUERY_ID_URL = CLASS_URL + '?id=';
 const String STUDENT_URL = API_URL + 'student/';
 const String EMAIL_QUERY_STUDENT_URL = STUDENT_URL + '?email=';
+const String UNITS_URL = API_URL + 'unit/';

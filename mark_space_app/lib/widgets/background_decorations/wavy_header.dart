@@ -11,7 +11,7 @@ class WavyHeader extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: orangeGradients,
+              colors: ORANGE_GRADIENTS,
               begin: Alignment.topLeft,
               end: Alignment.center),
         ),

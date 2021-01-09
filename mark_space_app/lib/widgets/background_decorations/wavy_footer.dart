@@ -11,7 +11,7 @@ class WavyFooter extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: aquaGradients,
+              colors: AQUA_GRADIENTS,
               begin: Alignment.center,
               end: Alignment.bottomRight),
         ),

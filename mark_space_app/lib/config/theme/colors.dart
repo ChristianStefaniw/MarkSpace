@@ -10,6 +10,7 @@ const Color BORDER = Colors.black;
 const Color CLASS_CARD_TITLE = Color(0xff707070);
 const Color PRIMARY_BUTTON = Colors.blue;
 const Color ERROR = Colors.red;
+const Color FORM_BACKGROUND = Color(0xff2b2178);
 const List<MaterialColor> STUDENT_CARD_COLORS = [
   Colors.blue,
   Colors.green,
@@ -21,24 +22,14 @@ const List<MaterialColor> STUDENT_CARD_COLORS = [
   Colors.pink,
   Colors.lime
 ];
-const List<Color> aquaGradients = [
-  Color(0xFF5AEAF1),
-  Color(0xFF8EF7DA),
-];
-const List<Color> orangeGradients = [
+const List<Color> ORANGE_GRADIENTS = [
   Color(0xFFFF9844),
   Color(0xFFFE8853),
   Color(0xFFFD7267),
 ];
-const List<Color> assessmentInfo = [
+const List<Color> AQUA_GRADIENTS = [
   Color(0xFF0EDED2),
   Color(0xFF03A0FE),
 ];
-const List<Color> signInGradients = [
-  Color(0xFF0EDED2),
-  Color(0xFF03A0FE),
-];
-const List<Color> signUpGradients = [
-  Color(0xFFFF9945),
-  Color(0xFFFc6076),
-];
+
+const List<Color> SPEED_DIAL_COLORS = [Colors.red, Colors.green, Colors.blue];

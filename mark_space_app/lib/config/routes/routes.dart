@@ -7,3 +7,5 @@ const String SINGLE_CONTENT = '/single_content';
 const String CREATE_CLASS = '/create_class';
 const String ADD_STUDENT = '/add_student';
 const String MARK_INFORMATION = '/mark_information';
+const String CREATE_UNIT = '/create_unit';
+const String CREATE_ASSESSMENT = '/create_assessment';

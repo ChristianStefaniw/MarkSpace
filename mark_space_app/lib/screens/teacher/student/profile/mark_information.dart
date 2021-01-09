@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information_card.dart';
+import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
-import 'package:mark_space_app/widgets/bootstrap_container.dart';
 
 class MarkInformation extends StatelessWidget {
   final AssessmentData assessmentData;
@@ -36,7 +37,7 @@ class MarkInformation extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         gradient: LinearGradient(
-                            colors: assessmentInfo,
+                            colors: AQUA_GRADIENTS,
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight),
                       ),
@@ -72,7 +73,7 @@ class MarkInformation extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         gradient: LinearGradient(
-                          colors: signUpGradients,
+                          colors: ORANGE_GRADIENTS,
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -107,14 +108,21 @@ class MarkInformation extends StatelessWidget {
                 ),
               ],
             ),
-            BootstrapContainer(
-              children: this
-                  .assessmentData
-                  .marks
-                  .map(
-                    (mark) => MarkInformationCard(mark),
-                  )
-                  .toList(),
+            Center(
+              child: Container(
+                width: bootstrapContainerWidth(MediaQuery.of(context).size.width),
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  children: this
+                      .assessmentData
+                      .marks
+                      .map(
+                        (mark) => MarkInformationCard(mark),
+                      )
+                      .toList(),
+                ),
+              ),
             ),
           ],
         ),

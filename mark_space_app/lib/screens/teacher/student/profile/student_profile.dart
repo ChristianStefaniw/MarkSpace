@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
-
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
-import 'package:mark_space_app/widgets/bootstrap_container.dart';
+import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/custom_dropdown.dart';
 
 class StudentProfile extends StatelessWidget {
@@ -23,10 +23,11 @@ class StudentProfile extends StatelessWidget {
         title: Text("${this.profile.name}\'s profile"),
       ),
       backgroundColor: BACKGROUND,
-      body: BootstrapContainer(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
+      body: Center(
+        child: Container(
+          width: bootstrapContainerWidth(
+              MediaQuery.of(context).size.width),
+          child: ListView.builder(
             itemCount: this.profile.marks.length,
             itemBuilder: (_, unit) {
               return Card(
@@ -62,7 +63,7 @@ class StudentProfile extends StatelessWidget {
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }

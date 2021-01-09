@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 import 'package:mark_space_app/screens/teacher/the_class/single_content/widgets/single_content_card.dart';
+import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
-import 'package:mark_space_app/widgets/bootstrap_container.dart';
+
 
 class SingleContent extends StatelessWidget {
   final AssessmentData assessment;
@@ -41,7 +42,7 @@ class SingleContent extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0)),
                     gradient: LinearGradient(
-                        colors: assessmentInfo,
+                        colors: AQUA_GRADIENTS,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight),
                   ),
@@ -56,21 +57,21 @@ class SingleContent extends StatelessWidget {
                 ),
               ],
             ),
-            BootstrapContainer(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: this.assessment.marks.length,
-                  itemBuilder: (_, mark) {
-                    return SingleContentCard(
-                      markData: this.assessment.marks[mark],
-                      assessmentData: this.assessment,
-                      unitName: this.unitName,
-                    );
-                  },
+            Center(
+              child: Container(
+                width: bootstrapContainerWidth(MediaQuery.of(context).size.width),
+                child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: this.assessment.marks.length,
+                      itemBuilder: (_, mark) {
+                        return SingleContentCard(
+                          markData: this.assessment.marks[mark],
+                          assessmentData: this.assessment,
+                          unitName: this.unitName,
+                        );
+                      },
                 ),
-              ],
+              ),
             ),
           ],
         ),

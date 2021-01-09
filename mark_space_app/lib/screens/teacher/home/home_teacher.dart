@@ -57,11 +57,7 @@ class Classes extends StatelessWidget {
       future: Deserialize.previewClasses(this.email),
       builder: (_, previewClassCards) {
         if (previewClassCards.hasData) {
-          TeacherData _teacher = TeacherData(
-              email: this.email,
-              name: this.user,
-              previewClasses: previewClassCards.data);
-          return ClassesGrid(_teacher.previewClasses);
+          return ClassesGrid(previewClassCards.data);
         } else {
           return Center(
             child: SpinKitCubeGrid(

@@ -50,7 +50,7 @@ class LoginEmail extends StatelessWidget {
                                 decoration: ShapeDecoration(
                                   shape: CircleBorder(),
                                   gradient: LinearGradient(
-                                      colors: signInGradients,
+                                      colors: AQUA_GRADIENTS,
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight),
                                 ),
@@ -72,7 +72,7 @@ class LoginEmail extends StatelessWidget {
             ),
             RoundedRectButton(
               title: "Create an Account",
-              gradient: signUpGradients,
+              gradient: ORANGE_GRADIENTS,
               isEndIconVisible: false,
             ),
           ],

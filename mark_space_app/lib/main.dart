@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mark_space_app/modules/providers/students_provider.dart';
+import 'package:mark_space_app/modules/providers/units_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/routes/router.dart' as Router;
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => new AllClassesProvider()),
           ChangeNotifierProvider(create: (_) => new ClassDataProvider()),
           ChangeNotifierProvider(create: (_) => new StudentsProvider()),
+          ChangeNotifierProvider(create: (_) => new UnitsProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
