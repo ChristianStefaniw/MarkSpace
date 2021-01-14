@@ -23,6 +23,5 @@ class ClassView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def get_queryset(self):
-        print(self.request.query_params)
         queryset = self.queryset.filter(id=self.request.query_params.get('id'))
         return queryset

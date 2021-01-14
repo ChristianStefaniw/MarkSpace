@@ -9,7 +9,7 @@ import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/students_provider.dart';
 import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 
-class AddStudent extends StatelessWidget {
+class AddStudentForm extends StatelessWidget {
   final GlobalKey _formKey = GlobalKey<FormState>();
   final TextEditingController _studentNameController =
       new TextEditingController();

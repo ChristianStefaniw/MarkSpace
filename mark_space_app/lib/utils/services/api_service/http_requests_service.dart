@@ -33,6 +33,7 @@ class HTTPRequests implements HttpRequestsInterface{
   @override
   Future post(url, {FormData data}) async{
     Response response = await dio.post(url, data: data);
+    print(response);
     if (response.statusCode == 201){
       return response;
     } else{

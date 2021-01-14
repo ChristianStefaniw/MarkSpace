@@ -8,12 +8,12 @@ import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
-class SingleContentCard extends StatelessWidget {
+class StudentCard extends StatelessWidget {
   final MarkData markData;
   final AssessmentData assessmentData;
   final String unitName;
 
-  SingleContentCard({this.markData, this.assessmentData, this.unitName});
+  StudentCard({this.markData, this.assessmentData, this.unitName});
 
   @override
   Widget build(BuildContext context) {

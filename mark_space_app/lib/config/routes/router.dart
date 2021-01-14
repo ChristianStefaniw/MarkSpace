@@ -5,8 +5,7 @@ import 'package:mark_space_app/screens/authentication/login/login_screen_email.d
 import 'package:mark_space_app/screens/authentication/login/login_screen_password.dart';
 import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/student_profile.dart';
-import 'package:mark_space_app/screens/teacher/the_class/add_student/add_student.dart';
-import 'package:mark_space_app/screens/teacher/the_class/single_content/single_content.dart';
+import 'package:mark_space_app/screens/teacher/the_class/add_student/add_student_form.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
 import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
@@ -16,6 +15,9 @@ import 'package:mark_space_app/screens/teacher/the_class/teacher_class.dart';
 import 'package:mark_space_app/screens/teacher/the_class/create_unit/create_unit_form.dart';
 import 'package:mark_space_app/screens/teacher/the_class/create_assessment/create_assessment_form.dart';
 import 'package:mark_space_app/screens/teacher/the_class/create_assessment/for_which_unit.dart';
+import 'package:mark_space_app/screens/teacher/the_class/create_mark/create_mark_form.dart';
+import 'package:mark_space_app/screens/teacher/the_class/single_assessment/single_assessment.dart';
+
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -38,7 +40,7 @@ class Router {
       case SINGLE_CONTENT:
         final SingleContentArguments args = settings.arguments;
         return _transition(
-          SingleContent(
+          SingleAssessment(
             args.assessment,
             unitName: args.unitName,
           ),
@@ -52,7 +54,7 @@ class Router {
 
       case ADD_STUDENT:
         return _transition(
-          AddStudent(),
+          AddStudentForm(),
         );
 
       case LOGIN_EMAIL:
@@ -85,6 +87,13 @@ class Router {
           CreateAssessmentForm(
             unitId: settings.arguments,
           ),
+        );
+
+      case CREATE_MARK_FORM:
+        return _transition(
+          CreateMarkForm(
+            assessmentId: settings.arguments
+          )
         );
 
       default:
