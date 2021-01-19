@@ -58,7 +58,7 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
     if (_subGradesController.text.isNotEmpty &&
         !_subGrades.contains(_subGradesController.text)) {
       setState(() {
-        _subGrades.add(SubGrade(mark: _subGradesMarkController.text, name: _subGradesController.text));
+        _subGrades.add(SubGrade(mark: double.parse(_subGradesMarkController.text), name: _subGradesController.text));
         _subGradesController.clear();
         _subGradesMarkController.clear();
       });

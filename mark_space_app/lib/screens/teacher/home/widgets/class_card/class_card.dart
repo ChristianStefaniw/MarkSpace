@@ -10,7 +10,7 @@ import 'package:mark_space_app/screens/teacher/home/widgets/carousel/carousel_it
 import 'package:mark_space_app/utils/ui/animations/scale_transition.dart'
 as MyScaleTransition;
 import 'package:mark_space_app/config/routes/routes.dart';
-import 'package:mark_space_app/modules/enums/single_class_pages.dart';
+
 
 class ClassCard extends StatefulWidget {
   final PreviewClass previewClassData;

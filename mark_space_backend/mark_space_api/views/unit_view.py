@@ -23,5 +23,5 @@ class UnitView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def get_queryset(self):
-        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
+        queryset = self.queryset.filter(class_unit=self.request.query_params.get('class'))
         return queryset

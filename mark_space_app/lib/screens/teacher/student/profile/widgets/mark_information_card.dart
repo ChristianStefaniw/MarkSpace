@@ -31,17 +31,17 @@ class MarkInformationCard extends StatelessWidget {
                   flex: 2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: markData.subGrades.keys
+                    children: markData.subGrades
                         .map(
                           (sub) => RichText(
                             text: TextSpan(
                               style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: '$sub:',
+                                    text: '${sub.name}:',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
-                                TextSpan(text: ' ${markData.subGrades[sub]}'),
+                                TextSpan(text: ' ${sub.mark}'),
                               ],
                             ),
                           ),

@@ -32,4 +32,4 @@ const List<Color> AQUA_GRADIENTS = [
   Color(0xFF03A0FE),
 ];
 
-const List<Color> SPEED_DIAL_COLORS = [Colors.red, Colors.green, Colors.blue, Colors.orange];
+const List<Color> SPEED_DIAL_COLORS = [Colors.red, Colors.green, Colors.orange];

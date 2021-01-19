@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'dart:async';
+
 import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/modules/models/classes/class_data.dart';
 import 'package:mark_space_app/modules/models/classes/preview_class.dart';
@@ -7,16 +10,19 @@ import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 
+
 class Deserialize {
   static Future<ClassData> selectClass(String classId) async {
     Map<String, dynamic> _class = await HTTPRequests()
         .get(CLASS_QUERY_ID_URL + classId)
         .then((value) => value[0]);
 
-    List<StudentProfileData> _students =
-        deserializeStudents(_class['students']);
 
-    List<UnitData> _units = deserializeUnits(_class['units']);
+    List<StudentProfileData> _students = await compute(deserializeStudents, _class['students'] as List<dynamic>);
+    List<UnitData> _units = await compute(deserializeUnits, _class['units'] as List<dynamic>);
+
+    //List<StudentProfileData> _students = deserializeStudents(_class['students'] as List<dynamic>);
+    //List<UnitData> _units = deserializeUnits(_class['units'] as List<dynamic>);
 
     _class.addAll({'students': _students});
     _class.addAll({'units': _units});
@@ -33,7 +39,13 @@ class Deserialize {
       return [];
     }
 
-    return _classes.map((_class) => PreviewClass.fromJson(_class)).toList();
+
+    return compute(_test, _classes);
+
+  }
+
+  static List<PreviewClass> _test(test){
+    return test.map<PreviewClass>((_class) => PreviewClass.fromJson(_class)).toList();
   }
 
   static List<StudentProfileData> deserializeStudents(List<dynamic> students) {
