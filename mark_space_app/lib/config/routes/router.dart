@@ -9,7 +9,7 @@ import 'package:mark_space_app/screens/teacher/the_class/add_student/add_student
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/screens/teacher/home/create_class/create_class.dart';
 import 'package:mark_space_app/config/routes/arguments/mark_information_arguments.dart';
-import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/config/routes/arguments/single_assessment_arguments.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/mark_information.dart';
 import 'package:mark_space_app/screens/teacher/the_class/teacher_class.dart';
 import 'package:mark_space_app/screens/teacher/the_class/create_unit/create_unit_form.dart';
@@ -37,8 +37,8 @@ class Router {
           StudentProfile(profile: settings.arguments),
         );
 
-      case SINGLE_CONTENT:
-        final SingleContentArguments args = settings.arguments;
+      case SINGLE_ASSESSMENT:
+        final SingleAssessmentArguments args = settings.arguments;
         return _transition(
           SingleAssessment(
             args.assessment,

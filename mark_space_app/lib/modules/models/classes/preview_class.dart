@@ -16,5 +16,4 @@ class PreviewClass{
       id: json['id'],
     );
   }
-
 }

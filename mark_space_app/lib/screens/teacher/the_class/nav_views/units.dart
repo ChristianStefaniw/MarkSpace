@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:mark_space_app/config/routes/arguments/single_content_arguments.dart';
+import 'package:mark_space_app/config/routes/arguments/single_assessment_arguments.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
@@ -44,8 +44,8 @@ class Units extends StatelessWidget {
                       onChanged: (assessment) {
                         Navigator.pushNamed(
                           context,
-                          SINGLE_CONTENT,
-                          arguments: SingleContentArguments(
+                          SINGLE_ASSESSMENT,
+                          arguments: SingleAssessmentArguments(
                               assessment: assessment,
                               unitName: _unitData[unit].name),
                         );

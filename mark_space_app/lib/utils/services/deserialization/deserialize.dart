@@ -18,11 +18,24 @@ class Deserialize {
         .then((value) => value[0]);
 
 
-    List<StudentProfileData> _students = await compute(deserializeStudents, _class['students'] as List<dynamic>);
-    List<UnitData> _units = await compute(deserializeUnits, _class['units'] as List<dynamic>);
+    List<StudentProfileData> _deserializeStudents(List<dynamic> students) {
+      return students
+          .map<StudentProfileData>(
+              (student) => StudentProfileData.fromJson(student))
+          .toList();
+    }
 
-    //List<StudentProfileData> _students = deserializeStudents(_class['students'] as List<dynamic>);
-    //List<UnitData> _units = deserializeUnits(_class['units'] as List<dynamic>);
+    List<UnitData> _deserializeUnits(List<dynamic> units) {
+      return units.map<UnitData>((unit) => UnitData.fromJson(unit)).toList();
+    }
+
+
+    // Isolates the large task of deserializing all of the students and units
+    List<StudentProfileData> _students = await compute(_deserializeStudents, _class['students'] as List<dynamic>);
+    List<UnitData> _units = await compute(_deserializeUnits, _class['units'] as List<dynamic>);
+
+    //List<StudentProfileData> _students = _deserializeStudents(_class['students'] as List<dynamic>);
+    //List<UnitData> _units = _deserializeUnits(_class['units'] as List<dynamic>);
 
     _class.addAll({'students': _students});
     _class.addAll({'units': _units});
@@ -39,25 +52,15 @@ class Deserialize {
       return [];
     }
 
+    List<PreviewClass> _deserializePreviewClasses(List<dynamic> data){
+      return data.map<PreviewClass>((_class) => PreviewClass.fromJson(_class)).toList();
+    }
 
-    return compute(_test, _classes);
+
+    return compute(_deserializePreviewClasses, _classes);
 
   }
 
-  static List<PreviewClass> _test(test){
-    return test.map<PreviewClass>((_class) => PreviewClass.fromJson(_class)).toList();
-  }
-
-  static List<StudentProfileData> deserializeStudents(List<dynamic> students) {
-    return students
-        .map<StudentProfileData>(
-            (student) => StudentProfileData.fromJson(student))
-        .toList();
-  }
-
-  static List<UnitData> deserializeUnits(List<dynamic> units) {
-    return units.map<UnitData>((unit) => UnitData.fromJson(unit)).toList();
-  }
 
   static deserializeStudentAssessments(Map<String, dynamic> response,
       {ClassData classData, StudentProfileData student}) {
