@@ -91,17 +91,19 @@ class SingleAssessment extends StatelessWidget {
                 child: FutureBuilder<List<Widget>>(
                   future: compute(studentCards, null),
                   builder: (_, cards) {
-                    return cards.hasData ? ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: cards.data.length,
-                      itemBuilder: (_, card) {
-                        return cards.data[card];
-                      },
-                    ) : Center(
-                      child: SpinKitCubeGrid(
-                        color: Colors.red,
-                      ),
-                    );
+                    return cards.hasData
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: cards.data.length,
+                            itemBuilder: (_, card) {
+                              return cards.data[card];
+                            },
+                          )
+                        : Center(
+                            child: SpinKitCubeGrid(
+                              color: LOADING_SQUARE,
+                            ),
+                          );
                   },
                 ),
               ),

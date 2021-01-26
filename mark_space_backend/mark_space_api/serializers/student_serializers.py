@@ -25,16 +25,27 @@ class StudentCreateSerializer(serializers.ModelSerializer):
         return instance
 
 
+class FilteredClassSerializer(serializers.ListSerializer):
+    def to_representation(self, data):
+        if self.context['request'].GET.get('class') is None:
+            return super().to_representation(data)
+        data = data.filter(id=self.context['request'].GET.get('class'))
+        return super(FilteredClassSerializer, self).to_representation(data)
+
+
 class StudentListSerializer(serializers.ModelSerializer):
     class __Units(serializers.ModelSerializer):
         units = UnitListSerializer(many=True, read_only=True)
 
         class Meta:
+            list_serializer_class = FilteredClassSerializer
             model = class_model.Class
             fields = ('id', 'units')
 
     class_student = __Units(read_only=True, many=True)
 
     class Meta:
+
         model = student_model.Student
         fields = '__all__'
+

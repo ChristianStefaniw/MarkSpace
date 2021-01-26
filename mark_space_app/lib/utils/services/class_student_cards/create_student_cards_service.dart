@@ -8,12 +8,14 @@ import 'package:mark_space_app/modules/models/classes/class_data.dart';
 
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/utils/helpers/no_scroll_glow.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/utils/helpers/rand_color.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
+import 'package:provider/provider.dart';
 
 class CreateStudentCards {
   final ClassData classData;
@@ -45,10 +47,10 @@ class CreateStudentCards {
         onPressed: () async {
           this.context.showLoaderOverlay();
           List<UnitData> _units = await HTTPRequests()
-              .get("$EMAIL_QUERY_STUDENT_URL${student.email}")
+              .get("$EMAIL_QUERY_STUDENT_URL${student.email}$CLASS_QUERY_FOR_STUDENT${Provider.of<ClassDataProvider>(context, listen: false).classData.id}")
               .then(
             (response) {
-              return Deserialize.deserializeStudentAssessments(response[0], classData: this.classData, student: student);
+              return Deserialize.deserializeStudentAssessments(response[0], classData: this.classData);
             },
           );
           student.marks = _units;

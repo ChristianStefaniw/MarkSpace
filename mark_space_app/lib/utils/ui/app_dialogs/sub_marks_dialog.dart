@@ -4,7 +4,7 @@ import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
 
 
 subMarksDialog(context,
-    {@required AssessmentData assessment, @required title}) {
+    {AssessmentData assessment, title}) {
   Map _formattedAssessment = _formatAssessment({});
   return showDialog(
     context: context,
@@ -30,7 +30,7 @@ subMarksDialog(context,
 }
 
 Map<String, dynamic> _formatAssessment(Map<String, dynamic> assessment) {
-    Map _formatted = {};
+    Map<String, dynamic> _formatted = {};
     _formatted
         .addAll({'grade': assessment['marks'][0]['grade']});
 

@@ -64,7 +64,7 @@ class Classes extends StatelessWidget {
         } else {
           return Center(
             child: SpinKitCubeGrid(
-              color: Colors.red,
+              color: LOADING_SQUARE,
             ),
           );
         }

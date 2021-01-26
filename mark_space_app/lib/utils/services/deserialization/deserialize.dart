@@ -63,24 +63,20 @@ class Deserialize {
 
 
   static deserializeStudentAssessments(Map<String, dynamic> response,
-      {ClassData classData, StudentProfileData student}) {
+      {ClassData classData}) {
     List<UnitData> _tempUnits = [];
     List<AssessmentData> _tempAssessments = [];
-    response['class_student'].forEach(
-      (_class) {
-        if (_class['id'] == classData.id) {
-          _class['units'].forEach(
+          response['class_student'][0]['units'].forEach(
             (unit) {
               unit['assessments'].forEach(
                 (assessments) {
                   assessments['marks'].forEach(
                     (mark) {
-                      if (mark['student']['name'] == student.name) {
-                        _tempAssessments.add(AssessmentData(
-                            name: assessments['name'],
-                            weight: assessments['weight'],
-                            marks: [MarkData.fromJson(mark)]));
-                      }
+                      _tempAssessments.add(AssessmentData(
+                          name: assessments['name'],
+                          weight: assessments['weight'],
+                          marks: [MarkData.fromJson(mark)]));
+
                     },
                   );
                   _tempAssessments.isNotEmpty
@@ -96,9 +92,6 @@ class Deserialize {
                 },
               );
             },
-          );
-        }
-      },
     );
     return _tempUnits;
   }

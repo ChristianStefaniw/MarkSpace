@@ -4,6 +4,7 @@ const Color PRIMARY = Colors.white;
 const Color SECONDARY = Colors.grey;
 const Color SECONDARY_DARK = Color(0xFFBDBDBD);
 const Color SECONDARY_LIGHT = Color(0xFFEEEEEE);
+const Color LOADING_SQUARE = Colors.red;
 const Color NAVBAR = Colors.indigo;
 const Color BACKGROUND = Color(0xffE8E8E8);
 const Color BORDER = Colors.black;

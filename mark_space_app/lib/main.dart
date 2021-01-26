@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mark_space_app/modules/providers/students_provider.dart';
-import 'package:mark_space_app/modules/providers/units_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/routes/router.dart' as Router;
@@ -11,6 +9,10 @@ import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
 import 'package:mark_space_app/screens/teacher/home/home_teacher.dart';
 import 'package:mark_space_app/modules/providers/all_classes_provider.dart';
+import 'package:mark_space_app/modules/providers/students_provider.dart';
+import 'package:mark_space_app/modules/providers/units_provider.dart';
+import 'config/theme/colors.dart';
+
 
 main() => runApp(MyApp());
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       useDefaultLoading: false,
       overlayWidget: Center(
         child: SpinKitCubeGrid(
-          color: Colors.red,
+          color: LOADING_SQUARE,
         ),
       ),
       child: MultiProvider(

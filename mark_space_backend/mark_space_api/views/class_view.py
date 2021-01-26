@@ -11,7 +11,7 @@ class ClassView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = ClassListSerializer(queryset, many=True)
+        serializer = ClassListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):

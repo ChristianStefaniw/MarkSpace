@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
@@ -34,11 +35,11 @@ class Router {
 
       case STUDENT_PROFILE:
         return _transition(
-          StudentProfile(profile: settings.arguments),
+          StudentProfile(profile: settings.arguments as StudentProfileData),
         );
 
       case SINGLE_ASSESSMENT:
-        final SingleAssessmentArguments args = settings.arguments;
+        final SingleAssessmentArguments args = settings.arguments as SingleAssessmentArguments;
         return _transition(
           SingleAssessment(
             args.assessment,
@@ -48,7 +49,7 @@ class Router {
       case CREATE_CLASS:
         return _transition(
           CreateClass(
-            teacherId: settings.arguments,
+            teacherId: settings.arguments as String,
           ),
         );
 
@@ -68,7 +69,7 @@ class Router {
         );
 
       case MARK_INFORMATION:
-        final MarkInformationArguments _args = settings.arguments;
+        final MarkInformationArguments _args = settings.arguments as MarkInformationArguments;
         return _transition(
           MarkInformation(
               assessmentData: _args.assessmentData,
@@ -85,14 +86,14 @@ class Router {
       case CREATE_ASSESSMENT_FORM:
         return _transition(
           CreateAssessmentForm(
-            unitId: settings.arguments,
+            unitId: settings.arguments as String,
           ),
         );
 
       case CREATE_MARK_FORM:
         return _transition(
           CreateMarkForm(
-            assessmentId: settings.arguments
+            assessmentId: settings.arguments as String
           )
         );
 
@@ -107,6 +108,7 @@ class Router {
     }
   }
 
+  // Fancy page transition
   static PageTransition _transition(child) {
     return PageTransition(
       type: PageTransitionType.topToBottom,
