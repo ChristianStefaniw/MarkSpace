@@ -11,15 +11,11 @@ class UnitAdmin(admin.ModelAdmin):
     filter_horizontal = ['assessments']
 
 
-class MarkAdmin(admin.ModelAdmin):
-    filter_horizontal = ['subs']
-
-
 class AssessmentAdmin(admin.ModelAdmin):
     filter_horizontal = ['marks']
 
 
-admin.site.register(mark_model.Mark, MarkAdmin)
+admin.site.register(mark_model.Mark)
 admin.site.register(teacher_model.Teacher)
 admin.site.register(class_model.Class, ClassAdmin)
 admin.site.register(unit_model.Unit, UnitAdmin)

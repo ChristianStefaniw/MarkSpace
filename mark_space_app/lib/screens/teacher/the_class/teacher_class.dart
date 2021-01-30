@@ -111,6 +111,15 @@ class _TeachersClassState extends State<TeachersClass> {
               CREATE_ASSESSMENT,
             ),
           ),
+          SpeedDialChild(
+            backgroundColor: SPEED_DIAL_COLORS[3],
+            label: "Create Announcement",
+            child: Icon(Icons.announcement),
+            onTap: () => Navigator.pushNamed(
+              context,
+              CREATE_ANNOUNCEMENT_FORM,
+            ),
+          )
         ],
       ),
       backgroundColor: BACKGROUND,

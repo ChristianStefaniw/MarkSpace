@@ -29,6 +29,7 @@ class ForWhichUnit extends StatelessWidget {
                 child: MaterialButton(
                   onPressed: () => Navigator.pushNamed(context, CREATE_ASSESSMENT_FORM, arguments: _unitData[unit].id),
                   child: Container(
+                    padding: const EdgeInsets.all(10),
                     child: Text(_unitData[unit].name),
                   ),
                 ),

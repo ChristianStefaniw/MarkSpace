@@ -1,19 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import "package:flutter/material.dart";
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:provider/provider.dart';
 
-import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
-import 'package:mark_space_app/modules/providers/class_data_provider.dart';
+
 import 'package:mark_space_app/config/theme/colors.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
-import 'package:mark_space_app/utils/services/assessments/create_assessment_service.dart';
-import 'package:mark_space_app/modules/providers/units_provider.dart';
+import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
 
-class CreateAssessmentForm extends StatelessWidget {
-
-  final String unitId;
-  CreateAssessmentForm({this.unitId});
-
+class CreateAnnouncementForm extends StatelessWidget {
   final GlobalKey _formKey = GlobalKey<FormState>();
   final TextEditingController _assessmentNameController =
   new TextEditingController();
@@ -22,19 +17,12 @@ class CreateAssessmentForm extends StatelessWidget {
 
   void _assessmentAdded(BuildContext context) async {
     context.showLoaderOverlay();
-    await CreateAssessmentService.run(
-      name: _assessmentNameController.text,
-      unitId: this.unitId,
-      weight: _assessmentWeightController.text
-    );
 
     Provider.of<ClassDataProvider>(context, listen: false).classData =
     await Deserialize.selectClass(
         Provider.of<ClassDataProvider>(context, listen: false)
             .classData
             .id);
-    Provider.of<UnitsProvider>(context, listen: false).unitsChanged();
-    Navigator.pop(context);
     Navigator.pop(context);
     context.hideLoaderOverlay();
   }
@@ -48,7 +36,10 @@ class CreateAssessmentForm extends StatelessWidget {
           key: _formKey,
           child: Center(
             child: Container(
-              width: bootstrapContainerWidth(MediaQuery.of(context).size.width),
+              width: bootstrapContainerWidth(MediaQuery
+                  .of(context)
+                  .size
+                  .width),
               child: Column(
                 children: <Widget>[
                   Container(

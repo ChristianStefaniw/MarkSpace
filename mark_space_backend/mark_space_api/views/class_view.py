@@ -16,12 +16,15 @@ class ClassView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         obj = self.get_object()
-        serializer = ClassCreateSerializer(obj, data=request.data, partial=True)
+        serializer = ClassUpdateSerializer(obj, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
 
         return Response(serializer.data)
 
     def get_queryset(self):
-        queryset = self.queryset.filter(id=self.request.query_params.get('id'))
+        if self.request.query_params.get('studentid') is not None:
+            queryset = self.queryset.filter(id=self.request.query_params.get('id'), students__id=self.request.query_params.get('studentid'))
+        else:
+            queryset = self.queryset.filter(id=self.request.query_params.get('id'))
         return queryset

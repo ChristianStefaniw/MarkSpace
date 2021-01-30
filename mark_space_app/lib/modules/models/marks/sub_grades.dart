@@ -1,13 +1,13 @@
 class SubGrade{
-  final String name;
-  final double mark;
+  final name;
+  final mark;
 
   SubGrade({this.name, this.mark});
 
   factory SubGrade.fromJson(Map<String, dynamic> json){
     return SubGrade(
-      name: json['sub_grade_name'],
-      mark: double.parse(json['sub_grade_mark'])
+      name: json['name'],
+      mark: double.parse(json['mark'])
     );
   }
 

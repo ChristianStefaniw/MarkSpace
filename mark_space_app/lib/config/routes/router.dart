@@ -97,6 +97,11 @@ class Router {
           )
         );
 
+      case CREATE_ANNOUNCEMENT_FORM:
+        return _transition(
+          CreateAssessmentForm()
+        );
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

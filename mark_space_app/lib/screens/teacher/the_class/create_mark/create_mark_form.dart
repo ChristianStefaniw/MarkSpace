@@ -31,6 +31,7 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
       new TextEditingController();
   final TextEditingController _subGradesMarkController =
       new TextEditingController();
+  final TextEditingController _commentController = new TextEditingController();
 
   List<SubGrade> _subGrades = [];
   StudentProfileData _student;
@@ -58,7 +59,7 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
     if (_subGradesController.text.isNotEmpty &&
         !_subGrades.contains(_subGradesController.text)) {
       setState(() {
-        _subGrades.add(SubGrade(mark: double.parse(_subGradesMarkController.text), name: _subGradesController.text));
+        _subGrades.add(SubGrade(mark: _subGradesMarkController.text, name: _subGradesController.text));
         _subGradesController.clear();
         _subGradesMarkController.clear();
       });
@@ -122,6 +123,24 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
                         labelText: "Mark",
+                        labelStyle: TextStyle(
+                          color: SECONDARY.withOpacity(0.8),
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                    color: Colors.white.withOpacity(0.1),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      style: TextStyle(color: Colors.white),
+                      controller: _commentController,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(left: 10, bottom: 10),
+                        labelText: "Comments",
                         labelStyle: TextStyle(
                           color: SECONDARY.withOpacity(0.8),
                         ),
