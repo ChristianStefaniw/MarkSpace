@@ -1,28 +1,41 @@
+import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:provider/provider.dart';
 
-
+import 'package:mark_space_app/constants/api_constants.dart';
+import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/providers/class_data_provider.dart';
 import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
+import 'package:mark_space_app/modules/providers/announcement_provider.dart';
+import 'package:mark_space_app/utils/services/announcements/create_announcement_service.dart';
+
 
 class CreateAnnouncementForm extends StatelessWidget {
   final GlobalKey _formKey = GlobalKey<FormState>();
-  final TextEditingController _assessmentNameController =
-  new TextEditingController();
-  final TextEditingController _assessmentWeightController =
-  new TextEditingController();
+  final TextEditingController _messageController = new TextEditingController();
 
-  void _assessmentAdded(BuildContext context) async {
+  void _announcementAdded(BuildContext context) async {
     context.showLoaderOverlay();
 
-    Provider.of<ClassDataProvider>(context, listen: false).classData =
-    await Deserialize.selectClass(
-        Provider.of<ClassDataProvider>(context, listen: false)
-            .classData
-            .id);
+    String _classId = Provider.of<ClassDataProvider>(context, listen: false).classData.id;
+
+    CreateAnnouncementService.run(
+      content: _messageController.text,
+      teacherId: TeacherData().id,
+      classId: _classId
+    );
+
+    List<dynamic> _announcements = await HTTPRequests()
+        .get(CLASS_QUERY_ID_URL + _classId)
+        .then((value) => value[0]['announcements']);
+
+    Provider.of<ClassDataProvider>(context, listen: false).classData.announcements = Deserialize.deserializeAnnouncements(_announcements);
+    Provider.of<AnnouncementProvider>(context, listen: false).announcementsChanged();
+
     Navigator.pop(context);
     context.hideLoaderOverlay();
   }
@@ -36,47 +49,24 @@ class CreateAnnouncementForm extends StatelessWidget {
           key: _formKey,
           child: Center(
             child: Container(
-              width: bootstrapContainerWidth(MediaQuery
-                  .of(context)
-                  .size
-                  .width),
+              width: bootstrapContainerWidth(MediaQuery.of(context).size.width),
               child: Column(
                 children: <Widget>[
                   Container(
-                    margin:
-                    EdgeInsets.only(bottom: 20, top: 50, right: 7, left: 7),
+                    margin: EdgeInsets.only(bottom: 20, top: 50, right: 7, left: 7),
                     color: Colors.white.withOpacity(0.1),
-                    child: TextFormField(
-                      onFieldSubmitted: (_) {
-                        _assessmentAdded(context);
-                      },
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                       style: TextStyle(color: Colors.white),
-                      controller: _assessmentNameController,
+                      controller: _messageController,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        labelText: "Assessment's Name",
+                        contentPadding:
+                            const EdgeInsets.only(left: 10, bottom: 10),
+                        labelText: "Message",
                         labelStyle: TextStyle(
                           color: SECONDARY.withOpacity(0.8),
                         ),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 7),
-                    color: PRIMARY.withOpacity(0.1),
-                    child: TextFormField(
-                      onFieldSubmitted: (_) {
-                        _assessmentAdded(context);
-                      },
-                      style: TextStyle(color: Colors.white),
-                      controller: _assessmentWeightController,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        labelStyle: TextStyle(
-                          color: SECONDARY.withOpacity(0.8),
-                        ),
-                        labelText: "Assessment's Weight",
                         border: InputBorder.none,
                       ),
                     ),
@@ -91,7 +81,7 @@ class CreateAnnouncementForm extends StatelessWidget {
                         icon: Icon(Icons.check),
                         label: Text('Submit'),
                         onPressed: () {
-                          _assessmentAdded(context);
+                          compute(_announcementAdded, context);
                         },
                         color: PRIMARY_BUTTON,
                       ),

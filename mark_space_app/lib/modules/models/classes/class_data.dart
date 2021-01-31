@@ -1,4 +1,5 @@
 
+import 'package:mark_space_app/modules/models/classes/announcement.dart';
 import 'package:mark_space_app/modules/models/marks/unit_data.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 
@@ -10,9 +11,10 @@ class ClassData {
   String icon;
   List<StudentProfileData> students;
   List<UnitData> units;
+  List<AnnouncementData> announcements;
 
   ClassData(
-      {this.period, this.code, this.name, this.id, this.icon, this.students, this.units});
+      {this.period, this.code, this.name, this.id, this.icon, this.students, this.units, this.announcements});
 
   factory ClassData.fromJson(Map<String, dynamic> json) {
     return ClassData(
@@ -22,7 +24,8 @@ class ClassData {
       period: json['period'],
       icon: json['icon'],
       students: json['students'],
-      units: json['units']
+      units: json['units'],
+      announcements: json['announcements']
     );
   }
 }

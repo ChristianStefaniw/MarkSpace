@@ -24,16 +24,3 @@ class AssessmentCreateSerializer(serializers.ModelSerializer):
         new_assessment.unit.add(validated_data['unit'])
         new_assessment.save()
         return new_assessment
-
-
-class AssessmentUpdateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Assessment
-        fields = '__all__'
-
-    def update(self, instance, validated_data):
-        for mark in validated_data['marks']:
-            instance.marks.add(mark.id)
-        instance.save()
-        return instance

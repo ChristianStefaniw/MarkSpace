@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import mark_model, teacher_model, class_model, unit_model, student_model, assessment_model, sub_grade_model
+from mark_space_api import models
 
 
 class ClassAdmin(admin.ModelAdmin):
-    filter_horizontal = ('students', 'teachers', 'units')
+    filter_horizontal = ('students', 'teachers', 'units', 'announcements')
 
 
 class UnitAdmin(admin.ModelAdmin):
@@ -15,10 +15,15 @@ class AssessmentAdmin(admin.ModelAdmin):
     filter_horizontal = ['marks']
 
 
-admin.site.register(mark_model.Mark)
-admin.site.register(teacher_model.Teacher)
-admin.site.register(class_model.Class, ClassAdmin)
-admin.site.register(unit_model.Unit, UnitAdmin)
-admin.site.register(assessment_model.Assessment, AssessmentAdmin)
-admin.site.register(student_model.Student)
-admin.site.register(sub_grade_model.SubGrade)
+class MarkAdmin(admin.ModelAdmin):
+    filter_horizontal = ['subs']
+
+
+admin.site.register(models.mark_model.Mark, MarkAdmin)
+admin.site.register(models.teacher_model.Teacher)
+admin.site.register(models.class_model.Class, ClassAdmin)
+admin.site.register(models.unit_model.Unit, UnitAdmin)
+admin.site.register(models.assessment_model.Assessment, AssessmentAdmin)
+admin.site.register(models.student_model.Student)
+admin.site.register(models.sub_grade_model.SubGrade)
+admin.site.register(models.class_model.Announcement)

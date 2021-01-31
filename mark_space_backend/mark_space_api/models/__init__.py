@@ -1,0 +1,8 @@
+import mark_space_api.models.announcement_model
+import mark_space_api.models.class_model
+import mark_space_api.models.unit_model
+import mark_space_api.models.assessment_model
+import mark_space_api.models.sub_grade_model
+import mark_space_api.models.mark_model
+import mark_space_api.models.student_model
+import mark_space_api.models.teacher_model

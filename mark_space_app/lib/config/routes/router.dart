@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
+import 'package:mark_space_app/screens/teacher/the_class/create_announcement/create_announcement_form.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:mark_space_app/screens/authentication/login/login_screen_email.dart';
@@ -99,7 +100,7 @@ class Router {
 
       case CREATE_ANNOUNCEMENT_FORM:
         return _transition(
-          CreateAssessmentForm()
+          CreateAnnouncementForm()
         );
 
       default:

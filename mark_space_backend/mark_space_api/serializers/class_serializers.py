@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from mark_space_api.models import teacher_model, student_model, class_model
+from .announcement_serializer import AnnouncementListSerializer
 from .unit_serializers import UnitListSerializer
 
 
@@ -19,26 +20,6 @@ class ClassCreateSerializer(serializers.ModelSerializer):
         return new_class
 
 
-class ClassUpdateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = class_model.Class
-        fields = '__all__'
-
-    def update(self, instance, validated_data):
-        if 'teachers' is validated_data:
-            for teacher in validated_data['teachers']:
-                instance.teachers.add(teacher.id)
-        if 'students' in validated_data:
-            for student in validated_data['students']:
-                instance.students.add(student.id)
-        if 'units' in validated_data:
-            for unit in validated_data['units']:
-                instance.units.add(unit.id)
-
-        instance.save()
-        return instance
-
 
 class ClassListSerializer(serializers.ModelSerializer):
     class __TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
@@ -54,7 +35,12 @@ class ClassListSerializer(serializers.ModelSerializer):
     teachers = __TeacherNameIDAndEmailSerializer(many=True, read_only=True)
     students = __StudentNameIDAndEmailSerializer(many=True, read_only=True)
     units = UnitListSerializer(many=True, read_only=True)
+    announcements = serializers.SerializerMethodField()
 
     class Meta:
         model = class_model.Class
         fields = '__all__'
+
+    def get_announcements(self, obj):
+        ordered_queryset = class_model.Announcement.objects.all().filter(class_announcement=obj.id).order_by('-date_time')
+        return AnnouncementListSerializer(ordered_queryset, many=True, read_only=True).data

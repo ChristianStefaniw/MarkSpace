@@ -11,3 +11,4 @@ const String CLASS_QUERY_FOR_STUDENT = '&class=';
 const String UNITS_URL = API_URL + 'unit/';
 const String ASSESSMENTS_URL = API_URL + 'assessment/';
 const String MARKS_URL = API_URL + 'mark/';
+const String ANNOUNCEMENT_URL = API_URL + 'announcement/';
