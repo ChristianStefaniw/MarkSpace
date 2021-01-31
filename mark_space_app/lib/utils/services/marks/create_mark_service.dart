@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-
 import 'package:mark_space_app/constants/api_constants.dart';
 import 'package:mark_space_app/modules/models/marks/sub_grades.dart';
 import 'package:mark_space_app/utils/services/api_service/http_requests_service.dart';
@@ -11,15 +9,14 @@ class CreateMarkService {
     grade,
     List<SubGrade> subs,
   }) async {
-  print(subs.map((e) => e.toJson()));
-    FormData _data = FormData.fromMap(
+  print(subs.map((e) => e.toJson()).toList());
+    Map<String, dynamic> _data =
       {
-        'assessment': assessmentId,
+        'assessment': [assessmentId],
         'student': studentId,
         'grade': grade,
-        'subs': subs.map((e) => e.toJson()).toList()
-      },
-    );
+        'subs': subs.map((e) => e.toJson()).toList(),
+      };
     await HTTPRequests().post(MARKS_URL, data: _data);
   }
 }

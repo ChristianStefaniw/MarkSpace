@@ -31,10 +31,10 @@ class HTTPRequests implements HttpRequestsInterface{
   }
 
   @override
-  Future post(url, {FormData data}) async{
+  Future post(url, {Map data}) async{
     Response response = await dio.post(url, data: data);
-    print(response);
-    if (response.statusCode == 201){
+    print(response.statusCode);
+    if (response.statusCode == 201 || response.statusCode == 200){
       return response;
     } else{
       throw "Network error";

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
+import 'package:mark_space_app/modules/models/marks/unit_data.dart';
+import 'package:mark_space_app/modules/providers/class_data_provider.dart';
+import 'package:mark_space_app/modules/providers/marks_provider.dart';
 import 'package:mark_space_app/screens/teacher/the_class/single_assessment/widgets/student_card.dart';
 import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
@@ -12,18 +16,23 @@ import 'package:mark_space_app/config/routes/routes.dart';
 
 class SingleAssessment extends StatelessWidget {
   final AssessmentData assessment;
-  final String unitName;
+  final UnitData unit;
 
-  SingleAssessment(this.assessment, {this.unitName});
+  SingleAssessment(this.assessment, {this.unit});
 
-  List<Widget> studentCards(_) {
-    return this
-        .assessment
-        .marks
+  List<Widget> studentCards(BuildContext context) {
+    AssessmentData _newAssessment =
+        Provider.of<ClassDataProvider>(context, listen: false)
+            .classData
+            .units
+            .firstWhere((element) => element.id == this.unit.id)
+            .assessments
+            .firstWhere((element) => element.id == this.assessment.id);
+    return _newAssessment.marks
         .map((mark) => StudentCard(
               markData: mark,
-              assessmentData: this.assessment,
-              unitName: this.unitName,
+              assessmentData: _newAssessment,
+              unitName: this.unit.name,
             ))
         .toList();
   }
@@ -32,7 +41,7 @@ class SingleAssessment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${this.unitName} - ${this.assessment.name}"),
+        title: Text("${this.unit.name} - ${this.assessment.name}"),
         backgroundColor: NAVBAR,
         centerTitle: true,
       ),
@@ -88,22 +97,26 @@ class SingleAssessment extends StatelessWidget {
               child: Container(
                 width:
                     bootstrapContainerWidth(MediaQuery.of(context).size.width),
-                child: FutureBuilder<List<Widget>>(
-                  future: compute(studentCards, null),
-                  builder: (_, cards) {
-                    return cards.hasData
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: cards.data.length,
-                            itemBuilder: (_, card) {
-                              return cards.data[card];
-                            },
-                          )
-                        : Center(
-                            child: SpinKitCubeGrid(
-                              color: LOADING_SQUARE,
-                            ),
-                          );
+                child: Consumer<MarksProvider>(
+                  builder: (_, model, child) {
+                    return FutureBuilder<List<Widget>>(
+                      future: compute(studentCards, context),
+                      builder: (_, cards) {
+                        return cards.hasData
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: cards.data.length,
+                                itemBuilder: (_, card) {
+                                  return cards.data[card];
+                                },
+                              )
+                            : Center(
+                                child: SpinKitCubeGrid(
+                                  color: LOADING_SQUARE,
+                                ),
+                              );
+                      },
+                    );
                   },
                 ),
               ),

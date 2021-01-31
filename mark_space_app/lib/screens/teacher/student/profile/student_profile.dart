@@ -54,7 +54,7 @@ class StudentProfile extends StatelessWidget {
                           arguments: MarkInformationArguments(
                               assessmentData: assessment,
                               unitName: this.profile.marks[unit].name,
-                              studentName: this.profile.name),
+                              student: this.profile),
                         );
                       },
                     ),

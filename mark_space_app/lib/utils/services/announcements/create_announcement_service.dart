@@ -9,14 +9,12 @@ class CreateAnnouncementService {
     String teacherId,
     String classId,
   }) async {
-    FormData _data = FormData.fromMap(
-      {
-        'content': content,
-        'teacher': teacherId,
-        'class_announcement': classId,
-        'date_time': DateTime.now()
-      },
-    );
+    Map<String, dynamic> _data = {
+      'content': content,
+      'teacher': teacherId,
+      'class_announcement': classId,
+      'date_time': DateTime.now()
+    };
     await HTTPRequests().post(ANNOUNCEMENT_URL, data: _data);
   }
 }

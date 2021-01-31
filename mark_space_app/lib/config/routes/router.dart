@@ -44,7 +44,7 @@ class Router {
         return _transition(
           SingleAssessment(
             args.assessment,
-            unitName: args.unitName,
+            unit: args.unit,
           ),
         );
       case CREATE_CLASS:
@@ -75,7 +75,7 @@ class Router {
           MarkInformation(
               assessmentData: _args.assessmentData,
               unitName: _args.unitName,
-              studentName: _args.studentName),
+              student: _args.student),
         );
 
       case CREATE_UNIT:

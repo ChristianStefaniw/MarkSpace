@@ -49,7 +49,7 @@ class Classes extends StatelessWidget {
   final String email;
   final String user;
 
-  const Classes({Key key, this.email, this.user}) : super(key: key);
+  const Classes({Key key, this.email, this.user});
 
   @override
   Widget build(BuildContext context) {

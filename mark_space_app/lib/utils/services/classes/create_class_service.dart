@@ -10,15 +10,14 @@ class CreateClassService {
     String period,
     String code,
   }) async {
-    FormData _data = FormData.fromMap(
+    Map<String, dynamic> _data =
       {
         'name': name,
         'period': period,
         'code': code,
         'icon': 'https://image.flaticon.com/icons/png/512/201/201555.png',
         'teachers': teacherId
-      },
-    );
+      };
     await HTTPRequests().post(CLASS_URL, data: _data);
   }
 }

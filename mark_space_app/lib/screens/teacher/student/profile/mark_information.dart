@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mark_space_app/config/theme/colors.dart';
 import 'package:mark_space_app/modules/models/marks/assessment_data.dart';
+import 'package:mark_space_app/modules/models/student/student_profile_data.dart';
 import 'package:mark_space_app/screens/teacher/student/profile/widgets/mark_information_card.dart';
 import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
@@ -9,9 +10,9 @@ import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
 class MarkInformation extends StatelessWidget {
   final AssessmentData assessmentData;
   final String unitName;
-  final String studentName;
+  final StudentProfileData student;
 
-  MarkInformation({this.assessmentData, this.unitName, this.studentName});
+  MarkInformation({this.assessmentData, this.unitName, this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +93,7 @@ class MarkInformation extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: ' ${this.studentName}',
+                              text: ' ${this.student.name}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -110,17 +111,11 @@ class MarkInformation extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: bootstrapContainerWidth(MediaQuery.of(context).size.width),
-                child: ListView(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  children: this
-                      .assessmentData
-                      .marks
-                      .map(
-                        (mark) => MarkInformationCard(mark),
-                      )
-                      .toList(),
+                width:
+                    bootstrapContainerWidth(MediaQuery.of(context).size.width),
+                child: MarkInformationCard(
+                  this.assessmentData.marks.firstWhere((element) =>
+                      element.student.studentId == this.student.studentId),
                 ),
               ),
             ),

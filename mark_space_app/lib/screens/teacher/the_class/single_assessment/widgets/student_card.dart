@@ -26,7 +26,7 @@ class StudentCard extends StatelessWidget {
           arguments: MarkInformationArguments(
             assessmentData: this.assessmentData,
             unitName: this.unitName,
-            studentName: this.markData.studentName,
+            student: this.markData.student,
           ),
         ),
         child: Container(
@@ -39,7 +39,7 @@ class StudentCard extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    this.markData.studentName,
+                    this.markData.student.name,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -60,7 +60,7 @@ class StudentCard extends StatelessWidget {
                     flex: 1,
                     child: CircleAvatar(
                         child: Text(
-                          this.markData.studentName[0],
+                          this.markData.student.name[0],
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),

@@ -47,7 +47,7 @@ class Units extends StatelessWidget {
                           SINGLE_ASSESSMENT,
                           arguments: SingleAssessmentArguments(
                               assessment: assessment,
-                              unitName: _unitData[unit].name),
+                              unit: _unitData[unit]),
                         );
                       },
                     ),
