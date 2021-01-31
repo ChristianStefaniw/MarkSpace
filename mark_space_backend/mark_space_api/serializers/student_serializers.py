@@ -5,16 +5,15 @@ from .unit_serializers import UnitListSerializer
 
 
 class StudentCreateSerializer(serializers.ModelSerializer):
-    class_student = serializers.UUIDField()
 
     class Meta:
         model = student_model.Student
-        fields = '__all__'
+        fields = ('name', 'email', 'class_student')
 
     def create(self, validated_data):
         new_student = student_model.Student.objects.create(name=validated_data['name'],
                                                            email=validated_data['email'])
-        class_model.Class.objects.get(id=validated_data['class_student']).students.add(new_student)
+        validated_data['class_student'][0].students.add(new_student)
         new_student.save()
         return new_student
 

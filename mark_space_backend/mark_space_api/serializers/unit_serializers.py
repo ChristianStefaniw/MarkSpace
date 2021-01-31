@@ -13,16 +13,14 @@ class UnitListSerializer(serializers.ModelSerializer):
 
 
 class UnitCreateSerializer(serializers.ModelSerializer):
-    class_unit = serializers.UUIDField()
-
     class Meta:
         model = unit_model.Unit
-        fields = '__all__'
+        fields = ('class_unit', 'name')
 
     def create(self, validated_data):
         new_unit = unit_model.Unit.objects.create(name=validated_data['name'], )
         new_unit.save()
-        class_model.Class.objects.get(id=validated_data['class_unit']).units.add(new_unit)
+        validated_data['class_unit'][0].units.add(new_unit)
 
         return new_unit
 

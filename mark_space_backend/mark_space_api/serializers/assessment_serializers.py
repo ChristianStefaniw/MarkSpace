@@ -13,14 +13,12 @@ class AssessmentListSerializer(serializers.ModelSerializer):
 
 
 class AssessmentCreateSerializer(serializers.ModelSerializer):
-    unit = serializers.UUIDField()
-
     class Meta:
         model = Assessment
-        fields = '__all__'
+        fields = ('name', 'weight', 'unit')
 
     def create(self, validated_data):
         new_assessment = Assessment.objects.create(name=validated_data['name'], weight=validated_data['weight'])
-        new_assessment.unit.add(validated_data['unit'])
+        new_assessment.unit.add(validated_data['unit'][0].id)
         new_assessment.save()
         return new_assessment

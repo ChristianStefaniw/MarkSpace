@@ -20,7 +20,6 @@ class ClassCreateSerializer(serializers.ModelSerializer):
         return new_class
 
 
-
 class ClassListSerializer(serializers.ModelSerializer):
     class __TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
         class Meta:
@@ -42,5 +41,6 @@ class ClassListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_announcements(self, obj):
-        ordered_queryset = class_model.Announcement.objects.all().filter(class_announcement=obj.id).order_by('-date_time')
+        ordered_queryset = class_model.Announcement.objects.all().filter(class_announcement=obj.id).order_by(
+            '-date_time')
         return AnnouncementListSerializer(ordered_queryset, many=True, read_only=True).data

@@ -34,12 +34,11 @@ class MarkListSerializer(serializers.ModelSerializer):
 
 
 class MarkCreateSerializer(serializers.ModelSerializer):
-    assessment = serializers.UUIDField()
     subs = serializers.JSONField(write_only=True)
 
     class Meta:
         model = mark_model.Mark
-        fields = '__all__'
+        fields = ('grade', 'student', 'subs', 'assessment')
 
     def create(self, validated_data):
         new_mark = mark_model.Mark.objects.create(grade=validated_data['grade'], student=validated_data['student'])
@@ -48,6 +47,6 @@ class MarkCreateSerializer(serializers.ModelSerializer):
             new_sub_grade = sub_grade_model.SubGrade.objects.create(name=sub['name'], mark=sub['mark'])
             new_mark.subs.add(new_sub_grade)
 
-        new_mark.assessment.add(validated_data['assessment'])
+        new_mark.assessment.add(validated_data['assessment'][0].id)
 
         return new_mark
