@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mark_space_app/modules/models/marks/sub_grades.dart';
 import 'package:mark_space_app/modules/providers/marks_provider.dart';
+import 'package:mark_space_app/modules/providers/units_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
@@ -52,6 +53,7 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
                 .classData
                 .id);
     Provider.of<MarksProvider>(context, listen: false).marksChanged();
+    Provider.of<UnitsProvider>(context, listen: false).unitsChanged();
     Navigator.pop(context);
     context.hideLoaderOverlay();
   }

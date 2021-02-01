@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart';
 
 class MarksProvider extends ChangeNotifier{
-  void marksChanged() => notifyListeners();
+  bool fromProvider = false;
+  void marksChanged() {
+    fromProvider = true;
+    notifyListeners();
+  }
 }

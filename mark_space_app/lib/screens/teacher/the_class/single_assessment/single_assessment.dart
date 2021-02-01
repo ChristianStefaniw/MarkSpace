@@ -21,17 +21,27 @@ class SingleAssessment extends StatelessWidget {
   SingleAssessment(this.assessment, {this.unit});
 
   List<Widget> studentCards(BuildContext context) {
-    AssessmentData _newAssessment =
-        Provider.of<ClassDataProvider>(context, listen: false)
-            .classData
-            .units
-            .firstWhere((element) => element.id == this.unit.id)
-            .assessments
-            .firstWhere((element) => element.id == this.assessment.id);
-    return _newAssessment.marks
+    AssessmentData _assessment;
+
+    if (Provider.of<MarksProvider>(context, listen: false).fromProvider) {
+      print('fromProvider');
+      _assessment = Provider.of<ClassDataProvider>(context, listen: false)
+          .classData
+          .units
+          .firstWhere((element) => element.id == this.unit.id)
+          .assessments
+          .firstWhere((element) => element.id == this.assessment.id);
+    } else {
+      print('not fromProvider');
+      _assessment = this.assessment;
+    }
+
+    Provider.of<MarksProvider>(context, listen: false).fromProvider = false;
+
+    return _assessment.marks
         .map((mark) => StudentCard(
               markData: mark,
-              assessmentData: _newAssessment,
+              assessmentData: _assessment,
               unitName: this.unit.name,
             ))
         .toList();
