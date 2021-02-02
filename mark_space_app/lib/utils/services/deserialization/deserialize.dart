@@ -19,10 +19,16 @@ class Deserialize {
         .get(CLASS_QUERY_ID_URL + classId)
         .then((value) => value[0]);
 
-    // Isolates the large task of deserializing all of the students and units
     List<StudentProfileData> _students = await compute(_deserializeStudents, _class['students'] as List<dynamic>);
     List<UnitData> _units = await compute(_deserializeUnits, _class['units'] as List<dynamic>);
     List<AnnouncementData> _announcements = await compute(deserializeAnnouncements, _class['announcements'] as List<dynamic>);
+
+    /*
+    List<StudentProfileData> _students = _deserializeStudents(_class['students']);
+    List<UnitData> _units = _deserializeUnits(_class['units']);
+    List<AnnouncementData> _announcements = deserializeAnnouncements(_class['announcements']);
+     */
+
 
 
     _class.addAll({'students': _students});

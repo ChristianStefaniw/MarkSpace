@@ -60,7 +60,7 @@ class StudentCard extends StatelessWidget {
                     flex: 1,
                     child: CircleAvatar(
                         child: Text(
-                          this.markData.student.name[0],
+                          this.markData.student.name[0].toUpperCase(),
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),

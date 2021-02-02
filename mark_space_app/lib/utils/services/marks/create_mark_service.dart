@@ -8,6 +8,7 @@ class CreateMarkService {
     String studentId,
     grade,
     List<SubGrade> subs,
+    String comment,
   }) async {
   print(subs.map((e) => e.toJson()).toList());
     Map<String, dynamic> _data =
@@ -15,6 +16,7 @@ class CreateMarkService {
         'assessment': [assessmentId],
         'student': studentId,
         'grade': grade,
+        'comment': comment,
         'subs': subs.map((e) => e.toJson()).toList(),
       };
     await HTTPRequests().post(MARKS_URL, data: _data);

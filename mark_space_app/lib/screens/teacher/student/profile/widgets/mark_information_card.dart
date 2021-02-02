@@ -30,20 +30,25 @@ class MarkInformationCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: this.markData.subGrades.map((sub) {
-                    return RichText(
-                      text: TextSpan(
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '${sub.name}:',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ' ${sub.mark}'),
-                        ],
-                      ),
-                    );
-                  }).toList(),
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: this.markData.subGrades.map((sub) {
+                        return RichText(
+                          text: TextSpan(
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${sub.name}:',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(text: ' ${sub.mark}'),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    this.markData.comment != null ? Text(this.markData.comment) : null,
+                  ],
                 ),
               ),
               VerticalDivider(

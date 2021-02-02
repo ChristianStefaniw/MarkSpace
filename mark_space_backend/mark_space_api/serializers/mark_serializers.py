@@ -38,10 +38,13 @@ class MarkCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = mark_model.Mark
-        fields = ('grade', 'student', 'subs', 'assessment')
+        fields = ('grade', 'student', 'subs', 'assessment', 'comment')
 
     def create(self, validated_data):
-        new_mark = mark_model.Mark.objects.create(grade=validated_data['grade'], student=validated_data['student'])
+        new_mark = mark_model.Mark.objects.create(grade=validated_data['grade'],
+                                                  student=validated_data['student'],
+                                                  comment=validated_data['comment'],
+                                                  )
 
         for sub in validated_data['subs']:
             new_sub_grade = sub_grade_model.SubGrade.objects.create(name=sub['name'], mark=sub['mark'])

@@ -5,23 +5,16 @@ from .unit_serializers import UnitListSerializer
 
 
 class StudentCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = student_model.Student
         fields = ('name', 'email', 'class_student')
 
     def create(self, validated_data):
-        new_student = student_model.Student.objects.create(name=validated_data['name'],
-                                                           email=validated_data['email'])
+        new_student = student_model.Student.objects.get_or_create(name=validated_data['name'],
+                                                                  email=validated_data['email'])
         validated_data['class_student'][0].students.add(new_student)
         new_student.save()
         return new_student
-
-    def update(self, instance, validated_data):
-        for __class in validated_data['class_student']:
-            class_model.Class.objects.get(id=__class.id).students.add(instance)
-        instance.save()
-        return instance
 
 
 class FilteredClassSerializer(serializers.ListSerializer):
@@ -44,7 +37,5 @@ class StudentListSerializer(serializers.ModelSerializer):
     class_student = __Units(read_only=True, many=True)
 
     class Meta:
-
         model = student_model.Student
         fields = '__all__'
-

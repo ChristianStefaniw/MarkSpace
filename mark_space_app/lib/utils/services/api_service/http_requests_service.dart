@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 
-import 'http_requests_services_interface.dart';
 
-class HTTPRequests implements HttpRequestsInterface{
+class HTTPRequests{
 
   static final HTTPRequests _singleton = HTTPRequests._internal();
   factory HTTPRequests() => _singleton;
@@ -10,12 +9,15 @@ class HTTPRequests implements HttpRequestsInterface{
 
   Dio dio = new Dio();
 
-  @override
-  Future delete(url) {
-    throw UnimplementedError();
+  Future delete(url) async{
+    Response response = await dio.delete(url);
+    if (response.statusCode == 204){
+      return;
+    } else {
+      throw "Network error";
+    }
   }
 
-  @override
   Future get(url) async{
     Response response = await dio.get(url);
     if (response.statusCode == 200){
@@ -25,13 +27,11 @@ class HTTPRequests implements HttpRequestsInterface{
     }
   }
 
-  @override
   Future patch(url) {
     throw UnimplementedError();
   }
 
-  @override
-  Future post(url, {Map data}) async{
+  Future post(url, {data}) async{
     Response response = await dio.post(url, data: data);
     print(response.statusCode);
     if (response.statusCode == 201 || response.statusCode == 200){

@@ -45,6 +45,7 @@ class _CreateMarkFormState extends State<CreateMarkForm> {
       grade: _markController.text,
       subs: _subGrades,
       studentId: _student.studentId,
+      comment: _commentController.text,
     );
 
     Provider.of<ClassDataProvider>(context, listen: false).classData =

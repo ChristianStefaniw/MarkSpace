@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .assessment_serializers import AssessmentListSerializer
-from mark_space_api.models import unit_model, class_model
+from mark_space_api.models import unit_model
 
 
 class UnitListSerializer(serializers.ModelSerializer):
@@ -23,9 +23,3 @@ class UnitCreateSerializer(serializers.ModelSerializer):
         validated_data['class_unit'][0].units.add(new_unit)
 
         return new_unit
-
-    def update(self, instance, validated_data):
-        for assessment in validated_data['assessments']:
-            instance.assessments.add(assessment.id)
-        instance.save()
-        return instance

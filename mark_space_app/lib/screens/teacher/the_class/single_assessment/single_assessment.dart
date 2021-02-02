@@ -14,13 +14,29 @@ import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/widgets/background_decorations/wavy_header.dart';
 import 'package:mark_space_app/config/routes/routes.dart';
 
+class _DeserializeAssessmentsArgs{
+  final AssessmentData assessment;
+  final String unitName;
+  _DeserializeAssessmentsArgs({this.assessment, this.unitName});
+}
+
+List<Widget> _deserializeAssessments(_DeserializeAssessmentsArgs args){
+  return args.assessment.marks
+      .map((mark) => StudentCard(
+    markData: mark,
+    assessmentData: args.assessment,
+    unitName: args.unitName,
+  ))
+      .toList();
+}
+
 class SingleAssessment extends StatelessWidget {
   final AssessmentData assessment;
   final UnitData unit;
 
   SingleAssessment(this.assessment, {this.unit});
 
-  List<Widget> studentCards(BuildContext context) {
+  Future<List<Widget>> _studentCards(BuildContext context) {
     AssessmentData _assessment;
 
     if (Provider.of<MarksProvider>(context, listen: false).fromProvider) {
@@ -38,14 +54,9 @@ class SingleAssessment extends StatelessWidget {
 
     Provider.of<MarksProvider>(context, listen: false).fromProvider = false;
 
-    return _assessment.marks
-        .map((mark) => StudentCard(
-              markData: mark,
-              assessmentData: _assessment,
-              unitName: this.unit.name,
-            ))
-        .toList();
+    return compute(_deserializeAssessments, _DeserializeAssessmentsArgs(unitName: this.unit.name, assessment: _assessment));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +121,7 @@ class SingleAssessment extends StatelessWidget {
                 child: Consumer<MarksProvider>(
                   builder: (_, model, child) {
                     return FutureBuilder<List<Widget>>(
-                      future: compute(studentCards, context),
+                      future: _studentCards(context),
                       builder: (_, cards) {
                         return cards.hasData
                             ? ListView.builder(

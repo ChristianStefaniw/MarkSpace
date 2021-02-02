@@ -14,13 +14,6 @@ class AssessmentView(viewsets.ModelViewSet):
         serializer = AssessmentListSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def update(self, request, *args, **kwargs):
-        obj = self.get_object()
-        serializer = AssessmentUpdateSerializer(obj, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-
-        return Response(serializer.data)
 
     def get_queryset(self):
         queryset = self.queryset.filter(id=self.request.query_params.get('id'))

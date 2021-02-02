@@ -14,14 +14,6 @@ class UnitView(viewsets.ModelViewSet):
         serializer = UnitListSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def update(self, request, *args, **kwargs):
-        obj = self.get_object()
-        serializer = UnitCreateSerializer(obj, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-
-        return Response(serializer.data)
-
     def get_queryset(self):
         queryset = self.queryset.filter(class_unit=self.request.query_params.get('class'))
         return queryset

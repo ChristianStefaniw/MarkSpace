@@ -14,14 +14,6 @@ class MarkView(viewsets.ModelViewSet):
         serializer = MarkListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
-    def create(self, request, *args, **kwargs):
-        serializer = MarkCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            print(serializer.errors)
-            return Response(serializer.data, status=500)
 
     def get_queryset(self):
         queryset = self.queryset.filter(id=self.request.query_params.get('id'))

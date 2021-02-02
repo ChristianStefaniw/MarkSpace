@@ -8,12 +8,14 @@ class CreateAssessmentService {
     String unitId,
     String name,
     String weight,
+    String classId,
   }) async {
-    Map<String, dynamic> _data = {
+    print(ASSESSMENTS_URL + classId);
+    FormData _data = FormData.fromMap({
       'unit': unitId,
       'name': name,
       'weight': weight,
-    };
-    await HTTPRequests().post(ASSESSMENTS_URL, data: _data);
+    });
+    await HTTPRequests().post(ASSESSMENTS_URL + classId, data: _data);
   }
 }

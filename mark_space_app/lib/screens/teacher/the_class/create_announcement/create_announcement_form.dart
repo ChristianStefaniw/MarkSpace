@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mark_space_app/constants/api_constants.dart';
@@ -12,13 +11,14 @@ import 'package:mark_space_app/utils/helpers/bootstrap_container_width.dart';
 import 'package:mark_space_app/utils/services/deserialization/deserialize.dart';
 import 'package:mark_space_app/modules/providers/announcement_provider.dart';
 import 'package:mark_space_app/utils/services/announcements/create_announcement_service.dart';
+import 'package:mark_space_app/modules/models/teacher/teacher_data.dart';
 
 
 class CreateAnnouncementForm extends StatelessWidget {
   final GlobalKey _formKey = GlobalKey<FormState>();
   final TextEditingController _messageController = new TextEditingController();
 
-  void _announcementAdded(BuildContext context) async {
+  Future<void> _announcementAdded(BuildContext context) async {
     context.showLoaderOverlay();
 
     String _classId = Provider.of<ClassDataProvider>(context, listen: false).classData.id;
@@ -33,7 +33,7 @@ class CreateAnnouncementForm extends StatelessWidget {
         .get(CLASS_QUERY_ID_URL + _classId)
         .then((value) => value[0]['announcements']);
 
-    Provider.of<ClassDataProvider>(context, listen: false).classData.announcements = Deserialize.deserializeAnnouncements(_announcements);
+    Provider.of<ClassDataProvider>(context, listen: false).classData.announcements = await compute(Deserialize.deserializeAnnouncements, _announcements);
     Provider.of<AnnouncementProvider>(context, listen: false).announcementsChanged();
 
     Navigator.pop(context);
@@ -81,7 +81,7 @@ class CreateAnnouncementForm extends StatelessWidget {
                         icon: Icon(Icons.check),
                         label: Text('Submit'),
                         onPressed: () {
-                          compute(_announcementAdded, context);
+                          _announcementAdded(context);
                         },
                         color: PRIMARY_BUTTON,
                       ),

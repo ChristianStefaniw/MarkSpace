@@ -25,7 +25,10 @@ class CreateAssessmentForm extends StatelessWidget {
     await CreateAssessmentService.run(
       name: _assessmentNameController.text,
       unitId: this.unitId,
-      weight: _assessmentWeightController.text
+      weight: _assessmentWeightController.text,
+      classId: Provider.of<ClassDataProvider>(context, listen: false)
+          .classData
+          .id,
     );
 
     Provider.of<ClassDataProvider>(context, listen: false).classData =
