@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -12,5 +13,5 @@ func temp(w http.ResponseWriter, r *http.Request){
 func main(){
 	http.HandleFunc("/", temp)
 	fmt.Println("Listening on: 8001")
-	http.ListenAndServe(":8001", nil)
+	log.Fatal(http.ListenAndServe(":8001", nil))
 }

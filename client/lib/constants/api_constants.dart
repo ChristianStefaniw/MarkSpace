@@ -1,6 +1,6 @@
 // API endpoints
 
-const String API_URL = 'http://192.168.1.131:8000/api/';
+const String API_URL = 'http://localhost:8002/';
 const String TEACHER_URL = API_URL + 'teacher/';
 const String EMAIL_QUERY_TEACHER_URL = TEACHER_URL + '?email=';
 const String CLASS_URL = API_URL + 'class/';

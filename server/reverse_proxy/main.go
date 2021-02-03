@@ -1,10 +1,8 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -17,11 +15,6 @@ import (
 	reverse proxy redirecting to golang server or django server
  */
 
-type requestPayloadStruct struct {
-	ProxyCondition string `json:"proxy_condition"`
-}
-
-
 func getEnv(key string) string{
 	return os.Getenv(key)
 }
@@ -32,46 +25,23 @@ func getListenAddress() string {
 }
 
 
-func requestBodyDecoder(r *http.Request) *json.Decoder{
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil{
-		log.Fatalf("Error reading body: %v", err)
-	}
-
-	r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-
-	return json.NewDecoder(ioutil.NopCloser(bytes.NewBuffer(body)))
-}
+func getProxyUrl(r *http.Request) string{
 
 
-func parseRequestBody(r *http.Request) requestPayloadStruct{
-	decoder := requestBodyDecoder(r)
-
-	var requestPayload requestPayloadStruct
-	err := decoder.Decode(&requestPayload)
-
-	if err != nil{
-		panic(err)
-	}
-
-	return requestPayload
-}
-
-
-
-func getProxyUrl(proxyConditionRaw string) string{
-	proxyCondition := strings.ToLower(proxyConditionRaw)
+	proxyCondition := strings.ToLower(r.URL.Query().Get("condition"))
 
 	markUpdateCondition := getEnv("UPDATE_MARKS_CONDITION")
 	//defaultCondition := getEnv("DEFAULT_CONDITION")
 
 
-
 	if proxyCondition == markUpdateCondition {
-		return getEnv("UPDATE_MARKs_URL")
+		return getEnv("UPDATE_MARKS_URL")
 	}
 
+	deleteURLParam("condition", r.URL)
+
 	return getEnv("DEFAULT_URL")
+
 }
 
 
@@ -85,14 +55,19 @@ func serveReverseProxy(target string, w http.ResponseWriter, r *http.Request){
 	r.Header.Set("X-Forwarded-Host", r.Header.Get("Host"))
 	r.Host = url.Host
 
+	log.Printf("Redirected to %s", r.URL)
+
 	proxy.ServeHTTP(w, r)
 }
 
+func deleteURLParam(key string, u *url.URL){
+	query, _ := url.ParseQuery(u.RawQuery)
+	query.Del(key)
+	u.RawQuery = query.Encode()
+}
 
 func handleRequestAndRedirect(w http.ResponseWriter, r *http.Request){
-	requestPayload := parseRequestBody(r)
-	url := getProxyUrl(requestPayload.ProxyCondition)
-
+	url := getProxyUrl(r)
 	serveReverseProxy(url, w, r)
 }
 
@@ -111,9 +86,9 @@ func logSetup() {
 
 func main(){
 	godotenv.Load(".env")
-	http.HandleFunc("/", handleRequestAndRedirect)
+	router := mux.NewRouter()
+	router.Path("/{path}/").HandlerFunc(handleRequestAndRedirect)
+
 	logSetup()
-	if err := http.ListenAndServe(getListenAddress(), nil); err != nil{
-		panic(err)
-	}
+	log.Fatal(http.ListenAndServe(getListenAddress(), router))
 }

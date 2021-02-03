@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 class HTTPRequests{
 
   static final HTTPRequests _singleton = HTTPRequests._internal();
@@ -18,8 +17,11 @@ class HTTPRequests{
     }
   }
 
-  Future get(url) async{
-    Response response = await dio.get(url);
+  Future get(url, {String condition}) async{
+
+    Response response = await dio.get(url + '&condition=$condition');
+
+
     if (response.statusCode == 200){
       return response.data;
     } else {

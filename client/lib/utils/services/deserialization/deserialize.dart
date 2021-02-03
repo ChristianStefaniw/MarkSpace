@@ -40,7 +40,7 @@ class Deserialize {
 
   static Future<List<PreviewClass>> previewClasses(String email) async {
     List<dynamic> _classes = await HTTPRequests()
-        .get(EMAIL_QUERY_TEACHER_URL + email)
+        .get(EMAIL_QUERY_TEACHER_URL + email, condition: 'to_django')
         .then((value) => value[0]['class_teacher']);
 
     if (_classes.isEmpty){
