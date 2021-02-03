@@ -19,20 +19,20 @@ class StudentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      child: MaterialButton(
-        onPressed: () => Navigator.pushNamed(
-          context,
-          MARK_INFORMATION,
-          arguments: MarkInformationArguments(
-            assessmentData: this.assessmentData,
-            unitName: this.unitName,
-            student: this.markData.student,
+      child: IntrinsicHeight(
+        child: MaterialButton(
+          onPressed: () => Navigator.pushNamed(
+            context,
+            MARK_INFORMATION,
+            arguments: MarkInformationArguments(
+              assessmentData: this.assessmentData,
+              unitName: this.unitName,
+              student: this.markData.student,
+            ),
           ),
-        ),
-        child: Container(
-          width: double.infinity,
-          margin: EdgeInsets.all(30),
-          child: IntrinsicHeight(
+          child: Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

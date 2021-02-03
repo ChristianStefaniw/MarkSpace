@@ -50,7 +50,7 @@ class AnnouncementCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "From: ${this.announcementData.teacher}",
+                                  this.announcementData.teacher,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 13,
