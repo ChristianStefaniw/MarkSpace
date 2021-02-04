@@ -29,6 +29,7 @@ func getProxyUrl(r *http.Request) string{
 
 
 	proxyCondition := strings.ToLower(r.URL.Query().Get("condition"))
+	deleteURLParam("condition", r.URL)
 
 	markUpdateCondition := getEnv("UPDATE_MARKS_CONDITION")
 	//defaultCondition := getEnv("DEFAULT_CONDITION")
@@ -38,7 +39,6 @@ func getProxyUrl(r *http.Request) string{
 		return getEnv("UPDATE_MARKS_URL")
 	}
 
-	deleteURLParam("condition", r.URL)
 
 	return getEnv("DEFAULT_URL")
 
