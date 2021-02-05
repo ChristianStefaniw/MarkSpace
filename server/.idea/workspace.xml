@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b02a7f93-d909-4811-945e-b1ae72e3deb3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/migrations/0002_auto_20210130_1654.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/migrations/0003_mark_comment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/announcement_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/assessment_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/class_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/mark_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/student_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/sub_grade_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/teacher_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/models/unit_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/announcement_serializer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/assessment_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/class_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/mark_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/student_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/sub_grade_serializer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/teacher_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/serializers/unit_serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/announcement_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/assessment_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/class_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/mark_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/student_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/teacher_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_api/views/unit_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mark_space_app/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyvenv.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reverse_proxy/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reverse_proxy/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/update_marks/main.go" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JupyterTrust" id="7fa4a26e-21fe-4e11-a9c6-4b7523c87d46" />
+  <component name="ProjectId" id="1o5C1yrzS00hu5VKCZ33y3EDojs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b02a7f93-d909-4811-945e-b1ae72e3deb3" name="Default Changelist" comment="" />
+      <created>1612566854472</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612566854472</updated>
+      <workItem from="1612566855558" duration="26000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
