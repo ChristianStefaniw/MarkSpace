@@ -1,0 +1,17 @@
+from rest_framework import serializers
+
+from classes.models import Class
+from .models import Teacher
+
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class __NamePeriodCodeClassSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Class
+            fields = ('id', 'name', 'period', 'code', 'icon')
+
+    class_teacher = __NamePeriodCodeClassSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Teacher
+        fields = '__all__'
