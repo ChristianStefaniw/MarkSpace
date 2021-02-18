@@ -19,47 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b02a7f93-d909-4811-945e-b1ae72e3deb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/announcement_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/assessment_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/class_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/mark_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/student_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/sub_grade_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/teacher_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/models/unit_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/announcement_serializer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/assessment_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/class_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/mark_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/student_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/sub_grade_serializer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/teacher_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/serializers/unit_serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/announcement_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/assessment_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/class_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/mark_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/student_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/teacher_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/api/views/unit_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/markspace_api/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/markspace_api/markspace_api/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/markspace_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/markspace_api/markspace_api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/reverse_proxy/.env" beforeDir="false" afterPath="$PROJECT_DIR$/reverse_proxy/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/reverse_proxy/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/reverse_proxy/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace_api/update_marks/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/update_marks/main.go" afterDir="false" />
-    </list>
+    <list default="true" id="b02a7f93-d909-4811-945e-b1ae72e3deb3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +44,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../connect_x" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -126,12 +88,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1612927003284">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612927003284" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1612582004871" />
   </component>
 </project>

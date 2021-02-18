@@ -5,12 +5,12 @@ from .models import Announcement
 
 
 class AnnouncementListSerializer(serializers.ModelSerializer):
-    class __TeacherSerializer(serializers.ModelSerializer):
+    class _TeacherSerializer(serializers.ModelSerializer):
         class Meta:
             model = Teacher
             fields = ('id', 'name')
 
-    teacher = __TeacherSerializer(read_only=True)
+    teacher = _TeacherSerializer(read_only=True)
 
     class Meta:
         model = Announcement

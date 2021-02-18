@@ -24,18 +24,18 @@ class ClassCreateSerializer(serializers.ModelSerializer):
 
 
 class ClassListSerializer(serializers.ModelSerializer):
-    class __TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
+    class _TeacherNameIDAndEmailSerializer(serializers.ModelSerializer):
         class Meta:
             model = Teacher
             fields = ('name', 'email', 'id')
 
-    class __StudentNameIDAndEmailSerializer(serializers.ModelSerializer):
+    class _StudentNameIDAndEmailSerializer(serializers.ModelSerializer):
         class Meta:
             model = Student
             fields = ('name', 'email', 'id')
 
-    teachers = __TeacherNameIDAndEmailSerializer(many=True, read_only=True)
-    students = __StudentNameIDAndEmailSerializer(many=True, read_only=True)
+    teachers = _TeacherNameIDAndEmailSerializer(many=True, read_only=True)
+    students = _StudentNameIDAndEmailSerializer(many=True, read_only=True)
     units = UnitListSerializer(many=True, read_only=True)
     announcements = serializers.SerializerMethodField()
 

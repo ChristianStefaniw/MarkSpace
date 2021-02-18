@@ -25,12 +25,12 @@ class FilteredMarkSerializer(serializers.ListSerializer):
 
 
 class MarkListSerializer(serializers.ModelSerializer):
-    class __StudentNameAndIDSerializer(serializers.ModelSerializer):
+    class _StudentNameAndIDSerializer(serializers.ModelSerializer):
         class Meta:
             model = Student
             fields = ('name', 'id')
 
-    student = __StudentNameAndIDSerializer()
+    student = _StudentNameAndIDSerializer()
     subs = SubGradeSerializer(many=True, read_only=True)
 
     class Meta:
@@ -49,8 +49,7 @@ class MarkCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         new_mark = Mark.objects.create(grade=validated_data['grade'],
                                        student=validated_data['student'],
-                                       comment=validated_data['comment'],
-                                       )
+                                       comment=validated_data['comment'],)
 
         for sub in validated_data['subs']:
             new_sub_grade = SubGrade.objects.create(name=sub['name'], mark=sub['mark'])

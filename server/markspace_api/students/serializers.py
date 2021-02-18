@@ -27,7 +27,7 @@ class FilteredClassSerializer(serializers.ListSerializer):
 
 
 class StudentListSerializer(serializers.ModelSerializer):
-    class __Units(serializers.ModelSerializer):
+    class _Units(serializers.ModelSerializer):
         units = UnitListSerializer(many=True, read_only=True)
 
         class Meta:
@@ -35,7 +35,7 @@ class StudentListSerializer(serializers.ModelSerializer):
             model = Class
             fields = ('id', 'units')
 
-    class_student = __Units(read_only=True, many=True)
+    class_student = _Units(read_only=True, many=True)
 
     class Meta:
         model = Student
