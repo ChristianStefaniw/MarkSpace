@@ -92,5 +92,5 @@ func main(){
 	router.Route("/:condition/").Handler(handleRequestAndRedirect).Method("GET").AppendSlash(false)
 
 	logSetup()
-	log.Fatal(http.ListenAndServe(getListenAddress(), router))
+	cgr.Run(getListenAddress(), router)
 }
