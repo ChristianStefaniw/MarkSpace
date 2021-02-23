@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
+	"github.com/ChristianStefaniw/cgr"
 	"github.com/joho/godotenv"
 	"log"
 	"net/http"
@@ -13,7 +13,7 @@ import (
 
 /*
 	reverse proxy redirecting to golang server or django server
- */
+*/
 
 func getEnv(key string) string{
 	return os.Getenv(key)
@@ -27,8 +27,7 @@ func getListenAddress() string {
 
 func getProxyUrl(r *http.Request) string{
 
-
-	proxyCondition := strings.ToLower(r.URL.Query().Get("condition"))
+	proxyCondition := strings.ToLower(strings.ToLower(cgr.GetVars(r)["condition"]))
 	deleteURLParam("condition", r.URL)
 
 	markUpdateCondition := getEnv("UPDATE_MARKS_CONDITION")
@@ -85,9 +84,12 @@ func logSetup() {
 
 
 func main(){
-	godotenv.Load(".env")
-	router := mux.NewRouter()
-	router.Path("/{path}/").HandlerFunc(handleRequestAndRedirect)
+	err := godotenv.Load(".env")
+	if err != nil{
+		panic(err)
+	}
+	router := cgr.NewRouter()
+	router.Route("/:condition/").Handler(handleRequestAndRedirect).Method("GET").AppendSlash(false)
 
 	logSetup()
 	log.Fatal(http.ListenAndServe(getListenAddress(), router))
